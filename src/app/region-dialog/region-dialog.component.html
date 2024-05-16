@@ -1,0 +1,116 @@
+<div class="region-dialog">
+  <div class="title-close">
+    <div class="title">Region settings</div>
+    <button (click)="closeDialog()" class="close-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        style="width: 1rem; height: 1rem"
+      >
+        <path
+          d="M5.587 3.467a1.5 1.5 0 10-2.194 2.046q.036.038.074.074l6.438 6.44-6.44 6.44a1.5 1.5 0 002.122 2.12l6.44-6.438 6.44 6.44a1.5 1.5 0 002.12-2.122l-6.438-6.44 6.44-6.44a1.5 1.5 0 00-2.122-2.12l-6.44 6.438-6.44-6.44z"
+        ></path>
+      </svg>
+    </button>
+  </div>
+  <div class="row">
+    <header>
+      <span class="icon"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="iconInLabel_icon-in-label__YmFjN"
+          style="width: 1.5rem; height: 1.5rem"
+        >
+          <path
+            d="M21.24 3.927l-2.213-.757a21.687 21.687 0 00-14.054 0l-2.213.757A1.137 1.137 0 002 5.008v10.584a3.377 3.377 0 003.333 3.421h2.49a2 2 0 011.432.6l2.03 2.082a1 1 0 001.414.016l.016-.016 2.03-2.082a2 2 0 011.432-.6h2.49A3.377 3.377 0 0022 15.592V5.009a1.138 1.138 0 00-.76-1.082zM8.995 10.988a1 1 0 11-1-1 1 1 0 011 1zm3 1a1 1 0 111-1 1 1 0 01-1.002.999zm4 0a1 1 0 111-1 1 1 0 01-1.004.999z"
+          ></path>
+        </svg>
+      </span>
+      <span class="name">Language</span>
+    </header>
+    <mat-form-field>
+      <mat-select [(value)]="currentLanguage.viewValue" matNativeControl>
+        @for (language of languages; track languages) {
+        <mat-option [value]="language.viewValue">{{
+          language.viewValue
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <header>
+      <span class="icon"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="iconInLabel_icon-in-label__YmFjN"
+          style="width: 1.5rem; height: 1.5rem"
+        >
+          <path
+            d="M9.862 8a.49.49 0 01-.488-.572 17.01 17.01 0 01.736-2.864 6.761 6.761 0 011.09-2.048c.374-.435.65-.516.8-.516.15 0 .424.081.798.516a6.761 6.761 0 011.09 2.048 17.043 17.043 0 01.736 2.864.49.49 0 01-.488.572zm-2.537-.432a.507.507 0 01-.5.432h-3.23a.472.472 0 01-.43-.688A10.043 10.043 0 017.677 2.98a.497.497 0 01.641.665c-.03.078-.06.157-.088.236a19.627 19.627 0 00-.906 3.688zM16.32 2.98a.496.496 0 00-.64.664c.03.078.06.157.087.236a19.627 19.627 0 01.906 3.688.507.507 0 00.5.432h3.23a.472.472 0 00.431-.688 10.043 10.043 0 00-4.514-4.333zm-1.36 7.486a.493.493 0 00-.496-.466h-4.93a.493.493 0 00-.495.466 29.266 29.266 0 000 3.068.493.493 0 00.495.466h4.93a.493.493 0 00.495-.466 29.321 29.321 0 000-3.068zM17.47 14a.507.507 0 01-.505-.51v-.023q.07-1.466 0-2.934a.507.507 0 01.48-.532l.023-.001h3.922a.483.483 0 01.482.402 10.067 10.067 0 010 3.196.483.483 0 01-.482.402zm-2.846 2.572a.49.49 0 00-.488-.572H9.862a.49.49 0 00-.488.572 17.114 17.114 0 00.736 2.864 6.761 6.761 0 001.09 2.048c.374.435.648.516.8.516s.424-.081.798-.516a6.761 6.761 0 001.09-2.048 17.043 17.043 0 00.736-2.864zm1.696 4.448a.496.496 0 01-.64-.664c.03-.078.06-.157.087-.236a19.627 19.627 0 00.906-3.688.507.507 0 01.5-.432h3.23a.472.472 0 01.431.688 10.043 10.043 0 01-4.514 4.333zm-8.642 0a.496.496 0 00.641-.664q-.045-.117-.088-.236a19.627 19.627 0 01-.906-3.688.507.507 0 00-.5-.432h-3.23a.472.472 0 00-.43.688 10.043 10.043 0 004.513 4.333zm-.645-7.553a.507.507 0 01-.48.532L6.53 14H2.61a.483.483 0 01-.482-.402 10.072 10.072 0 010-3.196A.483.483 0 012.61 10h3.92a.506.506 0 01.504.533q-.068 1.466 0 2.934z"
+          ></path>
+        </svg>
+      </span>
+      <span class="name">Country / Region</span>
+    </header>
+    <mat-form-field>
+      <mat-select [value]="currentRegion.viewValue" matNativeControl>
+        @for (region of regions; track regions) {
+        <mat-option [value]="region.viewValue">{{
+          region.viewValue
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <header>
+      <span class="icon"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="iconInLabel_icon-in-label__YmFjN"
+          style="width: 1.5rem; height: 1.5rem"
+        >
+          <path
+            d="M12 10c4.97 0 9-1.79 9-4s-4.03-4-9-4-9 1.79-9 4 4.03 4 9 4zm-8.954 1.2a1 1 0 011.253-.654c.278.087.553.178.833.27A19.257 19.257 0 0012 12a19.262 19.262 0 006.868-1.184c.28-.092.555-.183.833-.27a1 1 0 01.598 1.908c-.258.081-.522.168-.794.259A21.324 21.324 0 0112 14a21.324 21.324 0 01-7.505-1.287c-.272-.09-.536-.178-.794-.259a1 1 0 01-.655-1.253zm0 4a1 1 0 011.253-.654c.278.087.553.178.833.27A19.257 19.257 0 0012 16a19.262 19.262 0 006.868-1.184c.28-.092.555-.183.833-.27a1 1 0 01.598 1.908c-.258.081-.522.168-.794.259A21.324 21.324 0 0112 18a21.324 21.324 0 01-7.505-1.287c-.272-.09-.536-.178-.794-.259a1 1 0 01-.655-1.253zm0 4a1 1 0 011.253-.654c.278.087.553.178.833.27A19.257 19.257 0 0012 20a19.262 19.262 0 006.868-1.184c.28-.092.555-.183.833-.27a1 1 0 01.598 1.908c-.258.081-.522.168-.794.259A21.324 21.324 0 0112 22a21.324 21.324 0 01-7.505-1.287c-.272-.09-.536-.178-.794-.259a1 1 0 01-.655-1.253z"
+          ></path>
+        </svg>
+      </span>
+      <span class="name">Currency</span>
+    </header>
+    <mat-form-field>
+      <mat-select
+        [value]="currentCurrency.viewValue"
+        (selectionChange)="updateCurrency($event)"
+        name="currency"
+      >
+        <mat-option
+          *ngFor="let currency of currencies"
+          [value]="currency.viewValue"
+        >
+          {{ currency.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="action-buttons-row">
+    <button mat-flat-button color="primary" (click)="save()" class="save-btn">
+      Save
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="closeDialog()"
+      class="cancel-btn"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

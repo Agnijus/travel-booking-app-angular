@@ -1,0 +1,55 @@
+<ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+>
+  <div ngxSlickItem *ngFor="let card of cards" class="card">
+    <img mat-card-image [src]="card.image" alt="Hotel Image" />
+    <div class="middle">
+      <div class="card-info">
+        <div class="title">{{ card.name }}</div>
+        <p class="distance">{{ card.distance }}</p>
+        <div class="reviews">
+          <span class="reviews-star-count">4</span>
+          <span>OOOO</span>
+          <span class="reviews-count">29413 reviews</span>
+        </div>
+      </div>
+      <div class="rating">{{ card.rating }}</div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="bottom">
+      <div class="price">$499</div>
+      <p>Per night</p>
+    </div>
+  </div>
+</ngx-slick-carousel>
+
+<div class="slider-controls">
+  <button (click)="prev()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      style="width: 1.5rem; height: 1.5rem"
+      class="BpkIcon_bpk-icon--rtl-support__OTJmO"
+    >
+      <path
+        d="M16.207 4.299a1 1 0 010 1.414l-6.293 6.293 6.293 6.293a1 1 0 01-1.414 1.414l-7-7a1 1 0 010-1.414l7-7a1 1 0 011.414 0z"
+      ></path>
+    </svg>
+  </button>
+  <button (click)="next()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      style="width: 1.5rem; height: 1.5rem"
+      class="BpkIcon_bpk-icon--rtl-support__OTJmO"
+    >
+      <path
+        d="M7.8 4.287a1 1 0 000 1.414l6.292 6.293L7.8 18.287a1 1 0 001.39 1.438l.024-.024 7-7a1 1 0 000-1.414l-7-7a1 1 0 00-1.414 0z"
+      ></path>
+    </svg>
+  </button>
+</div>

@@ -1,0 +1,26 @@
+<section>
+  <div class="center">
+    <!-- header -->
+    <header>Fast facts</header>
+    <p>Sleep easy, armed with the stuff that's good to know before you go.</p>
+
+    <!-- facts -->
+    <div class="fact-grid-container">
+      <div *ngFor="let fact of facts" class="fact-component">
+        <div class="fact-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            style="width: 1.5rem; height: 1.5rem"
+          >
+            <path [attr.d]="fact.svgPath"></path>
+          </svg>
+        </div>
+        <div class="fact-text">
+          {{ fact.text }}
+        </div>
+        <div class="fact-number">{{ fact.number }}</div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<section class="search-features-container">
+  <div class="search-features-container-center">
+    <!-- current directory -->
+    <div class="current-directory">
+      <span>Home</span>
+      <span>></span>
+      <span>Hotels</span>
+    </div>
+
+    <!-- features -->
+    <div class="features-flex-container">
+      <div *ngFor="let feature of features" class="feature-component">
+        <div class="feature-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            style="width: 1.5rem; height: 1.5rem"
+          >
+            <path [attr.d]="feature.svgPath"></path>
+          </svg>
+        </div>
+        <div class="feature-text">
+          {{ feature.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,137 @@
+<section class="dialog-component">
+  <div class="row adults-row">
+    <div>Adults</div>
+    <div class="counter">
+      <button
+        [disabled]="data.adultsCount === 1"
+        (click)="decreaseAdultsCount()"
+        class="change-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="bpk-nudger__icon bpk-nudger__icon--disabled"
+          style="width: 1rem; height: 1rem"
+        >
+          <path
+            d="M1.5 12A1.5 1.5 0 013 10.5h18a1.5 1.5 0 010 3H3A1.5 1.5 0 011.5 12z"
+          ></path>
+        </svg>
+      </button>
+      <div class="number">{{ data.adultsCount }}</div>
+      <button
+        [disabled]="data.adultsCount === 10"
+        (click)="increaseAdultsCount()"
+        class="change-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="bpk-nudger__icon"
+          style="width: 1rem; height: 1rem"
+        >
+          <path
+            d="M12 1.5A1.5 1.5 0 0010.5 3v7.5H3a1.5 1.5 0 000 3h7.5V21a1.5 1.5 0 003 0v-7.5H21a1.5 1.5 0 000-3h-7.5V3A1.5 1.5 0 0012 1.5z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row children-row">
+    <div>Children</div>
+    <div class="counter">
+      <button
+        [disabled]="data.childrenCount === 0"
+        (click)="decreaseChildrenCount()"
+        class="change-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="bpk-nudger__icon bpk-nudger__icon--disabled"
+          style="width: 1rem; height: 1rem"
+        >
+          <path
+            d="M1.5 12A1.5 1.5 0 013 10.5h18a1.5 1.5 0 010 3H3A1.5 1.5 0 011.5 12z"
+          ></path>
+        </svg>
+      </button>
+      <div class="number">{{ data.childrenCount }}</div>
+      <button
+        [disabled]="data.childrenCount === 5"
+        (click)="increaseChildrenCount()"
+        class="change-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="bpk-nudger__icon"
+          style="width: 1rem; height: 1rem"
+        >
+          <path
+            d="M12 1.5A1.5 1.5 0 0010.5 3v7.5H3a1.5 1.5 0 000 3h7.5V21a1.5 1.5 0 003 0v-7.5H21a1.5 1.5 0 000-3h-7.5V3A1.5 1.5 0 0012 1.5z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div *ngIf="data.childrenCount > 0" class="row children-age-row">
+    <div>Ages of children?</div>
+    <mat-select>
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+    <mat-divider></mat-divider>
+  </div>
+
+  <div class="row rooms-row">
+    <div>Rooms</div>
+    <div class="counter">
+      <button
+        [disabled]="data.roomsCount === 1"
+        (click)="decreaseRoomsCount()"
+        class="change-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="bpk-nudger__icon bpk-nudger__icon--disabled"
+          style="width: 1rem; height: 1rem"
+        >
+          <path
+            d="M1.5 12A1.5 1.5 0 013 10.5h18a1.5 1.5 0 010 3H3A1.5 1.5 0 011.5 12z"
+          ></path>
+        </svg>
+      </button>
+      <div class="number">{{ data.roomsCount }}</div>
+      <button
+        [disabled]="data.roomsCount === 5"
+        (click)="increaseRoomsCount()"
+        class="change-btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="bpk-nudger__icon"
+          style="width: 1rem; height: 1rem"
+        >
+          <path
+            d="M12 1.5A1.5 1.5 0 0010.5 3v7.5H3a1.5 1.5 0 000 3h7.5V21a1.5 1.5 0 003 0v-7.5H21a1.5 1.5 0 000-3h-7.5V3A1.5 1.5 0 0012 1.5z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row done-btn-row">
+    <button (click)="closeDialog()">Done</button>
+  </div>
+</section>

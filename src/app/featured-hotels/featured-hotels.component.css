@@ -1,0 +1,38 @@
+section {
+  margin-top: 4rem;
+}
+.center {
+  width: 90vw;
+  max-width: 1224px;
+  margin: 0 auto;
+}
+
+/* header */
+
+header {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.center p {
+  color: rgb(90, 88, 88);
+  font-size: 0.95rem;
+}
+
+/* location filters */
+
+mat-card-actions {
+  padding-left: 0;
+}
+
+mat-card-actions button {
+  height: 32px;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+  font-weight: 400;
+  border-radius: 0.75rem;
+}
+mat-card-actions .active {
+  background-color: #05203c;
+  color: white;
+}

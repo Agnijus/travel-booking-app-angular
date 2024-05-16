@@ -1,0 +1,10 @@
+<section class="brands-container">
+  <div class="brands-container-center">
+    <header>{{ header }}</header>
+    <mat-list role="list">
+      <mat-list-item *ngFor="let brand of brands">
+        <img [src]="brand.url" [alt]="brand.alt" />
+      </mat-list-item>
+    </mat-list>
+  </div>
+</section>

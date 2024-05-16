@@ -1,0 +1,131 @@
+<mat-card class="search-container">
+  <div class="search-container-center">
+    <!-- header -->
+    <mat-card-header class="search-container-header">
+      <mat-card-title>Find the right hotel today</mat-card-title>
+    </mat-card-header>
+    <!-- form -->
+    <form action="">
+      <!-- destination -->
+      <div class="form-rows">
+        <div class="destination-field">
+          <mat-label class="input-overhead-label"
+            >Where do you want to stay?</mat-label
+          >
+          <mat-form-field class="destination-input">
+            <mat-label>Enter destination or hotel name</mat-label>
+            <input
+              #destinationInput
+              matInput
+              [(ngModel)]="searchParameters.destination"
+              name="destination"
+              (click)="openDestinationDialog($event)"
+              autocomplete="off"
+            />
+          </mat-form-field>
+        </div>
+        <div class="middle">
+          <!-- date range -->
+          <div class="date-field">
+            <mat-label class="input-overhead-label"
+              >Check-in / Check-out</mat-label
+            >
+            <mat-form-field class="date-input">
+              <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [min]="todayDate" [rangePicker]="picker">
+                <input
+                  matStartDate
+                  placeholder="Start date"
+                  [(ngModel)]="searchParameters.checkInDate"
+                  name="checkInDate"
+                />
+                <input
+                  matEndDate
+                  placeholder="End date"
+                  [(ngModel)]="searchParameters.checkOutDate"
+                  name="checkOutDate"
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker
+                [touchUi]="calendarTouchUi"
+                #picker
+              ></mat-date-range-picker>
+            </mat-form-field>
+          </div>
+          <!-- guests and rooms field -->
+          <div class="guests-rooms-field">
+            <mat-label class="input-overhead-label">Guests and rooms</mat-label>
+            <mat-form-field class="guests-rooms-input">
+              <input
+                matInput
+                #guestsRoomsInput
+                placeholder="{{ searchParameters.adultsCount }} adults, {{
+                  searchParameters.roomsCount
+                }} room"
+                readonly
+                (click)="openGuestsRoomsDialog($event)"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <!-- checkboxes -->
+      <div class="bottom">
+        <div class="checkbox-container">
+          <div class="popular-filters-text">Popular filters:</div>
+          <mat-checkbox
+            (change)="
+              this.searchParameters.isCancellationFree =
+                !this.searchParameters.isCancellationFree
+            "
+            class="checkbox"
+            color="primary"
+            >Free cancellation</mat-checkbox
+          >
+          <mat-checkbox
+            (change)="
+              this.searchParameters.isFourStars =
+                !this.searchParameters.isFourStars
+            "
+            color="primary"
+            class="checkbox"
+            >4 stars</mat-checkbox
+          >
+          <mat-checkbox
+            (change)="
+              this.searchParameters.isThreeStars =
+                !this.searchParameters.isThreeStars
+            "
+            color="primary"
+            class="checkbox"
+            >3 stars</mat-checkbox
+          >
+        </div>
+        <!-- search button -->
+        <button
+          (click)="searchHotels()"
+          mat-flat-button
+          class="search-btn"
+          color="primary"
+        >
+          Search hotels
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            class="BpkIcon_bpk-icon--rtl-support__OTJmO"
+            style="width: 1.5rem; height: 1.5rem"
+          >
+            <path
+              d="M11.293 19.713a1 1 0 001.414 0l7-7a1 1 0 000-1.414l-7-7a1 1 0 00-1.438 1.39l.024.024 5.293 5.293H5a1 1 0 000 2h11.586L11.293 18.3a1 1 0 000 1.414z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card>

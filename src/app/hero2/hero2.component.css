@@ -1,0 +1,60 @@
+.hero-container {
+  background: url("https://content.skyscnr.com/m/79cc2d7873b8be4e/original/HotelDeals_GraphicPromo_1200x1600_App_35-_EN-UK.jpg?imbypass=true");
+  background-size: cover;
+  height: 600px;
+  background-position: 50%;
+  border-radius: 1rem;
+  width: 90vw;
+  margin: 0 auto;
+  margin-top: 4rem;
+  max-width: 1224px;
+  padding-top: 2rem;
+}
+mat-card {
+  margin-left: 1.5rem;
+  background-color: transparent;
+  border: transparent;
+  outline: 0;
+}
+mat-card-header {
+  color: white;
+  margin-bottom: 2rem;
+}
+mat-card-title {
+  font-size: 2rem;
+}
+mat-card-subtitle {
+  color: white;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+mat-card-actions button {
+  margin-left: 0.4rem;
+  color: black;
+  background-color: white;
+  display: none;
+}
+
+@media screen and (min-width: 750px) {
+  mat-card-actions button {
+    display: block;
+  }
+  .hero-container {
+    height: 400px;
+    background: url(https://content.skyscnr.com/m/51af5dc2109230c1/original/HotelDeals_GraphicPromo_2096x800_Desktop_35-_EN-UK.jpg?imbypass=true)
+      center/cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+  }
+  mat-card {
+    width: 340px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  mat-card-title {
+    font-size: 2.75rem;
+    line-height: 1.1;
+  }
+}

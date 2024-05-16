@@ -1,0 +1,78 @@
+.card {
+  border-radius: 1rem;
+  flex: 0 0 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 275px;
+  margin: 1rem 0.5rem;
+}
+
+img {
+  border-radius: 1rem 1rem 0 0;
+  width: 100%;
+  height: 100px;
+}
+
+.middle {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.title {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.distance {
+  font-size: 0.8rem;
+  color: rgb(99, 99, 99);
+}
+
+.reviews span {
+  margin-right: 0.5rem;
+}
+.reviews-star-count {
+  font-weight: 500;
+}
+.reviews-count {
+  font-size: 0.7rem;
+  color: rgb(99, 99, 99);
+}
+
+mat-divider {
+  width: 100%;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.bottom p {
+  font-size: 0.7rem;
+  color: rgb(99, 99, 99);
+  margin: 0;
+  padding-right: 1rem;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: end;
+  padding: 1rem 1rem 0 0;
+}
+
+.slider-controls {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.slider-controls button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  fill: #0062e3;
+  transition: 0.2s ease-in-out;
+}
+.slider-controls button:hover {
+  fill: #05203c;
+  transition: 0.2s ease-in-out;
+}

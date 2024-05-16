@@ -1,0 +1,12 @@
+footer {
+  margin-top: 4rem;
+}
+.top {
+  height: 300px;
+  background-color: #05203c;
+}
+
+.bottom {
+  height: 200px;
+  background-color: white;
+}

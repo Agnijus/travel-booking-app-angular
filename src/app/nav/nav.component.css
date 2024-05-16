@@ -1,0 +1,66 @@
+.toolbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90vw;
+  max-width: 1224px;
+  margin: 0 auto;
+}
+
+/* top toolbar */
+
+.logo {
+  margin-top: 1rem;
+  width: 200px;
+  height: 150px;
+  fill: #0062e3;
+}
+.btn-language-currency {
+  font-size: 0.75rem;
+  background-color: #e0e4e9;
+  margin-right: 1rem;
+  padding: 0.75rem 1rem;
+}
+.btn-login {
+  font-size: 0.8rem;
+  background-color: #e0e4e9;
+  padding: 0.75rem 1rem;
+}
+.img-language-flag {
+  width: 22px;
+  height: 19px;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+  margin-bottom: 0.2rem;
+}
+
+/* bottom toolbar */
+
+.bottom-toolbar {
+  align-items: end;
+}
+.toolbar-internal-links {
+  justify-content: start;
+  align-items: end;
+}
+.toolbar-internal-links button {
+  margin-right: 0.4rem;
+  border-radius: 0.25rem 0.25rem 0 0;
+  background-color: #0062e3;
+}
+
+.toolbar-internal-links .active {
+  background-color: #05203c;
+}
+
+.toolbar-internal-links button:hover {
+  background-color: #05203c;
+}
+
+.toolbar-internal-links svg {
+  fill: white;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 675px) {
+}

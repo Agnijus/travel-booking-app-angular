@@ -1,0 +1,62 @@
+<section class="dialog-component">
+  <div *ngIf="previousSearch" class="row">
+    <header>Recent searches</header>
+    <div (click)="selectRecentDestination()" class="recent-destination">
+      <span class="recent-destination-icon"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="RecentSearchItem__recentSearch--icon BpkIcon_bpk-icon--rtl-support__OTJmO"
+          style="width: 1.5rem; height: 1.5rem"
+        >
+          <path
+            d="M19.015 10.515a8.5 8.5 0 10-8.5 8.5 8.5 8.5 0 008.5-8.5zm-8.5 6.5a6.5 6.5 0 116.5-6.5 6.509 6.509 0 01-6.5 6.5zm2.164-5.747a1 1 0 01-1.328 1.494l-2.336-2.076v-2.67a1 1 0 012 0v1.772zm8.83 10.303a1.516 1.516 0 01-2.08.001l-2.998-3c-.14-.14.227-.732.818-1.324.59-.59 1.184-.958 1.324-.818l2.998 2.998a1.516 1.516 0 01-.062 2.143z"
+          ></path>
+        </svg>
+      </span>
+      <div class="recent-destination-info">
+        <span class="recent-destination-name">{{
+          previousSearch.destination
+        }}</span>
+        <span class="date"
+          >{{ previousSearch.checkInDate.getDate() }} /
+          {{ previousSearch.checkInDate.getMonth() + 1 }}</span
+        >
+        <span class="date-seperator"> -</span>
+        <span
+          >{{ previousSearch.checkOutDate.getDate() }} /
+          {{ previousSearch.checkOutDate.getMonth() + 1 }}</span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <header>Popular destinations</header>
+    <div class="popular-destinations-grid">
+      <div
+        *ngFor="let destination of popularDestinations"
+        class="destination-card"
+        (click)="selectDestination(destination.name)"
+      >
+        <div class="destination-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            class="PopularDestination__icon BpkIcon_bpk-icon--rtl-support__OTJmO"
+            style="width: 1.5rem; height: 1.5rem"
+          >
+            <path
+              d="M19 6h-4a4 4 0 00-4-4H7a4 4 0 00-4 4v15a1 1 0 002 0V6a2 2 0 012-2h4a2 2 0 012 2 2.15 2.15 0 00-2 2v13a1 1 0 001 1h1a1 1 0 001-1v-1.5a.5.5 0 01.5-.5h3a.5.5 0 01.5.5V21a1 1 0 001 1h1a1 1 0 001-1V8a2.15 2.15 0 00-2-2zm-5 11a1 1 0 111-1 1 1 0 01-1 1zm0-3a1 1 0 111-1 1 1 0 01-1 1zm0-3a1 1 0 111-1 1 1 0 01-1 1zm4 6a1 1 0 111-1 1 1 0 01-1 1zm0-3a1 1 0 111-1 1 1 0 01-1 1zm0-3a1 1 0 111-1 1 1 0 01-1 1zM9 7a1 1 0 11-1-1 1 1 0 011 1zm0 3a1 1 0 11-1-1 1 1 0 011 1zm0 6a1 1 0 11-1-1 1 1 0 011 1zm0-3a1 1 0 11-1-1 1 1 0 011 1zm0 6a1 1 0 11-1-1 1 1 0 011 1z"
+            ></path>
+          </svg>
+        </div>
+        <div class="destination-details">
+          <div class="destination-name">{{ destination.name }}</div>
+          <div class="destination-location">{{ destination.location }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

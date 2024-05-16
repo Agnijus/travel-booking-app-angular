@@ -1,0 +1,33 @@
+section {
+  margin-top: 4rem;
+}
+.center {
+  width: 90vw;
+  max-width: 1224px;
+  margin: 0 auto;
+}
+
+/* header */
+
+header {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+mat-accordion mat-expansion-panel {
+  box-shadow: none;
+  padding: 0.5rem 0;
+}
+
+mat-expansion-panel-header {
+  padding-left: 0;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+mat-panel-title {
+  font-size: 1.25rem;
+}
