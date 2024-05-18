@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '../http.service';
+import { SearchDataService } from '../search-data.service';
+import { SearchData } from '../search-data.service';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -10,38 +10,32 @@ import { HttpService } from '../http.service';
   styleUrl: './hotels-search-page.component.css',
 })
 export class HotelsSearchPageComponent {
-  searchParameters: any;
+  searchData: SearchData | undefined;
 
-  constructor(
-    private route: ActivatedRoute,
-    private httpService: HttpService
-  ) {}
+  constructor(private searchDataService: SearchDataService) {}
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.searchParameters = {
-        destination: params['destination'],
-        checkInDate: params['checkInDate'],
-        checkOutDate: params['checkOutDate'],
-        adultsCount: params['adultsCount'],
-        childrenCount: params['childrenCount'],
-        roomsCount: params['roomsCount'],
-        isCancellationFree: params['isCancellationFree'],
-        isFourStars: params['isFourStars'],
-        isThreeStars: params['isThreeStars'],
-      };
-      this.fetchHotels();
-    });
+  ngOnInit() {
+    this.searchData = this.searchDataService.getSearchData();
   }
 
-  fetchHotels(): void {
-    this.httpService.fetchHotels(this.searchParameters).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-      error: (error) => {
-        console.log(error.url);
-      },
-    });
+  getSearchParameters() {
+    console.log(this.searchData);
   }
+
+  // ngOnInit(): void {
+  //   this.route.queryParams.subscribe((params) => {
+  //     this.searchParameters = {
+  //       destination: params['destination'],
+  //       checkInDate: params['checkInDate'],
+  //       checkOutDate: params['checkOutDate'],
+  //       adultsCount: params['adultsCount'],
+  //       childrenCount: params['childrenCount'],
+  //       roomsCount: params['roomsCount'],
+  //       isCancellationFree: params['isCancellationFree'],
+  //       isFourStars: params['isFourStars'],
+  //       isThreeStars: params['isThreeStars'],
+  //     };
+  //     this.fetchHotels();
+  //   });
+  // }
 }

@@ -12,9 +12,10 @@ import { GuestsRoomsDialogComponent } from '../guests-rooms-dialog/guests-rooms-
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DestinationDialogComponent } from '../destination-dialog/destination-dialog.component';
-import { HttpService } from '../http.service';
 import { constructQueryParams } from '../hotels-query-helper';
 import { Router } from '@angular/router';
+import { SearchDataService } from '../search-data.service';
+import { SearchData } from '../search-data.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -56,7 +57,11 @@ export class SearchBarComponent {
     isThreeStars: false,
   };
 
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private searchData: SearchDataService
+  ) {}
 
   ngAfterViewInit(): void {
     this.updateCalendarTouchUi();
@@ -158,19 +163,7 @@ export class SearchBarComponent {
       JSON.stringify(this.searchParameters)
     );
 
-    const queryParams = constructQueryParams(this.searchParameters);
-    this.router.navigate(['/hotels/search'], { queryParams });
+    this.searchData.setSearchData(this.searchParameters);
+    this.router.navigate(['/hotels/search']);
   }
 }
-
-// interface searchParameters {
-//   destination: string;
-//   checkInDate: Date;
-//   checkOutDate: Date;
-//   adultsCount: number;
-//   childrenCount: number;
-//   roomsCount: number;
-//   isCancellationFree: boolean;
-//   isFourStars: boolean;
-//   isThreeStars: boolean;
-// }

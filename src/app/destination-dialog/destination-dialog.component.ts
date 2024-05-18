@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import { constructQueryParams } from '../hotels-query-helper';
+import { SearchDataService } from '../search-data.service';
 
 @Component({
   selector: 'app-destination-dialog',
@@ -52,7 +53,8 @@ export class DestinationDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DestinationDialogComponent>,
-    private router: Router
+    private router: Router,
+    private searchDataService: SearchDataService
   ) {}
 
   ngOnInit(): void {
@@ -80,8 +82,9 @@ export class DestinationDialogComponent {
   }
 
   selectRecentDestination(): void {
-    const queryParams = constructQueryParams(this.previousSearch);
-    this.router.navigate(['/hotels/search'], { queryParams });
+    this.searchDataService.setSearchData(this.previousSearch);
+
+    this.router.navigate(['/hotels/search']);
   }
 
   closeDialog(): void {
