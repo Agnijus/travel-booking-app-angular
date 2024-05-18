@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from '../nav/nav.component';
-import { HeroComponent } from '../hero/hero.component';
-import { SearchFeaturesComponent } from '../search-features/search-features.component';
-import { Hero2Component } from '../hero2/hero2.component';
-import { BrandsComponent } from '../brands/brands.component';
-import { FeaturedHotelsComponent } from '../featured-hotels/featured-hotels.component';
-import { FactsComponent } from '../facts/facts.component';
+import { HeroComponent } from './hero/hero.component';
+import { SearchFeaturesComponent } from './search-features/search-features.component';
+import { Hero2Component } from './hero2/hero2.component';
+import { BrandsComponent } from './brands/brands.component';
+import { FeaturedHotelsComponent } from './featured-hotels/featured-hotels.component';
+import { FactsComponent } from './facts/facts.component';
 import { ServicesComponent } from '../services/services.component';
-import { FaqComponent } from '../faq/faq.component';
+import { FaqComponent } from './faq/faq.component';
 
 @Component({
   selector: 'app-hotels-page',

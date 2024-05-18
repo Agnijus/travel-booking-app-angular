@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { getDefaultSearchParameters } from './search-bar/search-bar.component';
+import { getDefaultSearchParameters } from './hotels-page/search-bar/search-bar.component';
 
 @Injectable({
   providedIn: 'root',

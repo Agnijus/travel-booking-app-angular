@@ -14,14 +14,14 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { GuestsRoomsDialogComponent } from '../guests-rooms-dialog/guests-rooms-dialog.component';
+import { GuestsRoomsDialogComponent } from '../../guests-rooms-dialog/guests-rooms-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { DestinationDialogComponent } from '../destination-dialog/destination-dialog.component';
-import { constructQueryParams } from '../hotels-query-helper';
+import { DestinationDialogComponent } from '../../destination-dialog/destination-dialog.component';
+import { constructQueryParams } from '../../hotels-query-helper';
 import { Router } from '@angular/router';
-import { SearchDataService } from '../search-data.service';
-import { SearchData } from '../search-data.service';
+import { SearchDataService } from '../../search-data.service';
+import { SearchData } from '../../search-data.service';
 
 @Component({
   selector: 'app-search-bar',
