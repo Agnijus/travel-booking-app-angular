@@ -1,4 +1,10 @@
-import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  HostListener,
+  Input,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
@@ -38,6 +44,9 @@ import { SearchData } from '../search-data.service';
 export class SearchBarComponent {
   @ViewChild('guestsRoomsInput') guestsRoomsInput!: ElementRef;
   @ViewChild('destinationInput') destinationInput!: ElementRef;
+  @Input() data?: SearchData;
+
+  searchParameters: SearchData;
 
   guestsRoomsDialogRef!: MatDialogRef<GuestsRoomsDialogComponent>;
   destinationDialogRef!: MatDialogRef<DestinationDialogComponent>;
@@ -45,23 +54,35 @@ export class SearchBarComponent {
   todayDate: Date = new Date();
   calendarTouchUi: boolean = true;
 
-  searchParameters = {
-    destination: '',
-    checkInDate: new Date(new Date().setDate(this.todayDate.getDate() + 7)),
-    checkOutDate: new Date(new Date().setDate(this.todayDate.getDate() + 8)),
-    adultsCount: 2,
-    childrenCount: 0,
-    roomsCount: 1,
-    isCancellationFree: false,
-    isFourStars: false,
-    isThreeStars: false,
-  };
+  // searchParameters = {
+  //   destination: '',
+  //   checkInDate: new Date(new Date().setDate(this.todayDate.getDate() + 7)),
+  //   checkOutDate: new Date(new Date().setDate(this.todayDate.getDate() + 8)),
+  //   adultsCount: 2,
+  //   childrenCount: 0,
+  //   roomsCount: 1,
+  //   isCancellationFree: false,
+  //   isFourStars: false,
+  //   isThreeStars: false,
+  // };
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private searchData: SearchDataService
-  ) {}
+    private searchDataService: SearchDataService
+  ) {
+    this.searchParameters = getDefaultSearchParameters();
+  }
+
+  ngOnInit() {
+    this.searchDataService.getSearchData().subscribe((data) => {
+      if (data) {
+        this.searchParameters = data;
+      } else {
+        this.searchParameters = getDefaultSearchParameters();
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     this.updateCalendarTouchUi();
@@ -163,7 +184,22 @@ export class SearchBarComponent {
       JSON.stringify(this.searchParameters)
     );
 
-    this.searchData.setSearchData(this.searchParameters);
+    this.searchDataService.setSearchData(this.searchParameters);
     this.router.navigate(['/hotels/search']);
   }
+}
+
+export function getDefaultSearchParameters(): SearchData {
+  const todayDate = new Date();
+  return {
+    destination: '',
+    checkInDate: new Date(new Date().setDate(todayDate.getDate() + 7)),
+    checkOutDate: new Date(new Date().setDate(todayDate.getDate() + 8)),
+    adultsCount: 2,
+    childrenCount: 0,
+    roomsCount: 1,
+    isCancellationFree: false,
+    isFourStars: false,
+    isThreeStars: false,
+  };
 }

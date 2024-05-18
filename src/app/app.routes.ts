@@ -7,7 +7,15 @@ import { HotelsSearchPageComponent } from './hotels-search-page/hotels-search-pa
 export const routes: Routes = [
   { path: '', redirectTo: '/hotels', pathMatch: 'full' },
   { path: 'flights', component: FlightsPageComponent },
-  { path: 'hotels', component: HotelsPageComponent },
+  {
+    path: 'hotels',
+    component: HotelsPageComponent,
+    data: { showSearchBar: true },
+  },
   { path: 'carhire', component: CarhirePageComponent },
-  { path: 'hotels/search', component: HotelsSearchPageComponent },
+  {
+    path: 'hotels/search',
+    component: HotelsSearchPageComponent,
+    data: { showSearchBar: true },
+  },
 ];

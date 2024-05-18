@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { getDefaultSearchParameters } from './search-bar/search-bar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +12,11 @@ export class SearchDataService {
     this.searchData = data;
   }
 
-  getSearchData() {
-    return this.searchData;
+  getSearchData(): Observable<SearchData> {
+    const data = localStorage.getItem('searchData');
+    return of(
+      data ? (JSON.parse(data) as SearchData) : getDefaultSearchParameters()
+    );
   }
 }
 
