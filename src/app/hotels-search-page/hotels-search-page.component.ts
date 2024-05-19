@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchDataService } from '../search-data.service';
 import { SearchData } from '../search-data.service';
-import { SearchBarComponent } from '../hotels-page/search-bar/search-bar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
@@ -13,6 +12,7 @@ import {
   MatBottomSheetModule,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -52,6 +52,19 @@ export class HotelsSearchPageComponent {
       pricePerNight: 146,
       hasFreeCancellation: true,
     },
+    {
+      name: 'Las Vegas Luxurious Place',
+      imageUrl:
+        'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
+      distance: 1.46,
+      rating: 5,
+      tripAdvisorRating: 4.6,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 3124,
+      pricePerNight: 300,
+      hasFreeCancellation: true,
+    },
   ];
 
   constructor(
@@ -60,7 +73,7 @@ export class HotelsSearchPageComponent {
   ) {}
 
   ngOnInit() {
-    this.searchDataService.getSearchData().subscribe((data) => {
+    this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
     });
   }
@@ -75,8 +88,7 @@ export class HotelsSearchPageComponent {
     );
 
     sortByFilterBottomSheetRef.afterDismissed().subscribe((selectedFilter) => {
-      console.log('Selected Filter:', selectedFilter);
-      // Handle the filter application logic here
+      console.log(selectedFilter);
     });
   }
 }

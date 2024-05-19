@@ -1,7 +1,9 @@
 <section>
+  <app-search-bar></app-search-bar>
   <div class="center">
     <div class="top-filter-panel">
       <button
+        class="sort-by-btn"
         mat-flat-button
         color="primary"
         (click)="openSortByFilterBottomSheet()"
@@ -65,4 +67,5 @@
       </div>
     </div>
   </div>
+  <button (click)="getSearchParameters()">Get Params</button>
 </section>

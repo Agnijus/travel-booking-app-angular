@@ -22,6 +22,8 @@ import { constructQueryParams } from '../../hotels-query-helper';
 import { Router } from '@angular/router';
 import { SearchDataService } from '../../search-data.service';
 import { SearchData } from '../../search-data.service';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-search-bar',
@@ -36,6 +38,8 @@ import { SearchData } from '../../search-data.service';
     MatCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
+    MatIconModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './search-bar.component.html',
@@ -44,14 +48,13 @@ import { SearchData } from '../../search-data.service';
 export class SearchBarComponent {
   @ViewChild('guestsRoomsInput') guestsRoomsInput!: ElementRef;
   @ViewChild('destinationInput') destinationInput!: ElementRef;
-  @Input() data?: SearchData;
-
   searchParameters!: SearchData;
 
   guestsRoomsDialogRef!: MatDialogRef<GuestsRoomsDialogComponent>;
   destinationDialogRef!: MatDialogRef<DestinationDialogComponent>;
 
   todayDate: Date = new Date();
+  isSmallScreen = true;
   calendarTouchUi: boolean = true;
 
   constructor(
@@ -61,11 +64,8 @@ export class SearchBarComponent {
   ) {}
 
   ngOnInit(): void {
-    this.searchDataService.getSearchData().subscribe({
-      next: (data) => {
-        this.searchParameters = data;
-      },
-      error: (error) => console.error('Unable to load parameters', error),
+    this.searchDataService.getSearchData().subscribe((data) => {
+      this.searchParameters = data;
     });
   }
 
@@ -73,8 +73,10 @@ export class SearchBarComponent {
     this.updateCalendarTouchUi();
   }
 
-  @HostListener('window:resize')
-  onResize() {
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isSmallScreen = event.target.innerWidth < 800;
+
     this.updateCalendarTouchUi();
     if (this.guestsRoomsDialogRef) {
       this.updateGuestsRoomsDialogPosition();
@@ -160,7 +162,7 @@ export class SearchBarComponent {
   }
 
   updateCalendarTouchUi(): void {
-    this.calendarTouchUi = window.innerWidth <= 600;
+    this.calendarTouchUi = window.innerWidth <= 700;
   }
 
   searchHotels(): void {

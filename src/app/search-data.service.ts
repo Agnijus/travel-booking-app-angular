@@ -1,24 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { getDefaultSearchParameters } from './hotels-page/search-bar/search-bar.component';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class SearchDataService {
-  private searchData: SearchData | undefined;
-
-  setSearchData(data: any) {
-    this.searchData = data;
-  }
-
-  getSearchData(): Observable<SearchData> {
-    const data = localStorage.getItem('searchData');
-    return of(
-      data ? (JSON.parse(data) as SearchData) : getDefaultSearchParameters()
-    );
-  }
-}
 
 export interface SearchData {
   destination: string;
@@ -30,4 +11,34 @@ export interface SearchData {
   isCancellationFree: boolean;
   isFourStars: boolean;
   isThreeStars: boolean;
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SearchDataService {
+  private searchData: SearchData = this.getDefaultSearchParameters();
+
+  setSearchData(data: SearchData): void {
+    this.searchData = data;
+  }
+
+  getSearchData(): Observable<SearchData> {
+    return of(this.searchData);
+  }
+
+  private getDefaultSearchParameters(): SearchData {
+    const today = new Date();
+    return {
+      destination: '',
+      checkInDate: new Date(today.setDate(today.getDate() + 7)),
+      checkOutDate: new Date(today.setDate(today.getDate() + 8)),
+      adultsCount: 2,
+      childrenCount: 0,
+      roomsCount: 1,
+      isCancellationFree: false,
+      isFourStars: false,
+      isThreeStars: false,
+    };
+  }
 }
