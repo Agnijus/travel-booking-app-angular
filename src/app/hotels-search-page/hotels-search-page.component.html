@@ -14,7 +14,7 @@
     <div class="grid">
       <div class="side-filters-panel">
         <!-- booking options filter -->
-        <section class="filter price-filter-container">
+        <section class="filter booking-filter-container">
           <div class="filter-title">Booking options</div>
           <div>
             <mat-checkbox
@@ -22,14 +22,14 @@
               [(ngModel)]="isCancellationFree"
               (change)="filterHotels()"
             >
-              Free cancellation
+              <span class="booking-option-label"> Free cancellation </span>
             </mat-checkbox>
             <mat-checkbox
               color="primary"
               [(ngModel)]="isPayOnArrival"
               (change)="filterHotels()"
             >
-              Pay on arrival
+              <span class="booking-option-label"> Pay on arrival </span>
             </mat-checkbox>
           </div>
         </section>
@@ -42,7 +42,9 @@
               [(ngModel)]="range.checked"
               (change)="updatePriceRange(); filterHotels()"
             >
-              {{ range.label }}
+              <span class="price-filter-label">
+                {{ range.label }}
+              </span>
             </mat-checkbox>
           </div>
         </section>
@@ -51,12 +53,15 @@
           <div class="filter-title">Star Rating</div>
           <div *ngFor="let range of ratingRanges">
             <mat-checkbox
+              class="star-rating-checkbox"
               color="primary"
               [(ngModel)]="range.checked"
               (change)="updateStarRating(); filterHotels()"
             >
-              <span *ngFor="let _ of [].constructor(range.stars)"
-                ><svg
+              <span class="star-rating-label">{{ range.stars }} stars</span>
+
+              <span *ngFor="let _ of [].constructor(range.stars)">
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -80,7 +85,12 @@
               [(ngModel)]="range.checked"
               (change)="updateGuestRating(); filterHotels()"
             >
-              {{ range.label }}
+              <span class="guest-rating-label">
+                {{ range.label }}
+              </span>
+              <span>
+                {{ range.extra }}
+              </span>
             </mat-checkbox>
           </div>
         </section>
@@ -110,7 +120,7 @@
               {{ hotel.distance }} miles from city centre
             </div>
             <div class="reviews">
-              <span class="review-points">{{ hotel.tripAdvisorRating }}</span>
+              <span class="review-points">{{ hotel.guestRating }}</span>
               <span class="review-tripadvisor"
                 ><img
                   src="{{ hotel.tripAdvisorReviewImage }}"

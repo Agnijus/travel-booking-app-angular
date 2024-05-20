@@ -7,11 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
 import { SortByFilterBottomSheetComponent } from './sort-by-filter-bottom-sheet/sort-by-filter-bottom-sheet.component';
-import {
-  MatBottomSheet,
-  MatBottomSheetModule,
-  MatBottomSheetRef,
-} from '@angular/material/bottom-sheet';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
@@ -45,14 +41,16 @@ export class HotelsSearchPageComponent {
     { stars: 5, checked: false },
     { stars: 4, checked: false },
     { stars: 3, checked: false },
+    { stars: 2, checked: false },
+    { stars: 1, checked: false },
   ];
 
   guestRatingRanges = [
-    { label: '5.0+', min: 5.0, checked: false },
-    { label: '4.5+', min: 4.5, checked: false },
-    { label: '4.0+', min: 4.0, checked: false },
-    { label: '3.5+', min: 3.5, checked: false },
-    { label: '3.0+', min: 3.0, checked: false },
+    { label: '5.0+', extra: 'With honours', min: 5.0, checked: false },
+    { label: '4.5+', extra: 'Excellent', min: 4.5, checked: false },
+    { label: '4.0+', extra: 'Very good', min: 4.0, checked: false },
+    { label: '3.5+', extra: 'Good', min: 3.5, checked: false },
+    { label: '3.0+', extra: 'Satisfactory', min: 3.0, checked: false },
   ];
 
   minPrice: number = 0;
@@ -76,11 +74,11 @@ export class HotelsSearchPageComponent {
         'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
       distance: 1.46,
       rating: 5,
-      tripAdvisorRating: 3.1,
+      guestRating: 3.1,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
       reviews: 288,
-      pricePerNight: 146,
+      pricePerNight: 450,
       hasFreeCancellation: false,
       hasPayOnArrival: true,
     },
@@ -90,11 +88,11 @@ export class HotelsSearchPageComponent {
         'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
       distance: 1.46,
       rating: 5,
-      tripAdvisorRating: 4.6,
+      guestRating: 4.6,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
       reviews: 3124,
-      pricePerNight: 300,
+      pricePerNight: 700,
       hasFreeCancellation: false,
       hasPayOnArrival: false,
     },
@@ -104,7 +102,7 @@ export class HotelsSearchPageComponent {
         'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
       distance: 1.46,
       rating: 3,
-      tripAdvisorRating: 3.1,
+      guestRating: 3.1,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
       reviews: 288,
@@ -117,12 +115,12 @@ export class HotelsSearchPageComponent {
       imageUrl:
         'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
       distance: 1.46,
-      rating: 5,
-      tripAdvisorRating: 4.6,
+      rating: 4,
+      guestRating: 3.9,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
       reviews: 3124,
-      pricePerNight: 800,
+      pricePerNight: 300,
       hasFreeCancellation: true,
       hasPayOnArrival: true,
     },
@@ -165,8 +163,7 @@ export class HotelsSearchPageComponent {
         !this.isCancellationFree || hotel.hasFreeCancellation;
       const matchesPayOnArrival = !this.isPayOnArrival || hotel.hasPayOnArrival;
 
-      const isGuestRatingInRange =
-        hotel.tripAdvisorRating >= this.minGuestRating;
+      const isGuestRatingInRange = hotel.guestRating >= this.minGuestRating;
 
       return (
         isPriceInRange &&
@@ -226,7 +223,7 @@ interface Hotel {
   imageUrl: string;
   distance: number;
   rating: number;
-  tripAdvisorRating: number;
+  guestRating: number;
   tripAdvisorReviewImage: string;
   reviews: number;
   pricePerNight: number;
