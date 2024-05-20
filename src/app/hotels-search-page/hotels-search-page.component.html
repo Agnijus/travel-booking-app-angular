@@ -13,6 +13,27 @@
     </div>
     <div class="grid">
       <div class="side-filters-panel">
+        <!-- booking options filter -->
+        <section class="filter price-filter-container">
+          <div class="filter-title">Booking options</div>
+          <div>
+            <mat-checkbox
+              color="primary"
+              [(ngModel)]="isCancellationFree"
+              (change)="filterHotels()"
+            >
+              Free cancellation
+            </mat-checkbox>
+            <mat-checkbox
+              color="primary"
+              [(ngModel)]="isPayOnArrival"
+              (change)="filterHotels()"
+            >
+              Pay on arrival
+            </mat-checkbox>
+          </div>
+        </section>
+        <!-- price range filter -->
         <section class="filter price-filter-container">
           <div class="filter-title">Price</div>
           <div *ngFor="let range of priceRanges">
@@ -25,6 +46,7 @@
             </mat-checkbox>
           </div>
         </section>
+        <!-- star rating filter -->
         <section class="filter rating-filter-container">
           <div class="filter-title">Star Rating</div>
           <div *ngFor="let range of ratingRanges">

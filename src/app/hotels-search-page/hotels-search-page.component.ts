@@ -50,6 +50,8 @@ export class HotelsSearchPageComponent {
   minPrice: number = 0;
   maxPrice: number = Infinity;
   activeStars: number[] = [];
+  isCancellationFree: boolean = false;
+  isPayOnArrival: boolean = false;
 
   priceLowToHigh: boolean = false;
   priceHighToLow: boolean = false;
@@ -64,13 +66,14 @@ export class HotelsSearchPageComponent {
       imageUrl:
         'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
       distance: 1.46,
-      rating: 3,
+      rating: 5,
       tripAdvisorRating: 3.1,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
       reviews: 288,
       pricePerNight: 146,
-      hasFreeCancellation: true,
+      hasFreeCancellation: false,
+      hasPayOnArrival: true,
     },
     {
       name: 'Las Vegas Luxurious Place',
@@ -83,7 +86,8 @@ export class HotelsSearchPageComponent {
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
       reviews: 3124,
       pricePerNight: 300,
-      hasFreeCancellation: true,
+      hasFreeCancellation: false,
+      hasPayOnArrival: false,
     },
     {
       name: 'Las Vegas Hilton at Resorts World',
@@ -97,6 +101,7 @@ export class HotelsSearchPageComponent {
       reviews: 288,
       pricePerNight: 100,
       hasFreeCancellation: true,
+      hasPayOnArrival: false,
     },
     {
       name: 'Las Vegas Luxurious Place',
@@ -110,6 +115,7 @@ export class HotelsSearchPageComponent {
       reviews: 3124,
       pricePerNight: 800,
       hasFreeCancellation: true,
+      hasPayOnArrival: true,
     },
   ];
 
@@ -138,13 +144,24 @@ export class HotelsSearchPageComponent {
   }
 
   filterHotels(): void {
-    this.filteredHotels = this.hotels.filter(
-      (hotel) =>
+    this.filteredHotels = this.hotels.filter((hotel) => {
+      const isPriceInRange =
         hotel.pricePerNight >= this.minPrice &&
-        hotel.pricePerNight <= this.maxPrice &&
-        (this.activeStars.length === 0 ||
-          this.activeStars.includes(hotel.rating))
-    );
+        hotel.pricePerNight <= this.maxPrice;
+      const isRatingMatch =
+        this.activeStars.length === 0 ||
+        this.activeStars.includes(hotel.rating);
+      const matchesFreeCancellation =
+        !this.isCancellationFree || hotel.hasFreeCancellation;
+      const matchesPayOnArrival = !this.isPayOnArrival || hotel.hasPayOnArrival;
+
+      return (
+        isPriceInRange &&
+        isRatingMatch &&
+        matchesFreeCancellation &&
+        matchesPayOnArrival
+      );
+    });
   }
 
   updatePriceRange(): void {
@@ -187,4 +204,5 @@ interface Hotel {
   reviews: number;
   pricePerNight: number;
   hasFreeCancellation: boolean;
+  hasPayOnArrival: boolean;
 }
