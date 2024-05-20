@@ -13,6 +13,8 @@ import {
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -24,12 +26,30 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     MatSidenavModule,
     MatExpansionModule,
     CommonModule,
+    MatCheckboxModule,
+    FormsModule,
   ],
   templateUrl: './hotels-search-page.component.html',
   styleUrl: './hotels-search-page.component.css',
 })
 export class HotelsSearchPageComponent {
   searchParameters: SearchData | undefined;
+
+  priceRanges = [
+    { label: '$0 - $100', min: 0, max: 100, checked: false },
+    { label: '$100 - $200', min: 100, max: 200, checked: false },
+    { label: '$200+', min: 200, max: Infinity, checked: false },
+  ];
+
+  ratingRanges = [
+    { stars: 5, checked: false },
+    { stars: 4, checked: false },
+    { stars: 3, checked: false },
+  ];
+
+  minPrice: number = 0;
+  maxPrice: number = Infinity;
+  activeStars: number[] = [];
 
   priceLowToHigh: boolean = false;
   priceHighToLow: boolean = false;
@@ -45,7 +65,7 @@ export class HotelsSearchPageComponent {
         'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
       distance: 1.46,
       rating: 3,
-      tripAdvisorRating: 3.0,
+      tripAdvisorRating: 3.1,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
       reviews: 288,
@@ -65,7 +85,35 @@ export class HotelsSearchPageComponent {
       pricePerNight: 300,
       hasFreeCancellation: true,
     },
+    {
+      name: 'Las Vegas Hilton at Resorts World',
+      imageUrl:
+        'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
+      distance: 1.46,
+      rating: 3,
+      tripAdvisorRating: 3.1,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 288,
+      pricePerNight: 100,
+      hasFreeCancellation: true,
+    },
+    {
+      name: 'Las Vegas Luxurious Place',
+      imageUrl:
+        'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
+      distance: 1.46,
+      rating: 5,
+      tripAdvisorRating: 4.6,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 3124,
+      pricePerNight: 800,
+      hasFreeCancellation: true,
+    },
   ];
+
+  filteredHotels: Hotel[] = [];
 
   constructor(
     private searchDataService: SearchDataService,
@@ -76,10 +124,46 @@ export class HotelsSearchPageComponent {
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
     });
+    this.updateFilters();
   }
 
   getSearchParameters() {
     console.log(this.searchParameters);
+  }
+
+  updateFilters(): void {
+    this.updatePriceRange();
+    this.updateStarRating();
+    this.filterHotels();
+  }
+
+  filterHotels(): void {
+    this.filteredHotels = this.hotels.filter(
+      (hotel) =>
+        hotel.pricePerNight >= this.minPrice &&
+        hotel.pricePerNight <= this.maxPrice &&
+        (this.activeStars.length === 0 ||
+          this.activeStars.includes(hotel.rating))
+    );
+  }
+
+  updatePriceRange(): void {
+    const activePriceRanges = this.priceRanges.filter((range) => range.checked);
+    if (activePriceRanges.length > 0) {
+      this.minPrice = Math.min(...activePriceRanges.map((range) => range.min));
+      this.maxPrice = Math.max(...activePriceRanges.map((range) => range.max));
+    } else {
+      this.minPrice = 0;
+      this.maxPrice = Infinity;
+    }
+  }
+
+  updateStarRating(): void {
+    const activeRatingRanges = this.ratingRanges.filter(
+      (range) => range.checked
+    );
+    this.activeStars = activeRatingRanges.map((range) => range.stars);
+    this.filterHotels();
   }
 
   openSortByFilterBottomSheet(): void {

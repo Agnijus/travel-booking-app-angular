@@ -90,12 +90,12 @@ export class SearchBarComponent {
     event.stopPropagation();
     const rect = this.guestsRoomsInput.nativeElement.getBoundingClientRect();
     this.guestsRoomsDialogRef = this.dialog.open(GuestsRoomsDialogComponent, {
-      backdropClass: 'no-backdrop',
-      width: '250px',
+      // backdropClass: 'no-backdrop',
+      width: '350px',
       hasBackdrop: true,
       enterAnimationDuration: '0ms',
       exitAnimationDuration: '0ms',
-      position: { top: `${rect.bottom + 20}px`, left: `${rect.left - 20}px` },
+      // position: { top: `${rect.bottom + 20}px`, left: `${rect.left - 20}px` },
       data: {
         adultsCount: this.searchParameters.adultsCount,
         childrenCount: this.searchParameters.childrenCount,
@@ -103,7 +103,7 @@ export class SearchBarComponent {
       },
     });
 
-    this.updateGuestsRoomsDialogPosition();
+    // this.updateGuestsRoomsDialogPosition();
 
     this.guestsRoomsDialogRef.backdropClick().subscribe(() => {
       this.guestsRoomsDialogRef.close(
@@ -162,7 +162,7 @@ export class SearchBarComponent {
   }
 
   updateCalendarTouchUi(): void {
-    this.calendarTouchUi = window.innerWidth <= 700;
+    this.calendarTouchUi = window.innerWidth <= 800;
   }
 
   searchHotels(): void {

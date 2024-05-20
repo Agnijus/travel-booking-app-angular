@@ -1,4 +1,4 @@
-<section>
+<section class="hotels-search-content">
   <app-search-bar></app-search-bar>
   <div class="center">
     <div class="top-filter-panel">
@@ -12,9 +12,46 @@
       </button>
     </div>
     <div class="grid">
-      <div class="side-filters-panel"></div>
+      <div class="side-filters-panel">
+        <section class="filter price-filter-container">
+          <div class="filter-title">Price</div>
+          <div *ngFor="let range of priceRanges">
+            <mat-checkbox
+              color="primary"
+              [(ngModel)]="range.checked"
+              (change)="updatePriceRange(); filterHotels()"
+            >
+              {{ range.label }}
+            </mat-checkbox>
+          </div>
+        </section>
+        <section class="filter rating-filter-container">
+          <div class="filter-title">Star Rating</div>
+          <div *ngFor="let range of ratingRanges">
+            <mat-checkbox
+              color="primary"
+              [(ngModel)]="range.checked"
+              (change)="updateStarRating(); filterHotels()"
+            >
+              <span *ngFor="let _ of [].constructor(range.stars)"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="filter-star-icon"
+                  style="width: 1rem; height: 1rem"
+                >
+                  <path
+                    d="M7.925 8.03a1.05 1.05 0 00.793-.591l2.576-5.478a.771.771 0 011.412 0l2.576 5.478a1.048 1.048 0 00.793.59l5.75.87a.835.835 0 01.437 1.407l-4.188 4.274a1.05 1.05 0 00-.287.905l.99 6.05a.795.795 0 01-1.141.869l-5.13-2.83a1.05 1.05 0 00-1.013 0l-5.13 2.83a.795.795 0 01-1.141-.87l.995-6.05a1.05 1.05 0 00-.286-.904l-4.192-4.273A.834.834 0 012.175 8.9z"
+                  ></path>
+                </svg>
+              </span>
+            </mat-checkbox>
+          </div>
+        </section>
+      </div>
       <div class="hotel-result-grid">
-        <div *ngFor="let hotel of hotels" class="hotel-card">
+        <div *ngFor="let hotel of filteredHotels" class="hotel-card">
           <img src="{{ hotel.imageUrl }}" alt="{{ hotel.name }}" />
           <div class="hotel-info">
             <div class="title-rating-flex">
@@ -25,7 +62,7 @@
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
-                  class="BpkStar_bpk-star__ZDA0N BpkStar_bpk-star--filled__MTk1N BpkIcon_bpk-icon--rtl-support__OTJmO"
+                  class=""
                   style="width: 1rem; height: 1rem"
                 >
                   <path
@@ -67,5 +104,4 @@
       </div>
     </div>
   </div>
-  <button (click)="getSearchParameters()">Get Params</button>
 </section>

@@ -46,6 +46,7 @@ mat-label {
 .date-input {
   height: 75px;
   width: 100%;
+  font-size: 0.9rem;
 }
 
 .date-field {
@@ -78,9 +79,27 @@ mat-label {
 }
 
 ::ng-deep .checkbox {
-  --mdc-form-field-label-text-color: white;
-  --mdc-checkbox-unselected-icon-background-color: white;
-  --mdc-checkbox__background: white;
+  --mdc-form-field-label-text-color: white !important;
+  /* --mdc-checkbox-selected-icon-color: white !important; */
+  --mdc-checkbox-unselected-icon-color: white !important;
+  --mdc-checkbox-unselected-hover-icon-color: white !important;
+  --mdc-checkbox-unselected-pressed-icon-color: white !important;
+
+  /* --mdc-chedkbox-unselected-focus-state-layer-color: white !important;
+  --mdc-chedkbox-unselected-hover-state-layer-color: white !important;
+  --mdc-chedkbox-unselected-pressed-state-layer-color: white !important; */
+
+  /* --mdc-chedkbox-selected-focus-state-layer-color: white !important; */
+
+  --mdc-checkbox-background: white !important;
+}
+
+::ng-deep {
+  mat-mdc-checkbox mdc-form-field mdc-checkbox mdc-checkbox__background {
+    background-color: white !important;
+    border-color: white !important;
+    fill: white !important;
+  }
 }
 
 .search-btn {
@@ -109,6 +128,9 @@ mat-label {
   }
   .input-overhead-label {
     display: block;
+  }
+  .date-input {
+    font-size: 1rem;
   }
 }
 
