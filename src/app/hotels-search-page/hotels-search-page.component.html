@@ -71,6 +71,19 @@
             </mat-checkbox>
           </div>
         </section>
+        <!-- guest rating filter -->
+        <section class="filter guest-rating-filter-container">
+          <div class="filter-title">Guest rating</div>
+          <div *ngFor="let range of guestRatingRanges">
+            <mat-checkbox
+              color="primary"
+              [(ngModel)]="range.checked"
+              (change)="updateGuestRating(); filterHotels()"
+            >
+              {{ range.label }}
+            </mat-checkbox>
+          </div>
+        </section>
       </div>
       <div class="hotel-result-grid">
         <div *ngFor="let hotel of filteredHotels" class="hotel-card">
@@ -116,6 +129,9 @@
               </div>
               <div class="free-cancellation" *ngIf="hotel.hasFreeCancellation">
                 Free cancellation
+              </div>
+              <div class="free-cancellation" *ngIf="hotel.hasPayOnArrival">
+                Free on arrival
               </div>
               <button mat-flat-button color="primary" class="view-btn">
                 Go to site

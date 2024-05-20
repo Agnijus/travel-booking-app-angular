@@ -175,18 +175,3 @@ export class SearchBarComponent {
     this.router.navigate(['/hotels/search']);
   }
 }
-
-export function getDefaultSearchParameters(): SearchData {
-  const todayDate = new Date();
-  return {
-    destination: '',
-    checkInDate: new Date(new Date().setDate(todayDate.getDate() + 7)),
-    checkOutDate: new Date(new Date().setDate(todayDate.getDate() + 8)),
-    adultsCount: 2,
-    childrenCount: 0,
-    roomsCount: 1,
-    isCancellationFree: false,
-    isFourStars: false,
-    isThreeStars: false,
-  };
-}

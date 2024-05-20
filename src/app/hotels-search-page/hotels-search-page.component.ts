@@ -47,11 +47,20 @@ export class HotelsSearchPageComponent {
     { stars: 3, checked: false },
   ];
 
+  guestRatingRanges = [
+    { label: '5.0+', min: 5.0, checked: false },
+    { label: '4.5+', min: 4.5, checked: false },
+    { label: '4.0+', min: 4.0, checked: false },
+    { label: '3.5+', min: 3.5, checked: false },
+    { label: '3.0+', min: 3.0, checked: false },
+  ];
+
   minPrice: number = 0;
   maxPrice: number = Infinity;
   activeStars: number[] = [];
   isCancellationFree: boolean = false;
   isPayOnArrival: boolean = false;
+  minGuestRating: number = 0;
 
   priceLowToHigh: boolean = false;
   priceHighToLow: boolean = false;
@@ -140,6 +149,7 @@ export class HotelsSearchPageComponent {
   updateFilters(): void {
     this.updatePriceRange();
     this.updateStarRating();
+    this.updateGuestRating();
     this.filterHotels();
   }
 
@@ -155,11 +165,15 @@ export class HotelsSearchPageComponent {
         !this.isCancellationFree || hotel.hasFreeCancellation;
       const matchesPayOnArrival = !this.isPayOnArrival || hotel.hasPayOnArrival;
 
+      const isGuestRatingInRange =
+        hotel.tripAdvisorRating >= this.minGuestRating;
+
       return (
         isPriceInRange &&
         isRatingMatch &&
         matchesFreeCancellation &&
-        matchesPayOnArrival
+        matchesPayOnArrival &&
+        isGuestRatingInRange
       );
     });
   }
@@ -181,6 +195,19 @@ export class HotelsSearchPageComponent {
     );
     this.activeStars = activeRatingRanges.map((range) => range.stars);
     this.filterHotels();
+  }
+
+  updateGuestRating(): void {
+    const activeGuestRating = this.guestRatingRanges.filter(
+      (range) => range.checked
+    );
+    if (activeGuestRating.length > 0) {
+      this.minGuestRating = Math.min(
+        ...activeGuestRating.map((range) => range.min)
+      );
+    } else {
+      this.minGuestRating = 0;
+    }
   }
 
   openSortByFilterBottomSheet(): void {
