@@ -1,9 +1,8 @@
-import { Component, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
-import { repeat } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',

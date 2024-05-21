@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SearchDataService } from '../search-data.service';
 import { SearchData } from '../search-data.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,7 +29,21 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './hotels-search-page.component.css',
 })
 export class HotelsSearchPageComponent {
+  constructor(
+    private searchDataService: SearchDataService,
+    private sortByFilterBottomSheet: MatBottomSheet
+  ) {}
+
   searchParameters: SearchData | undefined;
+
+  ngOnInit() {
+    this.searchDataService.getSearchData().subscribe((data: any) => {
+      this.searchParameters = data!;
+    });
+    this.updateFilters();
+  }
+
+  // filter data
 
   priceRanges = [
     { label: '$0 - $100', min: 0, max: 100, checked: false },
@@ -53,11 +67,14 @@ export class HotelsSearchPageComponent {
     { label: '3.0+', extra: 'Satisfactory', min: 3.0, checked: false },
   ];
 
-  minPrice: number = 0;
-  maxPrice: number = Infinity;
-  activeStars: number[] = [];
   isCancellationFree: boolean = false;
   isPayOnArrival: boolean = false;
+
+  minPrice: number = 0;
+  maxPrice: number = Infinity;
+
+  activeStars: number[] = [];
+
   minGuestRating: number = 0;
 
   priceLowToHigh: boolean = false;
@@ -66,6 +83,8 @@ export class HotelsSearchPageComponent {
   highestGuestRating: boolean = false;
   starRatingLowToHigh: boolean = false;
   starRatingHighToLow: boolean = false;
+
+  // raw hotel data
 
   hotels: Hotel[] = [
     {
@@ -126,23 +145,11 @@ export class HotelsSearchPageComponent {
     },
   ];
 
+  // filtered hotel data
+
   filteredHotels: Hotel[] = [];
 
-  constructor(
-    private searchDataService: SearchDataService,
-    private sortByFilterBottomSheet: MatBottomSheet
-  ) {}
-
-  ngOnInit() {
-    this.searchDataService.getSearchData().subscribe((data: any) => {
-      this.searchParameters = data!;
-    });
-    this.updateFilters();
-  }
-
-  getSearchParameters() {
-    console.log(this.searchParameters);
-  }
+  // filtering methods
 
   updateFilters(): void {
     this.updatePriceRange();
@@ -207,6 +214,8 @@ export class HotelsSearchPageComponent {
     }
   }
 
+  // mobile filter methods
+
   openSortByFilterBottomSheet(): void {
     const sortByFilterBottomSheetRef = this.sortByFilterBottomSheet.open(
       SortByFilterBottomSheetComponent
@@ -217,6 +226,8 @@ export class HotelsSearchPageComponent {
     });
   }
 }
+
+// interfaces
 
 interface Hotel {
   name: string;

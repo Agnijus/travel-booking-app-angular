@@ -18,7 +18,6 @@ import { GuestsRoomsDialogComponent } from '../../guests-rooms-dialog/guests-roo
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DestinationDialogComponent } from '../../destination-dialog/destination-dialog.component';
-import { constructQueryParams } from '../../hotels-query-helper';
 import { Router } from '@angular/router';
 import { SearchDataService } from '../../search-data.service';
 import { SearchData } from '../../search-data.service';
@@ -46,19 +45,18 @@ export class SearchBarComponent {
   @ViewChild('destinationInput') destinationInput!: ElementRef;
   @Input() data?: SearchData;
 
-  searchParameters!: SearchData;
-
-  guestsRoomsDialogRef!: MatDialogRef<GuestsRoomsDialogComponent>;
-  destinationDialogRef!: MatDialogRef<DestinationDialogComponent>;
-
-  todayDate: Date = new Date();
-  calendarTouchUi: boolean = true;
-
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private searchDataService: SearchDataService
   ) {}
+
+  guestsRoomsDialogRef!: MatDialogRef<GuestsRoomsDialogComponent>;
+  destinationDialogRef!: MatDialogRef<DestinationDialogComponent>;
+
+  searchParameters!: SearchData;
+  todayDate: Date = new Date();
+  calendarTouchUi: boolean = true;
 
   ngOnInit(): void {
     this.searchDataService.getSearchData().subscribe({
@@ -73,6 +71,8 @@ export class SearchBarComponent {
     this.updateCalendarTouchUi();
   }
 
+  // update calendar & dialog positions on resize
+
   @HostListener('window:resize')
   onResize() {
     this.updateCalendarTouchUi();
@@ -83,6 +83,8 @@ export class SearchBarComponent {
       this.updateDestinationDialogPosition();
     }
   }
+
+  // open & update dialog methods
 
   openGuestsRoomsDialog(event: MouseEvent): void {
     event.stopPropagation();
@@ -173,6 +175,8 @@ export class SearchBarComponent {
     this.router.navigate(['/hotels/search']);
   }
 }
+
+// a method for setting default search params
 
 export function getDefaultSearchParameters(): SearchData {
   const todayDate = new Date();

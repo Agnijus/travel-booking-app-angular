@@ -12,7 +12,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
-import { constructQueryParams } from '../hotels-query-helper';
 import { SearchDataService } from '../search-data.service';
 
 @Component({
@@ -83,7 +82,6 @@ export class DestinationDialogComponent {
 
   selectRecentDestination(): void {
     this.searchDataService.setSearchData(this.previousSearch);
-
     this.router.navigate(['/hotels/search']);
   }
 

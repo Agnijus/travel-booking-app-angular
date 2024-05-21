@@ -1,10 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  HostListener,
-  Input,
-} from '@angular/core';
+import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
@@ -18,7 +12,6 @@ import { GuestsRoomsDialogComponent } from '../../guests-rooms-dialog/guests-roo
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DestinationDialogComponent } from '../../destination-dialog/destination-dialog.component';
-import { constructQueryParams } from '../../hotels-query-helper';
 import { Router } from '@angular/router';
 import { SearchDataService } from '../../search-data.service';
 import { SearchData } from '../../search-data.service';
@@ -48,14 +41,6 @@ import { MatIconModule } from '@angular/material/icon';
 export class SearchBarComponent {
   @ViewChild('guestsRoomsInput') guestsRoomsInput!: ElementRef;
   @ViewChild('destinationInput') destinationInput!: ElementRef;
-  searchParameters!: SearchData;
-
-  guestsRoomsDialogRef!: MatDialogRef<GuestsRoomsDialogComponent>;
-  destinationDialogRef!: MatDialogRef<DestinationDialogComponent>;
-
-  todayDate: Date = new Date();
-  isSmallScreen = true;
-  calendarTouchUi: boolean = true;
 
   constructor(
     public dialog: MatDialog,
@@ -73,6 +58,28 @@ export class SearchBarComponent {
     this.updateCalendarTouchUi();
   }
 
+  guestsRoomsDialogRef!: MatDialogRef<GuestsRoomsDialogComponent>;
+  destinationDialogRef!: MatDialogRef<DestinationDialogComponent>;
+
+  searchParameters!: SearchData;
+  todayDate: Date = new Date();
+  isSmallScreen = true;
+  calendarTouchUi: boolean = true;
+
+  // cache, set search data & navigate
+
+  searchHotels(): void {
+    localStorage.setItem(
+      'previousSearch',
+      JSON.stringify(this.searchParameters)
+    );
+
+    this.searchDataService.setSearchData(this.searchParameters);
+    this.router.navigate(['/hotels/search']);
+  }
+
+  // update calendar and dialog positioning on resize
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.isSmallScreen = event.target.innerWidth < 800;
@@ -85,6 +92,8 @@ export class SearchBarComponent {
       this.updateDestinationDialogPosition();
     }
   }
+
+  // open & update methods for dialogs
 
   openGuestsRoomsDialog(event: MouseEvent): void {
     event.stopPropagation();
@@ -163,15 +172,5 @@ export class SearchBarComponent {
 
   updateCalendarTouchUi(): void {
     this.calendarTouchUi = window.innerWidth <= 800;
-  }
-
-  searchHotels(): void {
-    localStorage.setItem(
-      'previousSearch',
-      JSON.stringify(this.searchParameters)
-    );
-
-    this.searchDataService.setSearchData(this.searchParameters);
-    this.router.navigate(['/hotels/search']);
   }
 }
