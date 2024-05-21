@@ -25,9 +25,7 @@ export class PriceFilterBottomSheetComponent {
     }
   ) {
     this.min = data.min;
-    if (!(data.max === Infinity)) {
-      this.max = data.max;
-    }
+    this.max = data.max > 350 ? 350 : data.max;
   }
 
   disabled = false;

@@ -72,6 +72,7 @@ export class HotelsSearchPageComponent {
   isCancellationFree: boolean = false;
   isPayOnArrival: boolean = false;
 
+  infinity = Infinity;
   minPrice: number = 0;
   maxPrice: number = Infinity;
 
@@ -243,7 +244,7 @@ export class HotelsSearchPageComponent {
     priceFilterBottomSheetRef.afterDismissed().subscribe((priceRange) => {
       if (priceRange) {
         this.minPrice = priceRange.min;
-        this.maxPrice = priceRange.max;
+        this.maxPrice = priceRange.max == 350 ? Infinity : priceRange.max;
         this.filterHotels();
         this.isMobilePriceFilter = true;
       }
