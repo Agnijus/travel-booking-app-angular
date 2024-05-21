@@ -1,0 +1,32 @@
+<section>
+  <div class="center">
+    <div class="title">Price range</div>
+    <div class="price-filter-values">
+      <div class="left">${{ min }}</div>
+      <div class="right">${{ max }}</div>
+    </div>
+    <!-- <mat-slider
+      class="price-filter-slider"
+      [disabled]="disabled"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [discrete]="thumbLabel"
+      [showTickMarks]="showTicks"
+    >
+      <input matSliderThumb [(ngModel)]="price" #slider />
+    </mat-slider> -->
+    <mat-slider class="price-filter-slider" min="0" max="350">
+      <input [(ngModel)]="min" value="300" matSliderStartThumb />
+      <input [(ngModel)]="max" value="400" matSliderEndThumb />
+    </mat-slider>
+    <button
+      (click)="updatePriceFilter()"
+      color="primary"
+      mat-flat-button
+      class="filter-btn"
+    >
+      search hotels
+    </button>
+  </div>
+</section>

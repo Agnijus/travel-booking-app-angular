@@ -1,0 +1,28 @@
+section {
+  padding: 1rem;
+}
+
+.center {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.price-filter-values {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-filter-slider {
+  display: block;
+  width: 100%;
+}
+
+.filter-btn {
+  width: 100%;
+}

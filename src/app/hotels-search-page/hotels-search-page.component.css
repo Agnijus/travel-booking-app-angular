@@ -14,6 +14,11 @@
 }
 .sort-by-btn {
   background-color: #0062e3;
+  margin-right: 0.5rem;
+}
+
+.price-filter-btn {
+  background-color: #0062e3;
 }
 
 .grid {

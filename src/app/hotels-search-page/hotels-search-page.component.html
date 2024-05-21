@@ -2,6 +2,7 @@
   <app-search-bar></app-search-bar>
   <div class="center">
     <div class="top-filter-panel">
+      <div class="active-mobile-filters-count"></div>
       <button
         class="sort-by-btn"
         mat-flat-button
@@ -9,6 +10,15 @@
         (click)="openSortByFilterBottomSheet()"
       >
         Sort By
+      </button>
+      <button
+        class="price-filter-btn"
+        mat-flat-button
+        color="primary"
+        (click)="openPriceFilterBottomSheet()"
+      >
+        ${{ minPrice }} - ${{ maxPrice }}
+        <span *ngIf="!isMobilePriceFilter">Price</span>
       </button>
     </div>
     <div class="grid">

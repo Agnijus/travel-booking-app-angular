@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CommonModule } from '@angular/common';
 import { SortByFilterBottomSheetComponent } from './sort-by-filter-bottom-sheet/sort-by-filter-bottom-sheet.component';
+import { PriceFilterBottomSheetComponent } from './price-filter-bottom-sheet/price-filter-bottom-sheet.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -31,7 +32,8 @@ import { FormsModule } from '@angular/forms';
 export class HotelsSearchPageComponent {
   constructor(
     private searchDataService: SearchDataService,
-    private sortByFilterBottomSheet: MatBottomSheet
+    private sortByFilterBottomSheet: MatBottomSheet,
+    private priceFilterBottomSheet: MatBottomSheet
   ) {}
 
   searchParameters: SearchData | undefined;
@@ -83,6 +85,8 @@ export class HotelsSearchPageComponent {
   highestGuestRating: boolean = false;
   starRatingLowToHigh: boolean = false;
   starRatingHighToLow: boolean = false;
+
+  isMobilePriceFilter: boolean = false;
 
   // raw hotel data
 
@@ -224,6 +228,32 @@ export class HotelsSearchPageComponent {
     sortByFilterBottomSheetRef.afterDismissed().subscribe((selectedFilter) => {
       console.log(selectedFilter);
     });
+  }
+
+  openPriceFilterBottomSheet(): void {
+    const priceFilterBottomSheetRef = this.priceFilterBottomSheet.open(
+      PriceFilterBottomSheetComponent,
+      {
+        data: {
+          min: this.minPrice,
+          max: this.maxPrice,
+        },
+      }
+    );
+    priceFilterBottomSheetRef.afterDismissed().subscribe((priceRange) => {
+      if (priceRange) {
+        this.minPrice = priceRange.min;
+        this.maxPrice = priceRange.max;
+        this.filterHotels();
+        this.isMobilePriceFilter = true;
+      }
+    });
+  }
+
+  clearMobileFilters(): void {
+    this.minPrice = 0;
+    this.maxPrice = Infinity;
+    this.isMobilePriceFilter = false;
   }
 }
 
