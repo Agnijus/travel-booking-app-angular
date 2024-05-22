@@ -27,6 +27,25 @@
   background-color: #05203c;
 }
 
+/* active top panel large screen */
+
+.top-price-filter-large-screen {
+  display: inline-block;
+  padding: 0.5rem;
+  color: white;
+}
+.filter-active-large-screen {
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.clear-filter-svg {
+  fill: grey;
+}
+
+.filter-active-large-screen:hover {
+  fill: rgb(187, 187, 187);
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -290,6 +309,7 @@
   .top-filter-panel {
     display: none;
   }
+
   .side-filters-panel {
     display: block;
     padding-top: 1rem;

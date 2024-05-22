@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { SearchDataService } from '../search-data.service';
 import { SearchData } from '../search-data.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -42,7 +42,13 @@ export class HotelsSearchPageComponent {
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
     });
+    this.updateScreenSize();
     this.updateFilters();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.updateScreenSize();
   }
 
   // filter data
@@ -87,7 +93,8 @@ export class HotelsSearchPageComponent {
   starRatingLowToHigh: boolean = false;
   starRatingHighToLow: boolean = false;
 
-  isMobilePriceFilterActive: boolean = false;
+  isPriceFilterActive: boolean = false;
+  isLargeScreen: boolean = false;
 
   // raw hotel data
 
@@ -234,6 +241,8 @@ export class HotelsSearchPageComponent {
   }
 
   filterHotels(): void {
+    this.updateScreenSize();
+
     this.filteredHotels = this.hotels.filter((hotel) => {
       const isPriceInRange =
         hotel.pricePerNight >= this.minPrice &&
@@ -259,10 +268,13 @@ export class HotelsSearchPageComponent {
 
   updatePriceRange(): void {
     const activePriceRanges = this.priceRanges.filter((range) => range.checked);
+
     if (activePriceRanges.length > 0) {
       this.minPrice = Math.min(...activePriceRanges.map((range) => range.min));
       this.maxPrice = Math.max(...activePriceRanges.map((range) => range.max));
+      this.isPriceFilterActive = true;
     } else {
+      this.isPriceFilterActive = false;
       this.minPrice = 0;
       this.maxPrice = Infinity;
     }
@@ -289,7 +301,7 @@ export class HotelsSearchPageComponent {
     }
   }
 
-  // mobile filter methods
+  // mobile filters
 
   openSortByFilterBottomSheet(): void {
     const sortByFilterBottomSheetRef = this.sortByFilterBottomSheet.open(
@@ -316,16 +328,28 @@ export class HotelsSearchPageComponent {
         this.minPrice = priceRange.min;
         this.maxPrice = priceRange.max == 350 ? Infinity : priceRange.max;
         this.filterHotels();
-        this.isMobilePriceFilterActive =
+        this.isPriceFilterActive =
           priceRange.min === 0 && priceRange.max == 350 ? false : true;
       }
     });
   }
 
-  clearMobileFilters(): void {
+  // clear filters
+
+  clearPriceFilter(): void {
     this.minPrice = 0;
     this.maxPrice = Infinity;
-    this.isMobilePriceFilterActive = false;
+    this.isPriceFilterActive = false;
+
+    this.priceRanges.forEach((range) => (range.checked = false));
+  }
+
+  clearAllFilters(): void {}
+
+  // update screen size for filters
+
+  updateScreenSize(): void {
+    this.isLargeScreen = window.innerWidth >= 1000;
   }
 }
 
