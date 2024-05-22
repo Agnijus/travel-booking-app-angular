@@ -340,6 +340,13 @@ export class HotelsSearchPageComponent {
 
   // clear filters
 
+  clearFreeCancellationFilter(): void {
+    this.isCancellationFree = false;
+  }
+  clearPayOnArrivalFilter(): void {
+    this.isPayOnArrival = false;
+  }
+
   clearPriceFilter(): void {
     this.minPrice = 0;
     this.maxPrice = Infinity;
