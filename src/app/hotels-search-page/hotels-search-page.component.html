@@ -30,6 +30,7 @@
       </button>
     </div>
     <div class="grid">
+      <!-- side filters  -->
       <div class="side-filters-panel">
         <!-- booking options filter -->
         <section class="filter booking-filter-container">
@@ -116,6 +117,7 @@
       <div class="hotel-result-grid">
         <!-- large screen active filters -->
         <div class="active-top-filters-large-screen">
+          <!-- active price range -->
           <button
             *ngIf="isPriceFilterActive && isLargeScreen"
             class="filter-active filter-active-large-screen"
@@ -126,6 +128,30 @@
             <span class="price-active">
               ${{ minPrice }} - ${{ maxPrice === infinity ? "350+" : maxPrice }}
             </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              class="clear-filter-svg"
+              style="width: 1rem; height: 1rem"
+            >
+              <path
+                d="M12 22.5A10.5 10.5 0 101.5 12 10.5 10.5 0 0012 22.5zM7.938 7.94h.002a1.5 1.5 0 012.12 0L12 9.878l1.94-1.94a1.5 1.5 0 012.12 2.122L14.122 12l1.94 1.94a1.5 1.5 0 01-2.122 2.12L12 14.122l-1.94 1.94a1.5 1.5 0 01-2.12-2.122L9.878 12l-1.94-1.94a1.5 1.5 0 010-2.12z"
+              ></path>
+            </svg>
+          </button>
+          <!-- active star rating range -->
+          <button
+            *ngIf="isStarRatingFilterActive && isLargeScreen"
+            class="filter-active filter-active-large-screen"
+            mat-flat-button
+            color="primary"
+            (click)="clearStarRatingFilter(); filterHotels()"
+          >
+            <span *ngFor="let rating of activeStars" class="star-rating-active">
+              {{ rating }}
+            </span>
+            stars
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

@@ -86,14 +86,15 @@ export class HotelsSearchPageComponent {
 
   minGuestRating: number = 0;
 
-  priceLowToHigh: boolean = false;
-  priceHighToLow: boolean = false;
-  closestToCityCenter: boolean = false;
-  highestGuestRating: boolean = false;
-  starRatingLowToHigh: boolean = false;
-  starRatingHighToLow: boolean = false;
+  // priceLowToHigh: boolean = false;
+  // priceHighToLow: boolean = false;
+  // closestToCityCenter: boolean = false;
+  // highestGuestRating: boolean = false;
+  // starRatingLowToHigh: boolean = false;
+  // starRatingHighToLow: boolean = false;
 
   isPriceFilterActive: boolean = false;
+  isStarRatingFilterActive: boolean = false;
   isLargeScreen: boolean = false;
 
   // raw hotel data
@@ -284,7 +285,10 @@ export class HotelsSearchPageComponent {
     const activeRatingRanges = this.ratingRanges.filter(
       (range) => range.checked
     );
-    this.activeStars = activeRatingRanges.map((range) => range.stars);
+    this.activeStars = activeRatingRanges
+      .map((range) => range.stars)
+      .sort((a, b) => a - b);
+    this.isStarRatingFilterActive = activeRatingRanges.length > 0;
     this.filterHotels();
   }
 
@@ -340,8 +344,13 @@ export class HotelsSearchPageComponent {
     this.minPrice = 0;
     this.maxPrice = Infinity;
     this.isPriceFilterActive = false;
-
     this.priceRanges.forEach((range) => (range.checked = false));
+  }
+
+  clearStarRatingFilter(): void {
+    this.activeStars = [];
+    this.isStarRatingFilterActive = false;
+    this.ratingRanges.forEach((range) => (range.checked = false));
   }
 
   clearAllFilters(): void {}
