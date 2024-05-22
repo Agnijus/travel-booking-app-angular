@@ -316,7 +316,8 @@ export class HotelsSearchPageComponent {
         this.minPrice = priceRange.min;
         this.maxPrice = priceRange.max == 350 ? Infinity : priceRange.max;
         this.filterHotels();
-        this.isMobilePriceFilterActive = true;
+        this.isMobilePriceFilterActive =
+          priceRange.min === 0 && priceRange.max == 350 ? false : true;
       }
     });
   }

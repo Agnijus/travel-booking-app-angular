@@ -12,26 +12,17 @@
         Sort By
       </button>
       <button
-        class="price-filter-btn"
+        class="{{
+          isMobilePriceFilterActive ? 'filter-active' : ''
+        }} price-filter-btn"
         mat-flat-button
         color="primary"
         (click)="openPriceFilterBottomSheet()"
       >
-        <span
-          *ngIf="
-            isMobilePriceFilterActive &&
-            !(minPrice === 0 && maxPrice === infinity)
-          "
-        >
+        <span class="price-active" *ngIf="isMobilePriceFilterActive">
           ${{ minPrice }} - ${{ maxPrice === infinity ? "350+" : maxPrice }}
         </span>
-        <span
-          *ngIf="
-            !isMobilePriceFilterActive ||
-            (minPrice === 0 && maxPrice === infinity)
-          "
-          >Price</span
-        >
+        <span *ngIf="!isMobilePriceFilterActive">Price</span>
       </button>
     </div>
     <div class="grid">

@@ -23,6 +23,10 @@
   background-color: #0062e3;
 }
 
+.filter-active {
+  background-color: #05203c;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr;
