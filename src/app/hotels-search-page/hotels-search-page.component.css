@@ -8,6 +8,13 @@
   margin: 0 auto;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: 0.3s linear;
+  margin-top: 1rem;
+}
+
 /* top filter panel */
 
 .top-filter-panel {
@@ -48,11 +55,8 @@
   fill: rgb(187, 187, 187);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  transition: 0.3s linear;
-  margin-top: 1rem;
+.guest-rating-active {
+  margin-right: 0.25rem;
 }
 
 /* side filter panel */

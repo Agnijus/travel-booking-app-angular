@@ -95,6 +95,7 @@ export class HotelsSearchPageComponent {
 
   isPriceFilterActive: boolean = false;
   isStarRatingFilterActive: boolean = false;
+  isGuestRatingFilterActive: boolean = false;
   isLargeScreen: boolean = false;
 
   // raw hotel data
@@ -300,8 +301,10 @@ export class HotelsSearchPageComponent {
       this.minGuestRating = Math.min(
         ...activeGuestRating.map((range) => range.min)
       );
+      this.isGuestRatingFilterActive = true;
     } else {
       this.minGuestRating = 0;
+      this.isGuestRatingFilterActive = false;
     }
   }
 
@@ -358,6 +361,12 @@ export class HotelsSearchPageComponent {
     this.activeStars = [];
     this.isStarRatingFilterActive = false;
     this.ratingRanges.forEach((range) => (range.checked = false));
+  }
+
+  clearGuestRatingFilter(): void {
+    this.minGuestRating = 0;
+    this.isGuestRatingFilterActive = false;
+    this.guestRatingRanges.forEach((range) => (range.checked = false));
   }
 
   clearAllFilters(): void {}
