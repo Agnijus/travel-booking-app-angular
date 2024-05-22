@@ -8,6 +8,8 @@
   margin: 0 auto;
 }
 
+/* top filter panel */
+
 .top-filter-panel {
   display: block;
   margin-top: 1rem;
@@ -92,6 +94,7 @@
   grid-template-columns: 1fr;
   gap: 1rem;
   transition: 0.3s;
+  margin-bottom: 2rem;
 }
 
 .hotel-card {
@@ -102,6 +105,7 @@
   border-radius: 0.75rem;
   box-shadow: 0 4px 14px 0 #25201f40;
   transition: 0.2s linear;
+  background-color: white;
 }
 .hotel-card:hover {
   box-shadow: 0 4px 14px 5px #0c0c0c40;
@@ -241,7 +245,7 @@
     justify-content: start;
     margin-bottom: 2rem;
   }
-  .hotel-price-container .hotel-price-container-center {
+  .hotel-price-container-center {
     width: 100%;
     margin-left: 0.5rem;
   }
@@ -276,7 +280,7 @@
 }
 
 @media (min-width: 1000px) {
-  .hotel-price-container .hotel-price-container-center {
+  .hotel-price-container-center {
     padding: 0 0.5rem;
   }
   .top-filter-panel {

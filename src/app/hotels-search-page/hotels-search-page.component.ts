@@ -87,64 +87,134 @@ export class HotelsSearchPageComponent {
   starRatingLowToHigh: boolean = false;
   starRatingHighToLow: boolean = false;
 
-  isMobilePriceFilter: boolean = false;
+  isMobilePriceFilterActive: boolean = false;
 
   // raw hotel data
 
   hotels: Hotel[] = [
     {
-      name: 'Las Vegas Hilton at Resorts World',
+      name: 'Conrad Las Vegas at Resorts World',
       imageUrl:
-        'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
-      distance: 1.46,
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
+      distance: 0.8,
       rating: 5,
-      guestRating: 3.1,
+      guestRating: 3.0,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 288,
-      pricePerNight: 450,
-      hasFreeCancellation: false,
-      hasPayOnArrival: true,
-    },
-    {
-      name: 'Las Vegas Luxurious Place',
-      imageUrl:
-        'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
-      distance: 1.46,
-      rating: 5,
-      guestRating: 4.6,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 3124,
-      pricePerNight: 700,
-      hasFreeCancellation: false,
-      hasPayOnArrival: false,
-    },
-    {
-      name: 'Las Vegas Hilton at Resorts World',
-      imageUrl:
-        'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
-      distance: 1.46,
-      rating: 3,
-      guestRating: 3.1,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 288,
-      pricePerNight: 100,
+      reviews: 731,
+      pricePerNight: 173,
       hasFreeCancellation: true,
       hasPayOnArrival: false,
     },
     {
-      name: 'Las Vegas Luxurious Place',
+      name: 'Waldorf Astoria Las Vegas',
       imageUrl:
-        'https://content.skyscnr.com/available/1464511300/1464511300_960x960.jpg',
-      distance: 1.46,
-      rating: 4,
-      guestRating: 3.9,
+        'https://content.skyscnr.com/available/1394098245/1394098245_320x252.jpg',
+      distance: 0.72,
+      rating: 5,
+      guestRating: 4.0,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 3124,
-      pricePerNight: 300,
+      reviews: 1086,
+      pricePerNight: 304,
+      hasFreeCancellation: true,
+      hasPayOnArrival: false,
+    },
+    {
+      name: 'The Orleans Hotel & Casino',
+      imageUrl:
+        'https://content.skyscnr.com/available/1167715507/1167715507_640x504.jpg',
+      distance: 1.71,
+      rating: 3,
+      guestRating: 4.0,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 6816,
+      pricePerNight: 83,
+      hasFreeCancellation: true,
+      hasPayOnArrival: false,
+    },
+    {
+      name: 'Oasis at Gold Spike - Adults Only',
+      imageUrl:
+        'https://content.skyscnr.com/available/1394356996/1394356996_640x504.jpg',
+      distance: 1.85,
+      rating: 3,
+      guestRating: 3.3,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 6,
+      pricePerNight: 95,
+      hasFreeCancellation: true,
+      hasPayOnArrival: false,
+    },
+    {
+      name: 'Hilton Vacation Club Cancum Resort Las Vegas',
+      imageUrl:
+        'https://content.skyscnr.com/available/756448108/756448108_640x504.jpg',
+      distance: 1.24,
+      rating: 3,
+      guestRating: 3.5,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 1506,
+      pricePerNight: 132,
+      hasFreeCancellation: false,
+      hasPayOnArrival: false,
+    },
+    {
+      name: 'Thunderbird Boutique Hotel',
+      imageUrl:
+        'https://content.skyscnr.com/available/1280309776/1280309776_320x252.jpg',
+      distance: 1.7,
+      rating: 2,
+      guestRating: 3.5,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 152,
+      pricePerNight: 82,
+      hasFreeCancellation: false,
+      hasPayOnArrival: false,
+    },
+    {
+      name: "Arizona Charlie's Decatur",
+      imageUrl:
+        'https://content.skyscnr.com/available/1363037707/1363037707_320x252.jpg',
+      distance: 0.57,
+      rating: 3,
+      guestRating: 3.0,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 246,
+      pricePerNight: 98,
+      hasFreeCancellation: false,
+      hasPayOnArrival: true,
+    },
+    {
+      name: 'Hilton Lake Las Vegas Resort & Spa',
+      imageUrl:
+        'https://content.skyscnr.com/available/1136274483/1136274483_320x252.jpg',
+      distance: 13.48,
+      rating: 4,
+      guestRating: 4.0,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 2047,
+      pricePerNight: 169,
+      hasFreeCancellation: true,
+      hasPayOnArrival: false,
+    },
+    {
+      name: 'Hampton Inn Tropicana',
+      imageUrl:
+        'https://content.skyscnr.com/available/1500727711/1500727711_320x252.jpg',
+      distance: 0.83,
+      rating: 2,
+      guestRating: 4.5,
+      tripAdvisorReviewImage:
+        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+      reviews: 3531,
+      pricePerNight: 167,
       hasFreeCancellation: true,
       hasPayOnArrival: true,
     },
@@ -246,7 +316,7 @@ export class HotelsSearchPageComponent {
         this.minPrice = priceRange.min;
         this.maxPrice = priceRange.max == 350 ? Infinity : priceRange.max;
         this.filterHotels();
-        this.isMobilePriceFilter = true;
+        this.isMobilePriceFilterActive = true;
       }
     });
   }
@@ -254,7 +324,7 @@ export class HotelsSearchPageComponent {
   clearMobileFilters(): void {
     this.minPrice = 0;
     this.maxPrice = Infinity;
-    this.isMobilePriceFilter = false;
+    this.isMobilePriceFilterActive = false;
   }
 }
 

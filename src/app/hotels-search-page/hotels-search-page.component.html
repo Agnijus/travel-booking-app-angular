@@ -17,8 +17,21 @@
         color="primary"
         (click)="openPriceFilterBottomSheet()"
       >
-        ${{ minPrice }} - ${{ maxPrice === infinity ? "350+" : maxPrice }}
-        <span *ngIf="!isMobilePriceFilter">Price</span>
+        <span
+          *ngIf="
+            isMobilePriceFilterActive &&
+            !(minPrice === 0 && maxPrice === infinity)
+          "
+        >
+          ${{ minPrice }} - ${{ maxPrice === infinity ? "350+" : maxPrice }}
+        </span>
+        <span
+          *ngIf="
+            !isMobilePriceFilterActive ||
+            (minPrice === 0 && maxPrice === infinity)
+          "
+          >Price</span
+        >
       </button>
     </div>
     <div class="grid">

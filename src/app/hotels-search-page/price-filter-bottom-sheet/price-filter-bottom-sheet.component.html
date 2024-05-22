@@ -5,17 +5,6 @@
       <div class="left">${{ min }}</div>
       <div class="right">${{ max === 350 ? "350+" : max }}</div>
     </div>
-    <!-- <mat-slider
-      class="price-filter-slider"
-      [disabled]="disabled"
-      [max]="max"
-      [min]="min"
-      [step]="step"
-      [discrete]="thumbLabel"
-      [showTickMarks]="showTicks"
-    >
-      <input matSliderThumb [(ngModel)]="price" #slider />
-    </mat-slider> -->
     <mat-slider class="price-filter-slider" min="0" max="350">
       <input [(ngModel)]="min" value="300" matSliderStartThumb />
       <input [(ngModel)]="max" value="400" matSliderEndThumb />
