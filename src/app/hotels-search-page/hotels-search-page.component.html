@@ -30,6 +30,26 @@
         </span>
         <span *ngIf="!isPriceFilterActive">Price</span>
       </button>
+      <!-- small screen star rating filter-->
+      <button
+        class="{{
+          isStarRatingFilterActive ? 'filter-active' : ''
+        }} star-rating-filter-btn"
+        mat-flat-button
+        color="primary"
+        (click)="openStarRatingFilterBottomSheet()"
+      >
+        <span
+          class="star-rating-active"
+          *ngIf="isStarRatingFilterActive && !isLargeScreen"
+        >
+          <span *ngFor="let rating of activeStars" class="star-rating-active">
+            {{ rating }}
+          </span>
+          stars
+        </span>
+        <span *ngIf="!isStarRatingFilterActive">Stars</span>
+      </button>
       <!-- small screen guest rating filter-->
       <button
         class="{{
@@ -43,9 +63,9 @@
           class="price-active"
           *ngIf="isGuestRatingFilterActive && !isLargeScreen"
         >
-          {{ minGuestRating }}
+          {{ minGuestRating }}+
         </span>
-        <span *ngIf="!isPriceFilterActive">Guest Rating</span>
+        <span *ngIf="!isGuestRatingFilterActive">Guest Rating</span>
       </button>
     </div>
     <div class="grid">

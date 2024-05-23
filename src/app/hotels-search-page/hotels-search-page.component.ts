@@ -13,6 +13,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { GuestRatingBottomSheetComponent } from './guest-rating-bottom-sheet/guest-rating-bottom-sheet.component';
+import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-rating-bottom-sheet.component';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -356,6 +357,23 @@ export class HotelsSearchPageComponent {
         if (guestRatingRanges) {
           this.guestRatingRanges = guestRatingRanges;
           this.updateGuestRating();
+          this.filterHotels();
+        }
+      });
+  }
+  openStarRatingFilterBottomSheet(): void {
+    const guestRatingFilterBottomSheetRef =
+      this.guestRatingFilterBottomSheet.open(StarRatingBottomSheetComponent, {
+        data: {
+          ratingRanges: this.ratingRanges,
+        },
+      });
+    guestRatingFilterBottomSheetRef
+      .afterDismissed()
+      .subscribe((ratingRanges) => {
+        if (ratingRanges) {
+          this.ratingRanges = ratingRanges;
+          this.updateStarRating();
           this.filterHotels();
         }
       });
