@@ -67,6 +67,17 @@
         </span>
         <span *ngIf="!isGuestRatingFilterActive">Guest Rating</span>
       </button>
+      <!-- small screen booking options-->
+      <button
+        class="{{
+          isCancellationFree || isPayOnArrival ? 'filter-active' : ''
+        }} booking-options-filter-btn"
+        mat-flat-button
+        color="primary"
+        (click)="openBookingOptionsFilterBottomSheet()"
+      >
+        <span> Booking options </span>
+      </button>
     </div>
     <div class="grid">
       <!-- side filters  -->

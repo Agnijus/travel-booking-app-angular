@@ -24,20 +24,31 @@
 .sort-by-btn {
   background-color: #0062e3;
   margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .price-filter-btn {
   background-color: #0062e3;
   margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .star-rating-filter-btn {
   background-color: #0062e3;
   margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .guest-rating-filter-btn {
   background-color: #0062e3;
+  margin-right: 0.5rem;
+
+  margin-bottom: 0.5rem;
+}
+
+.booking-options-filter-btn {
+  background-color: #0062e3;
+  margin-bottom: 0.5rem;
 }
 
 .filter-active {

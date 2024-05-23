@@ -14,6 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { GuestRatingBottomSheetComponent } from './guest-rating-bottom-sheet/guest-rating-bottom-sheet.component';
 import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-rating-bottom-sheet.component';
+import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-sheet/booking-options-bottom-sheet.component';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -36,7 +37,8 @@ export class HotelsSearchPageComponent {
     private searchDataService: SearchDataService,
     private sortByFilterBottomSheet: MatBottomSheet,
     private priceFilterBottomSheet: MatBottomSheet,
-    private guestRatingFilterBottomSheet: MatBottomSheet
+    private guestRatingFilterBottomSheet: MatBottomSheet,
+    private bookingOptionsFilterBottomSheet: MatBottomSheet
   ) {}
 
   searchParameters: SearchData | undefined;
@@ -361,6 +363,7 @@ export class HotelsSearchPageComponent {
         }
       });
   }
+
   openStarRatingFilterBottomSheet(): void {
     const guestRatingFilterBottomSheetRef =
       this.guestRatingFilterBottomSheet.open(StarRatingBottomSheetComponent, {
@@ -374,6 +377,28 @@ export class HotelsSearchPageComponent {
         if (ratingRanges) {
           this.ratingRanges = ratingRanges;
           this.updateStarRating();
+          this.filterHotels();
+        }
+      });
+  }
+
+  openBookingOptionsFilterBottomSheet(): void {
+    const bookingOptionsFilterBottomSheetRef =
+      this.guestRatingFilterBottomSheet.open(
+        BookingOptionsBottomSheetComponent,
+        {
+          data: {
+            isCancellationFree: this.isCancellationFree,
+            isPayOnArrival: this.isPayOnArrival,
+          },
+        }
+      );
+    bookingOptionsFilterBottomSheetRef
+      .afterDismissed()
+      .subscribe((bookingOptions) => {
+        if (bookingOptions) {
+          this.isCancellationFree = bookingOptions.isCancellationFree;
+          this.isPayOnArrival = bookingOptions.isPayOnArrival;
           this.filterHotels();
         }
       });

@@ -1,1 +1,17 @@
-<p>booking-options-bottom-sheet works!</p>
+<section>
+  <div class="checkbox-container">
+    <mat-checkbox color="primary" [(ngModel)]="isCancellationFree">
+      <span> Free cancellation</span>
+    </mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="isPayOnArrival">
+      <span> Pay on arrival </span>
+    </mat-checkbox>
+  </div>
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="updateBookingOptionFilters()"
+  >
+    Search hotels
+  </button>
+</section>
