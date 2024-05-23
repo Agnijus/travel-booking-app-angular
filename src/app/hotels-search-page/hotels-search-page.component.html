@@ -4,6 +4,7 @@
     <!-- small screen filters -->
     <div class="top-filter-panel">
       <div class="active-mobile-filters-count"></div>
+      <!-- sort by mobile filter -->
       <button
         class="sort-by-btn"
         mat-flat-button
@@ -12,6 +13,7 @@
       >
         Sort By
       </button>
+      <!-- small screen price filter -->
       <button
         class="{{
           isPriceFilterActive ? 'filter-active' : ''
@@ -27,6 +29,23 @@
           ${{ minPrice }} - ${{ maxPrice === infinity ? "350+" : maxPrice }}
         </span>
         <span *ngIf="!isPriceFilterActive">Price</span>
+      </button>
+      <!-- small screen guest rating filter-->
+      <button
+        class="{{
+          isGuestRatingFilterActive ? 'filter-active' : ''
+        }} guest-rating-filter-btn"
+        mat-flat-button
+        color="primary"
+        (click)="openGuestRatingFilterBottomSheet()"
+      >
+        <span
+          class="price-active"
+          *ngIf="isGuestRatingFilterActive && !isLargeScreen"
+        >
+          {{ minGuestRating }}
+        </span>
+        <span *ngIf="!isPriceFilterActive">Guest Rating</span>
       </button>
     </div>
     <div class="grid">

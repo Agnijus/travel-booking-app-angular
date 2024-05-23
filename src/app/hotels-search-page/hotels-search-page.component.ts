@@ -12,6 +12,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
+import { GuestRatingBottomSheetComponent } from './guest-rating-bottom-sheet/guest-rating-bottom-sheet.component';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -33,7 +34,8 @@ export class HotelsSearchPageComponent {
   constructor(
     private searchDataService: SearchDataService,
     private sortByFilterBottomSheet: MatBottomSheet,
-    private priceFilterBottomSheet: MatBottomSheet
+    private priceFilterBottomSheet: MatBottomSheet,
+    private guestRatingFilterBottomSheet: MatBottomSheet
   ) {}
 
   searchParameters: SearchData | undefined;
@@ -341,7 +343,25 @@ export class HotelsSearchPageComponent {
     });
   }
 
-  // clear filters
+  openGuestRatingFilterBottomSheet(): void {
+    const guestRatingFilterBottomSheetRef =
+      this.guestRatingFilterBottomSheet.open(GuestRatingBottomSheetComponent, {
+        data: {
+          guestRatingRanges: this.guestRatingRanges,
+        },
+      });
+    guestRatingFilterBottomSheetRef
+      .afterDismissed()
+      .subscribe((guestRatingRanges) => {
+        if (guestRatingRanges) {
+          this.guestRatingRanges = guestRatingRanges;
+          this.updateGuestRating();
+          this.filterHotels();
+        }
+      });
+  }
+
+  // clear active filters
 
   clearFreeCancellationFilter(): void {
     this.isCancellationFree = false;

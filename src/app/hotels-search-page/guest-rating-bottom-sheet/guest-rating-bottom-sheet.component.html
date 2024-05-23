@@ -1,0 +1,13 @@
+<div *ngFor="let range of guestRatingRanges">
+  <mat-checkbox color="primary" [(ngModel)]="range.checked">
+    <span class="guest-rating-label">
+      {{ range.label }}
+    </span>
+    <span>
+      {{ range.extra }}
+    </span>
+  </mat-checkbox>
+</div>
+<button mat-flat-button color="primary" (click)="updateGuestRatingFilter()">
+  Search hotels
+</button>

@@ -28,6 +28,11 @@
 
 .price-filter-btn {
   background-color: #0062e3;
+  margin-right: 0.5rem;
+}
+
+.guest-rating-filter-btn {
+  background-color: #0062e3;
 }
 
 .filter-active {
