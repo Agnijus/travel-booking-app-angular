@@ -329,8 +329,13 @@
               <div class="free-cancellation" *ngIf="hotel.hasPayOnArrival">
                 Free on arrival
               </div>
-              <button mat-flat-button color="primary" class="view-btn">
-                Go to site
+              <button
+                (click)="viewHotelDetails(hotel)"
+                mat-flat-button
+                color="primary"
+                class="view-btn"
+              >
+                See availability
               </button>
             </div>
           </div>

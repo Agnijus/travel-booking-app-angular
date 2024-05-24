@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { GuestRatingBottomSheetComponent } from './guest-rating-bottom-sheet/guest-rating-bottom-sheet.component';
 import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-rating-bottom-sheet.component';
 import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-sheet/booking-options-bottom-sheet.component';
+import { Router } from '@angular/router';
+import { CurrentHotelService } from '../current-hotel.service';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -34,7 +36,9 @@ import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-she
 })
 export class HotelsSearchPageComponent {
   constructor(
+    private router: Router,
     private searchDataService: SearchDataService,
+    private currentHottelService: CurrentHotelService,
     private sortByFilterBottomSheet: MatBottomSheet,
     private priceFilterBottomSheet: MatBottomSheet,
     private guestRatingFilterBottomSheet: MatBottomSheet,
@@ -107,6 +111,7 @@ export class HotelsSearchPageComponent {
 
   hotels: Hotel[] = [
     {
+      id: 1,
       name: 'Conrad Las Vegas at Resorts World',
       imageUrl:
         'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
@@ -121,6 +126,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: false,
     },
     {
+      id: 2,
       name: 'Waldorf Astoria Las Vegas',
       imageUrl:
         'https://content.skyscnr.com/available/1394098245/1394098245_320x252.jpg',
@@ -135,6 +141,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: false,
     },
     {
+      id: 3,
       name: 'The Orleans Hotel & Casino',
       imageUrl:
         'https://content.skyscnr.com/available/1167715507/1167715507_640x504.jpg',
@@ -149,6 +156,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: false,
     },
     {
+      id: 4,
       name: 'Oasis at Gold Spike - Adults Only',
       imageUrl:
         'https://content.skyscnr.com/available/1394356996/1394356996_640x504.jpg',
@@ -163,6 +171,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: false,
     },
     {
+      id: 5,
       name: 'Hilton Vacation Club Cancum Resort Las Vegas',
       imageUrl:
         'https://content.skyscnr.com/available/756448108/756448108_640x504.jpg',
@@ -177,6 +186,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: false,
     },
     {
+      id: 6,
       name: 'Thunderbird Boutique Hotel',
       imageUrl:
         'https://content.skyscnr.com/available/1280309776/1280309776_320x252.jpg',
@@ -191,6 +201,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: false,
     },
     {
+      id: 7,
       name: "Arizona Charlie's Decatur",
       imageUrl:
         'https://content.skyscnr.com/available/1363037707/1363037707_320x252.jpg',
@@ -205,6 +216,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: true,
     },
     {
+      id: 8,
       name: 'Hilton Lake Las Vegas Resort & Spa',
       imageUrl:
         'https://content.skyscnr.com/available/1136274483/1136274483_320x252.jpg',
@@ -219,6 +231,7 @@ export class HotelsSearchPageComponent {
       hasPayOnArrival: false,
     },
     {
+      id: 9,
       name: 'Hampton Inn Tropicana',
       imageUrl:
         'https://content.skyscnr.com/available/1500727711/1500727711_320x252.jpg',
@@ -384,7 +397,7 @@ export class HotelsSearchPageComponent {
 
   openBookingOptionsFilterBottomSheet(): void {
     const bookingOptionsFilterBottomSheetRef =
-      this.guestRatingFilterBottomSheet.open(
+      this.bookingOptionsFilterBottomSheet.open(
         BookingOptionsBottomSheetComponent,
         {
           data: {
@@ -439,11 +452,19 @@ export class HotelsSearchPageComponent {
   updateScreenSize(): void {
     this.isLargeScreen = window.innerWidth >= 1000;
   }
+
+  // navigate to hotel view
+
+  viewHotelDetails(hotel: Hotel): void {
+    this.currentHottelService.setCurrentHotel(hotel);
+    this.router.navigate(['/hotels/search/view']);
+  }
 }
 
 // interfaces
 
-interface Hotel {
+export interface Hotel {
+  id: number;
   name: string;
   imageUrl: string;
   distance: number;
