@@ -1,8 +1,93 @@
 .center {
-  width: 90vw;
   margin: 0 auto;
+  max-width: 1224px;
+  width: 90vw;
 }
 
 .fill {
   height: 100vh;
+}
+
+/* image grid */
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.first {
+  max-height: 300px;
+}
+
+.second,
+.third {
+  max-height: calc(150px - 0.125rem);
+  display: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* description */
+
+.hotel-name {
+  font-weight: 500;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hotel-rating {
+  margin-bottom: 1rem;
+}
+
+.hotel-rating svg {
+  fill: #f55d42;
+}
+
+.hotel-address {
+  margin-bottom: 1rem;
+}
+
+.hotel-guest-rating {
+  margin-bottom: 1rem;
+}
+
+.guest-rating {
+  font-weight: 500;
+  font-size: 2rem;
+}
+.guest-reviews {
+  color: grey;
+}
+
+@media (min-width: 768px) {
+  .first {
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
+  .second,
+  .third {
+    display: block;
+  }
+  .image-grid {
+    grid-template-columns: 2fr 1fr;
+    grid-row-start: 2;
+  }
+}
+
+@media (min-width: 1000px) {
+  .hotel-name {
+    font-size: 2.5rem;
+  }
+  .hotel-rating svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
 }

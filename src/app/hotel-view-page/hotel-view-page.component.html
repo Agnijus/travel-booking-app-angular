@@ -1,39 +1,36 @@
 <section>
   <app-search-bar></app-search-bar>
+
   <div class="center">
-    <div>
-      <img src="{{ hotel.imageUrl }}" alt="" />
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+    <div class="hotel-info">
+      <div class="image-grid">
+        <img class="first" src="{{ hotel.imageUrl[0] }}" alt="Main Image" />
+        <img class="second" src="{{ hotel.imageUrl[1] }}" alt="Second Image" />
+        <img class="third" src="{{ hotel.imageUrl[2] }}" alt="Third Image" />
+      </div>
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef>No.</th>
-          <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef>Weight</th>
-          <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef>Symbol</th>
-          <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+      <div class="hotel-name">{{ hotel.name }}</div>
+      <div class="hotel-rating">
+        <svg
+          *ngFor="let _ of [].constructor(hotel.rating); let i = index"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class=""
+          style="width: 1rem; height: 1rem"
+        >
+          <path
+            d="M7.925 8.03a1.05 1.05 0 00.793-.591l2.576-5.478a.771.771 0 011.412 0l2.576 5.478a1.048 1.048 0 00.793.59l5.75.87a.835.835 0 01.437 1.407l-4.188 4.274a1.05 1.05 0 00-.287.905l.99 6.05a.795.795 0 01-1.141.869l-5.13-2.83a1.05 1.05 0 00-1.013 0l-5.13 2.83a.795.795 0 01-1.141-.87l.995-6.05a1.05 1.05 0 00-.286-.904l-4.192-4.273A.834.834 0 012.175 8.9z"
+          ></path>
+        </svg>
+      </div>
+      <div class="hotel-address">{{ hotel.address }}</div>
+      <div class="hotel-guest-rating">
+        <span class="guest-rating">
+          {{ hotel.guestRating.toFixed(1) }}
+        </span>
+        <span class="guest-reviews">{{ hotel.reviews }} reviews</span>
+      </div>
     </div>
   </div>
   <div class="fill"></div>
