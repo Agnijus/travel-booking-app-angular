@@ -11,11 +11,13 @@
 /* image grid */
 
 .image-grid {
+  max-width: 1224px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
   gap: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .first {
@@ -67,7 +69,71 @@ img {
   color: grey;
 }
 
-@media (min-width: 768px) {
+/* room options */
+
+.parameter-confirmation {
+  display: flex;
+  margin-top: 4rem;
+}
+
+.selected-dates,
+.selected-guests-rooms {
+  font-weight: 500;
+}
+
+.selected-dates {
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+}
+
+.selected-guests-rooms {
+}
+
+.room-options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 2rem;
+}
+
+.room-card {
+  margin-bottom: 4rem;
+}
+
+.room-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.room-title {
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+.room-info {
+  padding: 1rem;
+}
+
+.room-amenities {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.room-total-price {
+  font-weight: 500;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.book-btn {
+  margin-top: 2rem;
+  width: 200px;
+  background-color: #05203c;
+  color: white;
+}
+
+@media (min-width: 700px) {
   .first {
     grid-row-start: 1;
     grid-row-end: 3;
@@ -89,5 +155,10 @@ img {
   .hotel-rating svg {
     width: 20px !important;
     height: 20px !important;
+  }
+
+  .room-options-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
   }
 }

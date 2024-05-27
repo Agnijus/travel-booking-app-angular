@@ -1,14 +1,13 @@
 <section>
   <app-search-bar></app-search-bar>
-
+  <div class="image-grid">
+    <img class="first" src="{{ hotel.imageUrl[0] }}" alt="Main Image" />
+    <img class="second" src="{{ hotel.imageUrl[1] }}" alt="Second Image" />
+    <img class="third" src="{{ hotel.imageUrl[2] }}" alt="Third Image" />
+  </div>
   <div class="center">
+    <!-- hotel info -->
     <div class="hotel-info">
-      <div class="image-grid">
-        <img class="first" src="{{ hotel.imageUrl[0] }}" alt="Main Image" />
-        <img class="second" src="{{ hotel.imageUrl[1] }}" alt="Second Image" />
-        <img class="third" src="{{ hotel.imageUrl[2] }}" alt="Third Image" />
-      </div>
-
       <div class="hotel-name">{{ hotel.name }}</div>
       <div class="hotel-rating">
         <svg
@@ -30,6 +29,35 @@
           {{ hotel.guestRating.toFixed(1) }}
         </span>
         <span class="guest-reviews">{{ hotel.reviews }} reviews</span>
+      </div>
+    </div>
+    <!-- room options   -->
+    <div class="parameter-confirmation">
+      <div class="selected-dates">Thu 6 Jun - Tue 11 June</div>
+      <div class="selected-guests-rooms">2 adults, 1 room</div>
+    </div>
+    <div class="room-options-grid">
+      <div class="room-card">
+        <div class="room-title">Double Room (1 - 2 Adults)</div>
+        <mat-divider></mat-divider>
+        <div class="room-info">
+          <div class="room-amenities">Free wifi, Free cancellation</div>
+          <div class="room-total-price">$1090</div>
+          <button color="primary" mat-flat-button class="book-btn">
+            Book now
+          </button>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-title">Quadruple Room (1 - 4 Adults)</div>
+        <mat-divider></mat-divider>
+        <div class="room-info">
+          <div class="room-amenities">Free wifi, Free cancellation</div>
+          <div class="room-total-price">$1300</div>
+          <button color="primary" mat-flat-button class="book-btn">
+            Book now
+          </button>
+        </div>
       </div>
     </div>
   </div>

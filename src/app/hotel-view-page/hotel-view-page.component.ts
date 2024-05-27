@@ -1,21 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { CurrentHotelService } from '../current-hotel.service';
+import { SearchDataService } from '../search-data.service';
 import { Hotel } from '../hotels-search-page/hotels-search-page.component';
-import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { SearchData } from '../search-data.service';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-hotel-view-page',
   standalone: true,
-  imports: [SearchBarComponent, MatTableModule, CommonModule],
+  imports: [
+    SearchBarComponent,
+    CommonModule,
+    MatDividerModule,
+    MatButtonModule,
+  ],
   templateUrl: './hotel-view-page.component.html',
   styleUrl: './hotel-view-page.component.css',
 })
 export class HotelViewPageComponent {
-  constructor(private currentHotelService: CurrentHotelService) {}
-
-  hotel: any = {
+  hotel: Hotel = {
     id: 1,
     name: 'Conrad Las Vegas at Resorts World',
     imageUrl: [
@@ -36,10 +42,74 @@ export class HotelViewPageComponent {
     hasPayOnArrival: false,
   };
 
-  // ngOnInit(): void {
-  //   this.currentHotelService.getCurrentHotel().subscribe((data: any) => {
-  //     this.hotel = data;
-  //   });
-  //   console.log(this.hotel);
-  // }
+  searchParameters: SearchData | undefined;
+  totalDaysStay: number | undefined;
+  dataSource: AvailabilityData[] = [];
+  displayedColumns: string[] = ['display', 'guestNumber', 'totalPrice'];
+
+  constructor(
+    private currentHotelService: CurrentHotelService,
+    private searchDataService: SearchDataService
+  ) {}
+
+  ngOnInit(): void {
+    this.searchDataService.getSearchData().subscribe((data: any) => {
+      this.searchParameters = data!;
+      this.calculateTotalDays();
+      this.updatePricing();
+    });
+
+    // this.currentHotelService.getCurrentHotel().subscribe((data: any) => {
+    //   this.hotel = data;
+    // });
+    // console.log(this.hotel);
+  }
+
+  calculateTotalDays(): void {
+    if (
+      this.searchParameters?.checkInDate &&
+      this.searchParameters?.checkOutDate
+    ) {
+      const checkInDate = new Date(this.searchParameters.checkInDate);
+      const checkOutDate = new Date(this.searchParameters.checkOutDate);
+
+      const timeDifference = checkOutDate.getTime() - checkInDate.getTime();
+      const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+      this.totalDaysStay = Math.ceil(daysDifference);
+    } else {
+      this.totalDaysStay = 0;
+    }
+  }
+
+  updatePricing(): void {
+    this.dataSource = [
+      {
+        display: 'Double Room',
+        guestNumber: 1,
+        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0) * 1.05,
+      },
+      {
+        display: 'Double Room',
+        guestNumber: 2,
+        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0),
+      },
+      {
+        display: 'Twin Room',
+        guestNumber: 2,
+        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0) * 1.05,
+      },
+      {
+        display: 'Quadruple Room',
+        guestNumber: 4,
+        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0) * 1.3,
+      },
+    ];
+  }
+}
+
+export interface AvailabilityData {
+  display: string;
+  guestNumber: number;
+  totalPrice: number;
 }

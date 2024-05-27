@@ -116,6 +116,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 0.8,
       rating: 5,
       guestRating: 3.0,
@@ -132,6 +134,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1394098245/1394098245_320x252.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 0.72,
       rating: 5,
       guestRating: 4.0,
@@ -148,6 +152,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1167715507/1167715507_640x504.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 1.71,
       rating: 3,
       guestRating: 4.0,
@@ -164,6 +170,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1394356996/1394356996_640x504.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 1.85,
       rating: 3,
       guestRating: 3.3,
@@ -180,6 +188,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/756448108/756448108_640x504.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 1.24,
       rating: 3,
       guestRating: 3.5,
@@ -196,6 +206,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1280309776/1280309776_320x252.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 1.7,
       rating: 2,
       guestRating: 3.5,
@@ -212,6 +224,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1363037707/1363037707_320x252.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 0.57,
       rating: 3,
       guestRating: 3.0,
@@ -228,6 +242,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1136274483/1136274483_320x252.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 13.48,
       rating: 4,
       guestRating: 4.0,
@@ -244,6 +260,8 @@ export class HotelsSearchPageComponent {
       imageUrl: [
         'https://content.skyscnr.com/available/1500727711/1500727711_320x252.jpg',
       ],
+      address:
+        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
       distance: 0.83,
       rating: 2,
       guestRating: 4.5,
@@ -476,6 +494,7 @@ export interface Hotel {
   id: number;
   name: string;
   imageUrl: string[];
+  address: string;
   distance: number;
   rating: number;
   guestRating: number;
