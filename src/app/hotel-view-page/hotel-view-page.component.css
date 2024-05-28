@@ -1,3 +1,6 @@
+section {
+}
+
 .center {
   margin: 0 auto;
   max-width: 1224px;
@@ -11,13 +14,13 @@
 /* image grid */
 
 .image-grid {
+  margin: 2rem;
   max-width: 1224px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
   gap: 0.25rem;
-  margin-bottom: 1.5rem;
 }
 
 .first {
@@ -38,6 +41,10 @@ img {
 }
 
 /* description */
+
+.hotel-info {
+  margin-top: 2rem;
+}
 
 .hotel-name {
   font-weight: 500;
@@ -72,7 +79,6 @@ img {
 /* room options */
 
 .parameter-confirmation {
-  display: flex;
   margin-top: 4rem;
 }
 
@@ -83,10 +89,46 @@ img {
 
 .selected-dates {
   margin-bottom: 1rem;
-  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.date,
+.time {
+  color: #666;
+}
+.date {
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+.time {
+  margin-left: 0.5rem;
 }
 
 .selected-guests-rooms {
+  margin-top: 3rem;
+  margin-left: 0.25rem;
+}
+
+.available-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nights-adults {
+  font-weight: 400;
+  font-size: 0.95rem;
+}
+
+.room-option-component {
+  background-color: white;
 }
 
 .room-options-grid {
@@ -145,6 +187,11 @@ img {
   .image-grid {
     grid-template-columns: 2fr 1fr;
     grid-row-start: 2;
+  }
+
+  .selected-dates {
+    flex-direction: row;
+    gap: 4rem;
   }
 }
 
