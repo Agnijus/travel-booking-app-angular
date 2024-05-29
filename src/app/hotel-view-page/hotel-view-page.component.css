@@ -144,10 +144,10 @@ img {
   display: grid;
   grid-template-columns: 1fr;
   margin-top: 2rem;
+  gap: 1.5rem;
 }
 
 .room-card {
-  margin-bottom: 4rem;
 }
 
 .room-card {
@@ -225,6 +225,6 @@ img {
 
   .room-options-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 }

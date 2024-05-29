@@ -40,15 +40,35 @@ export class HotelViewPageComponent {
     tripAdvisorReviewImage:
       'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
     reviews: 731,
-    pricePerNight: 173,
+    pricePerNight: 120,
     hasFreeCancellation: true,
     hasPayOnArrival: false,
   };
 
+  rooms: Rooms[] = [
+    {
+      display: 'Double Room (1 - 2 Adults)',
+      maxGuestNumber: 2,
+      priceMultiplier: 1.05,
+    },
+
+    {
+      display: 'Twin Room (1 - 2 Adults)',
+      maxGuestNumber: 2,
+      priceMultiplier: 1.1,
+    },
+    {
+      display: 'Quadruple Room (1 - 4 Adults)',
+      maxGuestNumber: 4,
+      priceMultiplier: 1.3,
+    },
+  ];
+
+  filteredRooms: Rooms[] = [];
+
   totalDaysStay: number = 0;
-  dataSource: AvailabilityData[] = [];
   displayedColumns: string[] = ['display', 'guestNumber', 'totalPrice'];
-  public openDatePicker = false;
+  openDatePicker = false;
 
   constructor(
     private currentHotelService: CurrentHotelService,
@@ -63,10 +83,8 @@ export class HotelViewPageComponent {
   ngOnInit(): void {
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
-      this.updatePricing();
       this.totalDaysStay = this.calculateTotalDays();
-
-      console.log(this.searchParameters);
+      this.filterRooms();
     });
 
     // this.currentHotelService.getCurrentHotel().subscribe((data: any) => {
@@ -75,6 +93,8 @@ export class HotelViewPageComponent {
     // console.log(this.hotel);
   }
 
+  // detect changes to date range & re-calculate total days
+
   ngDoCheck(): void {
     if (this.searchParameters) {
       const changes = this.differ.diff(this.searchParameters);
@@ -82,6 +102,9 @@ export class HotelViewPageComponent {
         changes.forEachChangedItem((record: any) => {
           if (record.key === 'checkInDate' || record.key === 'checkOutDate') {
             this.totalDaysStay = this.calculateTotalDays();
+          }
+          if (record.key == 'adultsCount') {
+            this.filterRooms();
           }
         });
       }
@@ -105,29 +128,12 @@ export class HotelViewPageComponent {
     }
   }
 
-  updatePricing(): void {
-    this.dataSource = [
-      {
-        display: 'Double Room',
-        guestNumber: 1,
-        totalPrice: this.hotel.pricePerNight * this.totalDaysStay * 1.05,
-      },
-      {
-        display: 'Double Room',
-        guestNumber: 2,
-        totalPrice: this.hotel.pricePerNight * this.totalDaysStay,
-      },
-      {
-        display: 'Twin Room',
-        guestNumber: 2,
-        totalPrice: this.hotel.pricePerNight * this.totalDaysStay * 1.05,
-      },
-      {
-        display: 'Quadruple Room',
-        guestNumber: 4,
-        totalPrice: this.hotel.pricePerNight * this.totalDaysStay * 1.3,
-      },
-    ];
+  filterRooms(): void {
+    if (this.searchParameters && this.searchParameters.adultsCount) {
+      this.filteredRooms = this.rooms.filter(
+        (room) => room.maxGuestNumber >= this.searchParameters!.adultsCount
+      );
+    }
   }
 
   // scroll to top / activate datepicker method
@@ -146,8 +152,8 @@ export class HotelViewPageComponent {
   }
 }
 
-export interface AvailabilityData {
+export interface Rooms {
   display: string;
-  guestNumber: number;
-  totalPrice: number;
+  maxGuestNumber: number;
+  priceMultiplier: number;
 }

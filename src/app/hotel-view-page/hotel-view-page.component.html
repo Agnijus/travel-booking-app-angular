@@ -67,24 +67,21 @@
         </div>
       </div>
       <div class="room-options-grid">
-        <div class="room-card">
-          <div class="room-title">Double Room</div>
+        <div *ngFor="let room of filteredRooms" class="room-card">
+          <div class="room-title">{{ room.display }}</div>
           <mat-divider></mat-divider>
           <div class="room-info">
-            <div class="room-amenities">Free wifi, Free cancellation</div>
-            <div class="room-total-price">$1090</div>
-            <button color="primary" mat-flat-button class="book-btn">
-              Book now
-            </button>
-          </div>
-        </div>
-        <div class="room-card">
-          <div class="room-title">Quadruple Room</div>
-          <mat-divider></mat-divider>
-          <div class="room-info">
-            <div class="room-amenities">Free wifi, Free cancellation</div>
-            <div class="room-total-price">$1300</div>
-            <button color="primary" mat-flat-button class="book-btn">
+            <div class="room-amenities">Free wifi</div>
+            <div class="room-total-price">
+              ${{
+                (
+                  hotel.pricePerNight *
+                  totalDaysStay *
+                  room.priceMultiplier
+                ).toFixed(2)
+              }}
+            </div>
+            <button mat-flat-button color="primary" class="book-btn">
               Book now
             </button>
           </div>
