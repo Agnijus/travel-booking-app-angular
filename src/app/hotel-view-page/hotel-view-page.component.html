@@ -45,7 +45,7 @@
           <div>Check-out</div>
           <div class="date">
             {{ searchParameters?.checkOutDate | date : "dd MMM yyyy" }}
-            <span class="time">from 15:00 - 23:00</span>
+            <span class="time">before 11:00</span>
           </div>
         </div>
       </div>
@@ -61,7 +61,10 @@
     <div class="room-option-component">
       <div class="selected-guests-rooms">
         <div class="available-title">Available Rooms</div>
-        <div class="nights-adults">For 2 nights, 1 adults</div>
+        <div class="nights-adults">
+          For {{ totalDaysStay }} nights,
+          {{ searchParameters?.adultsCount }} adults
+        </div>
       </div>
       <div class="room-options-grid">
         <div class="room-card">

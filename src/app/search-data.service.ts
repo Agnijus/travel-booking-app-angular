@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 export interface SearchData {
   destination: string;
@@ -18,13 +18,19 @@ export interface SearchData {
 })
 export class SearchDataService {
   private searchData: SearchData = this.getDefaultSearchParameters();
-
+  public searchDataSubject = new BehaviorSubject<SearchData>(this.searchData);
   setSearchData(data: SearchData): void {
     this.searchData = data;
   }
 
   getSearchData(): Observable<SearchData> {
     return of(this.searchData);
+  }
+
+  updateDates(checkInDate: Date, checkOutDate: Date): void {
+    this.searchData.checkInDate = checkInDate;
+    this.searchData.checkOutDate = checkOutDate;
+    this.searchDataSubject.next(this.searchData);
   }
 
   private getDefaultSearchParameters(): SearchData {

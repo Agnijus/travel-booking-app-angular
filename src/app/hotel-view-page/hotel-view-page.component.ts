@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, KeyValueDiffers } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { CurrentHotelService } from '../current-hotel.service';
 import { SearchDataService } from '../search-data.service';
@@ -21,6 +21,9 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './hotel-view-page.component.css',
 })
 export class HotelViewPageComponent {
+  public searchParameters: SearchData | undefined;
+  private differ: any;
+
   hotel: Hotel = {
     id: 1,
     name: 'Conrad Las Vegas at Resorts World',
@@ -42,22 +45,28 @@ export class HotelViewPageComponent {
     hasPayOnArrival: false,
   };
 
-  searchParameters: SearchData | undefined;
-  totalDaysStay: number | undefined;
+  totalDaysStay: number = 0;
   dataSource: AvailabilityData[] = [];
   displayedColumns: string[] = ['display', 'guestNumber', 'totalPrice'];
   public openDatePicker = false;
 
   constructor(
     private currentHotelService: CurrentHotelService,
-    private searchDataService: SearchDataService
-  ) {}
+    private searchDataService: SearchDataService,
+    private differs: KeyValueDiffers
+  ) {
+    this.differ = this.differs.find({}).create();
+  }
+
+  // get search params from service, calculate total days
 
   ngOnInit(): void {
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
-      this.calculateTotalDays();
       this.updatePricing();
+      this.totalDaysStay = this.calculateTotalDays();
+
+      console.log(this.searchParameters);
     });
 
     // this.currentHotelService.getCurrentHotel().subscribe((data: any) => {
@@ -66,7 +75,20 @@ export class HotelViewPageComponent {
     // console.log(this.hotel);
   }
 
-  calculateTotalDays(): void {
+  ngDoCheck(): void {
+    if (this.searchParameters) {
+      const changes = this.differ.diff(this.searchParameters);
+      if (changes) {
+        changes.forEachChangedItem((record: any) => {
+          if (record.key === 'checkInDate' || record.key === 'checkOutDate') {
+            this.totalDaysStay = this.calculateTotalDays();
+          }
+        });
+      }
+    }
+  }
+
+  calculateTotalDays(): number {
     if (
       this.searchParameters?.checkInDate &&
       this.searchParameters?.checkOutDate
@@ -77,9 +99,9 @@ export class HotelViewPageComponent {
       const timeDifference = checkOutDate.getTime() - checkInDate.getTime();
       const daysDifference = timeDifference / (1000 * 3600 * 24);
 
-      this.totalDaysStay = Math.ceil(daysDifference);
+      return Math.ceil(daysDifference);
     } else {
-      this.totalDaysStay = 0;
+      return 0;
     }
   }
 
@@ -88,31 +110,32 @@ export class HotelViewPageComponent {
       {
         display: 'Double Room',
         guestNumber: 1,
-        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0) * 1.05,
+        totalPrice: this.hotel.pricePerNight * this.totalDaysStay * 1.05,
       },
       {
         display: 'Double Room',
         guestNumber: 2,
-        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0),
+        totalPrice: this.hotel.pricePerNight * this.totalDaysStay,
       },
       {
         display: 'Twin Room',
         guestNumber: 2,
-        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0) * 1.05,
+        totalPrice: this.hotel.pricePerNight * this.totalDaysStay * 1.05,
       },
       {
         display: 'Quadruple Room',
         guestNumber: 4,
-        totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0) * 1.3,
+        totalPrice: this.hotel.pricePerNight * this.totalDaysStay * 1.3,
       },
     ];
   }
 
-  // change dates method
+  // scroll to top / activate datepicker method
 
   triggerDatePicker(open: boolean): void {
     if (open) {
       this.openDatePicker = false;
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
         this.openDatePicker = true;
