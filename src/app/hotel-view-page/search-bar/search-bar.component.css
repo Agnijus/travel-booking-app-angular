@@ -1,6 +1,8 @@
 .search-container {
   background-color: #05203c;
   border-radius: 0;
+  z-index: 10;
+  top: 0;
 }
 
 .search-container-center {

@@ -1,11 +1,21 @@
-import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  HostListener,
+  Input,
+  SimpleChanges,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import {
+  MatDateRangePicker,
+  MatDatepickerModule,
+} from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GuestsRoomsDialogComponent } from '../../guests-rooms-dialog/guests-rooms-dialog.component';
@@ -39,8 +49,11 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './search-bar.component.css',
 })
 export class SearchBarComponent {
+  @Input() isOpen: boolean = false;
+
   @ViewChild('guestsRoomsInput') guestsRoomsInput!: ElementRef;
   @ViewChild('destinationInput') destinationInput!: ElementRef;
+  @ViewChild('picker') datePicker!: MatDateRangePicker<Date>;
 
   constructor(
     public dialog: MatDialog,
@@ -172,5 +185,20 @@ export class SearchBarComponent {
 
   updateCalendarTouchUi(): void {
     this.calendarTouchUi = window.innerWidth <= 800;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isOpen'] && this.isOpen) {
+      this.openDatePicker();
+      setTimeout(() => {
+        this.isOpen = false;
+      }, 100);
+    }
+  }
+
+  private openDatePicker(): void {
+    if (this.datePicker) {
+      this.datePicker.open();
+    }
   }
 }

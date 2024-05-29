@@ -46,6 +46,7 @@ export class HotelViewPageComponent {
   totalDaysStay: number | undefined;
   dataSource: AvailabilityData[] = [];
   displayedColumns: string[] = ['display', 'guestNumber', 'totalPrice'];
+  public openDatePicker = false;
 
   constructor(
     private currentHotelService: CurrentHotelService,
@@ -105,6 +106,20 @@ export class HotelViewPageComponent {
         totalPrice: this.hotel.pricePerNight * (this.totalDaysStay || 0) * 1.3,
       },
     ];
+  }
+
+  // change dates method
+
+  triggerDatePicker(open: boolean): void {
+    if (open) {
+      this.openDatePicker = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        this.openDatePicker = true;
+      }, 300);
+    } else {
+      this.openDatePicker = false;
+    }
   }
 }
 

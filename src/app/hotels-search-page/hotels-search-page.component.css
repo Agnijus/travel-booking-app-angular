@@ -84,6 +84,7 @@
 
 .side-filters-panel {
   display: none;
+  box-shadow: 0 4px 8px #25201f40;
   background-color: white;
 }
 

@@ -79,7 +79,13 @@ img {
 /* room options */
 
 .parameter-confirmation {
+  padding: 1rem;
   margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .selected-dates,
@@ -88,16 +94,10 @@ img {
 }
 
 .selected-dates {
-  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-bottom: 1rem;
   background-color: white;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .date,
@@ -111,6 +111,15 @@ img {
 .time {
   margin-left: 0.5rem;
 }
+
+.change-dates-btn {
+  background-color: #05203c;
+  margin-right: 4rem;
+  margin-top: 2rem;
+  width: 200px;
+}
+
+/* room option section */
 
 .selected-guests-rooms {
   margin-top: 3rem;
@@ -192,6 +201,16 @@ img {
   .selected-dates {
     flex-direction: row;
     gap: 4rem;
+  }
+  .parameter-confirmation {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .change-dates-btn {
+    margin-right: 2rem;
+    margin-left: 2rem;
+    margin-top: 0;
   }
 }
 

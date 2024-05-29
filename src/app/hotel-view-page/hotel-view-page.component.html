@@ -1,5 +1,5 @@
 <section>
-  <app-search-bar></app-search-bar>
+  <app-search-bar [isOpen]="openDatePicker"></app-search-bar>
   <div class="image-grid">
     <img class="first" src="{{ hotel.imageUrl[0] }}" alt="Main Image" />
     <img class="second" src="{{ hotel.imageUrl[1] }}" alt="Second Image" />
@@ -37,16 +37,26 @@
         <div class="check-in">
           <div>Check-in</div>
           <div class="date">
-            28 Jun 2024 <span class="time">from 15:00 - 23:00</span>
+            {{ searchParameters?.checkInDate | date : "dd MMM yyyy" }}
+            <span class="time">from 15:00 - 23:00</span>
           </div>
         </div>
         <div class="check-out">
           <div>Check-out</div>
           <div class="date">
-            30 Jun 2024<span class="time">from 15:00 - 23:00</span>
+            {{ searchParameters?.checkOutDate | date : "dd MMM yyyy" }}
+            <span class="time">from 15:00 - 23:00</span>
           </div>
         </div>
       </div>
+      <button
+        color="primary"
+        class="change-dates-btn"
+        (click)="triggerDatePicker(true)"
+        mat-flat-button
+      >
+        Change dates
+      </button>
     </div>
     <div class="room-option-component">
       <div class="selected-guests-rooms">
@@ -55,7 +65,7 @@
       </div>
       <div class="room-options-grid">
         <div class="room-card">
-          <div class="room-title">Double Room (1 - 2 Adults)</div>
+          <div class="room-title">Double Room</div>
           <mat-divider></mat-divider>
           <div class="room-info">
             <div class="room-amenities">Free wifi, Free cancellation</div>
@@ -66,7 +76,7 @@
           </div>
         </div>
         <div class="room-card">
-          <div class="room-title">Quadruple Room (1 - 4 Adults)</div>
+          <div class="room-title">Quadruple Room</div>
           <mat-divider></mat-divider>
           <div class="room-info">
             <div class="room-amenities">Free wifi, Free cancellation</div>
