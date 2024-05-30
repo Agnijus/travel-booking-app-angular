@@ -4,6 +4,7 @@ import { FlightsPageComponent } from './flights-page/flights-page.component';
 import { CarhirePageComponent } from './carhire-page/carhire-page.component';
 import { HotelsSearchPageComponent } from './hotels-search-page/hotels-search-page.component';
 import { HotelViewPageComponent } from './hotel-view-page/hotel-view-page.component';
+import { BookingPageComponent } from './booking-page/booking-page.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/hotels', pathMatch: 'full' },
   { path: 'flights', component: FlightsPageComponent },
@@ -19,8 +20,13 @@ export const routes: Routes = [
     data: { showSearchBar: true },
   },
   {
-    path: 'hotels/search/:id',
+    path: 'hotels/view',
     component: HotelViewPageComponent,
+    data: { showSearchBar: true },
+  },
+  {
+    path: 'booking',
+    component: BookingPageComponent,
     data: { showSearchBar: true },
   },
 ];

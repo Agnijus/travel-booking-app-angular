@@ -484,7 +484,7 @@ export class HotelsSearchPageComponent {
 
   viewHotelDetails(hotel: Hotel): void {
     this.currentHottelService.setCurrentHotel(hotel);
-    this.router.navigate(['/hotels/search/view']);
+    this.router.navigate(['/hotels/view']);
   }
 }
 

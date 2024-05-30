@@ -1,0 +1,88 @@
+section {
+  background-color: #f1f5f9;
+}
+.center {
+  padding-top: 1.5rem;
+  width: 90vw;
+  max-width: 1224px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+/* hotel summary */
+
+.hotel {
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dates {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.check-in-check-out,
+.total-nights {
+  background-color: #05203c;
+  color: white;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.main-info {
+  display: flex;
+  gap: 1rem;
+}
+
+img {
+  border-radius: 0.25rem;
+  height: 100px;
+  object-fit: cover;
+}
+
+.summary svg {
+  vertical-align: top;
+}
+
+.hotel-name {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.room-name,
+.guest-info {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+/* details form */
+
+.details-form {
+  background-color: white;
+  margin-bottom: 1.5rem;
+}
+
+.header {
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 1.5rem 0 0.5rem 1rem;
+}
+
+form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.fill {
+  height: 100vh;
+}

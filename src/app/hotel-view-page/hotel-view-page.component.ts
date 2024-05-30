@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { SearchData } from '../search-data.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { BookingService } from '../booking.service';
+import { BookingPageComponent } from '../booking-page/booking-page.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel-view-page',
@@ -45,7 +48,7 @@ export class HotelViewPageComponent {
     hasPayOnArrival: false,
   };
 
-  rooms: Rooms[] = [
+  rooms: Room[] = [
     {
       display: 'Double Room (1 - 2 Adults)',
       maxGuestNumber: 2,
@@ -64,7 +67,7 @@ export class HotelViewPageComponent {
     },
   ];
 
-  filteredRooms: Rooms[] = [];
+  filteredRooms: Room[] = [];
 
   totalDaysStay: number = 0;
   displayedColumns: string[] = ['display', 'guestNumber', 'totalPrice'];
@@ -73,7 +76,9 @@ export class HotelViewPageComponent {
   constructor(
     private currentHotelService: CurrentHotelService,
     private searchDataService: SearchDataService,
-    private differs: KeyValueDiffers
+    private bookingService: BookingService,
+    private differs: KeyValueDiffers,
+    private router: Router
   ) {
     this.differ = this.differs.find({}).create();
   }
@@ -150,9 +155,22 @@ export class HotelViewPageComponent {
       this.openDatePicker = false;
     }
   }
+
+  selectRoom(room: Room): void {
+    const booking = {
+      hotel: this.hotel,
+      room: room,
+      totalDays: this.totalDaysStay,
+      totalPrice:
+        this.totalDaysStay * room.priceMultiplier * this.hotel.pricePerNight,
+      parameters: this.searchParameters,
+    };
+    this.bookingService.setBooking(booking);
+    this.router.navigate(['/booking']);
+  }
 }
 
-export interface Rooms {
+export interface Room {
   display: string;
   maxGuestNumber: number;
   priceMultiplier: number;

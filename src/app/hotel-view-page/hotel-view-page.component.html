@@ -81,7 +81,12 @@
                 ).toFixed(2)
               }}
             </div>
-            <button mat-flat-button color="primary" class="book-btn">
+            <button
+              (click)="selectRoom(room)"
+              mat-flat-button
+              color="primary"
+              class="book-btn"
+            >
               Book now
             </button>
           </div>
