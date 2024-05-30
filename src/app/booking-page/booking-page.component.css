@@ -119,6 +119,13 @@ mat-form-field {
 input {
 }
 
+/* continue to payment */
+
+.continue-to-payment-btn {
+  background-color: #05203c;
+  width: 100%;
+}
+
 .fill {
   height: 100vh;
 }

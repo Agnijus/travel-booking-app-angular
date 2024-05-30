@@ -115,6 +115,8 @@ export class HotelsSearchPageComponent {
       name: 'Conrad Las Vegas at Resorts World',
       imageUrl: [
         'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -123,6 +125,7 @@ export class HotelsSearchPageComponent {
       guestRating: 3.0,
       tripAdvisorReviewImage:
         'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
+
       reviews: 731,
       pricePerNight: 173,
       hasFreeCancellation: true,
@@ -133,6 +136,8 @@ export class HotelsSearchPageComponent {
       name: 'Waldorf Astoria Las Vegas',
       imageUrl: [
         'https://content.skyscnr.com/available/1394098245/1394098245_320x252.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -151,6 +156,8 @@ export class HotelsSearchPageComponent {
       name: 'The Orleans Hotel & Casino',
       imageUrl: [
         'https://content.skyscnr.com/available/1167715507/1167715507_640x504.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -169,6 +176,8 @@ export class HotelsSearchPageComponent {
       name: 'Oasis at Gold Spike - Adults Only',
       imageUrl: [
         'https://content.skyscnr.com/available/1394356996/1394356996_640x504.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -187,6 +196,8 @@ export class HotelsSearchPageComponent {
       name: 'Hilton Vacation Club Cancum Resort Las Vegas',
       imageUrl: [
         'https://content.skyscnr.com/available/756448108/756448108_640x504.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -205,6 +216,8 @@ export class HotelsSearchPageComponent {
       name: 'Thunderbird Boutique Hotel',
       imageUrl: [
         'https://content.skyscnr.com/available/1280309776/1280309776_320x252.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -223,6 +236,8 @@ export class HotelsSearchPageComponent {
       name: "Arizona Charlie's Decatur",
       imageUrl: [
         'https://content.skyscnr.com/available/1363037707/1363037707_320x252.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -241,6 +256,8 @@ export class HotelsSearchPageComponent {
       name: 'Hilton Lake Las Vegas Resort & Spa',
       imageUrl: [
         'https://content.skyscnr.com/available/1136274483/1136274483_320x252.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
@@ -259,6 +276,8 @@ export class HotelsSearchPageComponent {
       name: 'Hampton Inn Tropicana',
       imageUrl: [
         'https://content.skyscnr.com/available/1500727711/1500727711_320x252.jpg',
+        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
       ],
       address:
         '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',

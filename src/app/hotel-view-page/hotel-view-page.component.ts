@@ -27,26 +27,7 @@ export class HotelViewPageComponent {
   public searchParameters: SearchData | undefined;
   private differ: any;
 
-  hotel: Hotel = {
-    id: 1,
-    name: 'Conrad Las Vegas at Resorts World',
-    imageUrl: [
-      'https://content.skyscnr.com/available/1395012434/1395012434_WxH.jpg',
-      'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-      'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-    ],
-    address:
-      '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-    distance: 0.8,
-    rating: 5,
-    guestRating: 3.0,
-    tripAdvisorReviewImage:
-      'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-    reviews: 731,
-    pricePerNight: 120,
-    hasFreeCancellation: true,
-    hasPayOnArrival: false,
-  };
+  hotel!: Hotel;
 
   rooms: Room[] = [
     {
@@ -92,10 +73,9 @@ export class HotelViewPageComponent {
       this.filterRooms();
     });
 
-    // this.currentHotelService.getCurrentHotel().subscribe((data: any) => {
-    //   this.hotel = data;
-    // });
-    // console.log(this.hotel);
+    this.currentHotelService.getCurrentHotel().subscribe((data: any) => {
+      this.hotel = data;
+    });
   }
 
   // detect changes to date range & re-calculate total days

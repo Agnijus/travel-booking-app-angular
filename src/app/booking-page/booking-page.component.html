@@ -1,17 +1,15 @@
 <section>
   <div class="center">
+    <!-- hotel summary -->
     <div class="hotel">
       <div class="dates">
         <div class="check-in-check-out">Fri, 28 Jun - Sun, 30 Jun</div>
         <div class="total-nights">2 nights</div>
       </div>
       <div class="main-info">
-        <img
-          src="https://content.skyscnr.com/available/1395012434/1395012434_WxH.jpg"
-          alt=""
-        />
+        <img src="{{ booking.hotel.imageUrl[0] }}" alt="" />
         <div class="summary">
-          <div class="hotel-name">Conrad Las Vegas at Resorts World</div>
+          <div class="hotel-name">{{ booking.hotel.name }}</div>
           <div class="room-name">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +22,7 @@
                 d="M3.684 5.067A1.228 1.228 0 003 6.227V9.43a1.1 1.1 0 001.125 1.07H5.25A.75.75 0 006 9.75v-1.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v1.5a.75.75 0 00.75.75h1.5a.75.75 0 00.75-.75v-1.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75v1.5a.75.75 0 00.75.75h1.123a1.099 1.099 0 001.125-1.073l-.001-1.07H21v-2.13a1.228 1.228 0 00-.684-1.16l-1.991-.812a16.569 16.569 0 00-12.65 0zM4.5 12a3 3 0 00-3 3v5.25a.75.75 0 00.75.75h.286a.75.75 0 00.671-.415L4.5 18h15l1.293 2.585a.75.75 0 00.67.415h.287a.75.75 0 00.75-.75V15a3 3 0 00-3-3z"
               ></path>
             </svg>
-            1x Quadruple Room (1 - 4 Adults)
+            1x {{ booking.room.display }}
           </div>
           <div class="guest-info">
             <svg
@@ -38,11 +36,13 @@
                 d="M10.8 1.774A2.637 2.637 0 0112 1.5a2.563 2.563 0 011.196.28.685.685 0 01.304.62v2.262A1.377 1.377 0 0112 6a1.377 1.377 0 01-1.5-1.338V2.4a.681.681 0 01.3-.626zM15 13.835V9.452a1.514 1.514 0 00-.536-1.277 4.444 4.444 0 00-2.429-.675 4.575 4.575 0 00-2.5.784A1.545 1.545 0 009 9.568v4.383a2.458 2.458 0 00.295 1.217c.05.087.103.175.157.263a3.131 3.131 0 01.563 1.414l.408 4.312c.054.764.483 1.343.995 1.343h1.235c.511 0 .94-.58.994-1.343l.408-4.312a3.272 3.272 0 01.477-1.32c.074-.14.148-.277.214-.417A3.083 3.083 0 0015 13.835z"
               ></path>
             </svg>
-            2 adults, 1 room
+            {{ booking.parameters?.adultsCount }} adults,
+            {{ booking.parameters?.roomsCount }} room
           </div>
         </div>
       </div>
     </div>
+    <!-- price summary -->
     <div class="price-info">
       <div class="main-cost">
         <div>
@@ -54,7 +54,10 @@
         <div>Room upgrade</div>
         <div>
           ${{
-            booking.totalPrice - booking.hotel.pricePerNight * booking.totalDays
+            (
+              booking.totalPrice -
+              booking.hotel.pricePerNight * booking.totalDays
+            ).toFixed(2)
           }}
         </div>
       </div>
@@ -62,9 +65,10 @@
 
       <div class="total">
         <div>Total</div>
-        <div>${{ booking.totalPrice }}</div>
+        <div>${{ booking.totalPrice.toFixed(2) }}</div>
       </div>
     </div>
+    <!-- main guest detail form -->
     <div class="details-form">
       <div class="header">Main guest details</div>
       <form
@@ -82,6 +86,7 @@
         </mat-form-field>
       </form>
     </div>
+    <!-- contact detail form -->
     <div class="details-form">
       <div class="header">Contact details</div>
       <form
@@ -99,6 +104,9 @@
         </mat-form-field>
       </form>
     </div>
+    <button class="continue-to-payment-btn" mat-flat-button color="primary">
+      Continue to Payment
+    </button>
   </div>
   <div class="fill"></div>
 </section>
