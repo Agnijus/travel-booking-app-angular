@@ -43,6 +43,28 @@
         </div>
       </div>
     </div>
+    <div class="price-info">
+      <div class="main-cost">
+        <div>
+          ${{ booking.hotel.pricePerNight }} x {{ booking.totalDays }} nights
+        </div>
+        <div>${{ booking.hotel.pricePerNight * booking.totalDays }}</div>
+      </div>
+      <div class="additional-cost">
+        <div>Room upgrade</div>
+        <div>
+          ${{
+            booking.totalPrice - booking.hotel.pricePerNight * booking.totalDays
+          }}
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+
+      <div class="total">
+        <div>Total</div>
+        <div>${{ booking.totalPrice }}</div>
+      </div>
+    </div>
     <div class="details-form">
       <div class="header">Main guest details</div>
       <form

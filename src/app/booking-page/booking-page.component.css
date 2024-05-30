@@ -13,7 +13,7 @@ section {
 
 .hotel {
   background-color: white;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -59,9 +59,42 @@ img {
   margin-bottom: 0.5rem;
 }
 
+/* price info */
+
+.price-info {
+  border-radius: 0.5rem;
+  background-color: white;
+  margin-top: 1rem;
+  font-weight: 500;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.main-cost {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.additional-cost {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.total {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
 /* details form */
 
 .details-form {
+  border-radius: 0.5rem;
   background-color: white;
   margin-bottom: 1.5rem;
 }
@@ -81,6 +114,9 @@ form {
 
 mat-form-field {
   width: 100%;
+}
+
+input {
 }
 
 .fill {
