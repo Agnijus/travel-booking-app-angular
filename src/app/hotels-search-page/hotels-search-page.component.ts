@@ -17,6 +17,7 @@ import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-
 import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-sheet/booking-options-bottom-sheet.component';
 import { Router } from '@angular/router';
 import { CurrentHotelService } from '../current-hotel.service';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -36,6 +37,7 @@ import { CurrentHotelService } from '../current-hotel.service';
 })
 export class HotelsSearchPageComponent {
   constructor(
+    private http: HttpService,
     private router: Router,
     private searchDataService: SearchDataService,
     private currentHottelService: CurrentHotelService,
@@ -45,14 +47,26 @@ export class HotelsSearchPageComponent {
     private bookingOptionsFilterBottomSheet: MatBottomSheet
   ) {}
 
+  hotels: Hotel[] = [];
   searchParameters: SearchData | undefined;
 
   ngOnInit() {
+    this.http.fetchHotels().subscribe({
+      next: (data: any) => {
+        this.hotels = data;
+        this.updateFilters();
+        this.updateScreenSize();
+
+        console.log(this.hotels);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
     });
-    this.updateScreenSize();
-    this.updateFilters();
+    console.log(this.hotels);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -60,7 +74,7 @@ export class HotelsSearchPageComponent {
     this.updateScreenSize();
   }
 
-  // filter data
+  // data filters
 
   priceRanges = [
     { label: '$0 - $100', min: 0, max: 100, checked: false },
@@ -107,192 +121,6 @@ export class HotelsSearchPageComponent {
   isGuestRatingFilterActive: boolean = false;
   isLargeScreen: boolean = false;
 
-  // raw hotel data
-
-  hotels: Hotel[] = [
-    {
-      id: 1,
-      name: 'Conrad Las Vegas at Resorts World',
-      imageUrl: [
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 0.8,
-      rating: 5,
-      guestRating: 3.0,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-
-      reviews: 731,
-      pricePerNight: 173,
-      hasFreeCancellation: true,
-      hasPayOnArrival: false,
-    },
-    {
-      id: 2,
-      name: 'Waldorf Astoria Las Vegas',
-      imageUrl: [
-        'https://content.skyscnr.com/available/1394098245/1394098245_320x252.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 0.72,
-      rating: 5,
-      guestRating: 4.0,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 1086,
-      pricePerNight: 304,
-      hasFreeCancellation: true,
-      hasPayOnArrival: false,
-    },
-    {
-      id: 3,
-      name: 'The Orleans Hotel & Casino',
-      imageUrl: [
-        'https://content.skyscnr.com/available/1167715507/1167715507_640x504.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 1.71,
-      rating: 3,
-      guestRating: 4.0,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 6816,
-      pricePerNight: 83,
-      hasFreeCancellation: true,
-      hasPayOnArrival: false,
-    },
-    {
-      id: 4,
-      name: 'Oasis at Gold Spike - Adults Only',
-      imageUrl: [
-        'https://content.skyscnr.com/available/1394356996/1394356996_640x504.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 1.85,
-      rating: 3,
-      guestRating: 3.3,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 6,
-      pricePerNight: 95,
-      hasFreeCancellation: true,
-      hasPayOnArrival: false,
-    },
-    {
-      id: 5,
-      name: 'Hilton Vacation Club Cancum Resort Las Vegas',
-      imageUrl: [
-        'https://content.skyscnr.com/available/756448108/756448108_640x504.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 1.24,
-      rating: 3,
-      guestRating: 3.5,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 1506,
-      pricePerNight: 132,
-      hasFreeCancellation: false,
-      hasPayOnArrival: false,
-    },
-    {
-      id: 6,
-      name: 'Thunderbird Boutique Hotel',
-      imageUrl: [
-        'https://content.skyscnr.com/available/1280309776/1280309776_320x252.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 1.7,
-      rating: 2,
-      guestRating: 3.5,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 152,
-      pricePerNight: 82,
-      hasFreeCancellation: false,
-      hasPayOnArrival: false,
-    },
-    {
-      id: 7,
-      name: "Arizona Charlie's Decatur",
-      imageUrl: [
-        'https://content.skyscnr.com/available/1363037707/1363037707_320x252.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 0.57,
-      rating: 3,
-      guestRating: 3.0,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 246,
-      pricePerNight: 98,
-      hasFreeCancellation: false,
-      hasPayOnArrival: true,
-    },
-    {
-      id: 8,
-      name: 'Hilton Lake Las Vegas Resort & Spa',
-      imageUrl: [
-        'https://content.skyscnr.com/available/1136274483/1136274483_320x252.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 13.48,
-      rating: 4,
-      guestRating: 4.0,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 2047,
-      pricePerNight: 169,
-      hasFreeCancellation: true,
-      hasPayOnArrival: false,
-    },
-    {
-      id: 9,
-      name: 'Hampton Inn Tropicana',
-      imageUrl: [
-        'https://content.skyscnr.com/available/1500727711/1500727711_320x252.jpg',
-        'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-        'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-      ],
-      address:
-        '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-      distance: 0.83,
-      rating: 2,
-      guestRating: 4.5,
-      tripAdvisorReviewImage:
-        'https://www.tripadvisor.com/img/cdsi/img2/ratings/traveler/3.0-64600-4.png',
-      reviews: 3531,
-      pricePerNight: 167,
-      hasFreeCancellation: true,
-      hasPayOnArrival: true,
-    },
-  ];
-
   // filtered hotel data
 
   filteredHotels: Hotel[] = [];
@@ -315,7 +143,7 @@ export class HotelsSearchPageComponent {
         hotel.pricePerNight <= this.maxPrice;
       const isRatingMatch =
         this.activeStars.length === 0 ||
-        this.activeStars.includes(hotel.rating);
+        this.activeStars.includes(hotel.starRating);
       const matchesFreeCancellation =
         !this.isCancellationFree || hotel.hasFreeCancellation;
       const matchesPayOnArrival = !this.isPayOnArrival || hotel.hasPayOnArrival;
@@ -512,13 +340,12 @@ export class HotelsSearchPageComponent {
 export interface Hotel {
   id: number;
   name: string;
-  imageUrl: string[];
+  images: string[];
   address: string;
   distance: number;
-  rating: number;
+  starRating: number;
   guestRating: number;
-  tripAdvisorReviewImage: string;
-  reviews: number;
+  reviewCount: number;
   pricePerNight: number;
   hasFreeCancellation: boolean;
   hasPayOnArrival: boolean;

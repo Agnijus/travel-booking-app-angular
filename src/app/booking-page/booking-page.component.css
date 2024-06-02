@@ -121,11 +121,11 @@ input {
 
 /* continue to payment */
 
-.continue-to-payment-btn {
+.reserve-btn {
   background-color: #05203c;
   width: 100%;
 }
 
 .fill {
-  height: 100vh;
+  height: 20vh;
 }

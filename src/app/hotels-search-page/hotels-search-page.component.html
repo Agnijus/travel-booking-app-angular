@@ -282,14 +282,21 @@
           </button>
         </div>
         <!-- hotels results -->
-        <div *ngFor="let hotel of filteredHotels" class="hotel-card">
-          <img src="{{ hotel.imageUrl[0] }}" alt="{{ hotel.name }}" />
+        <div
+          (click)="viewHotelDetails(hotel)"
+          *ngFor="let hotel of filteredHotels"
+          class="hotel-card"
+        >
+          <img src="{{ hotel.images[0] }}" alt="{{ hotel.name }}" />
           <div class="hotel-info">
             <div class="title-rating-flex">
               <div class="title">{{ hotel.name }}</div>
               <div class="rating">
                 <svg
-                  *ngFor="let _ of [].constructor(hotel.rating); let i = index"
+                  *ngFor="
+                    let _ of [].constructor(hotel.starRating);
+                    let i = index
+                  "
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -307,12 +314,8 @@
             </div>
             <div class="reviews">
               <span class="review-points">{{ hotel.guestRating }}</span>
-              <span class="review-tripadvisor"
-                ><img
-                  src="{{ hotel.tripAdvisorReviewImage }}"
-                  alt="TripAdvisor Rating"
-              /></span>
-              <span class="review-count">{{ hotel.reviews }} reviews</span>
+
+              <span class="review-count">{{ hotel.reviewCount }} reviews</span>
             </div>
           </div>
           <mat-divider [vertical]="true" class="price-divider"></mat-divider>

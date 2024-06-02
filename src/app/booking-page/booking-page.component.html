@@ -3,8 +3,16 @@
     <!-- hotel summary -->
     <div class="hotel">
       <div class="dates">
-        <div class="check-in-check-out">Fri, 28 Jun - Sun, 30 Jun</div>
-        <div class="total-nights">2 nights</div>
+        <div class="check-in-check-out">
+          <span>
+            {{ booking.parameters?.checkInDate | date : "dd MMM yyyy" }}
+          </span>
+          -
+          <span>
+            {{ booking.parameters?.checkOutDate | date : "dd MMM yyyy" }}
+          </span>
+        </div>
+        <div class="total-nights">{{ booking.totalDays }} nights</div>
       </div>
       <div class="main-info">
         <img src="{{ booking.hotel.imageUrl[0] }}" alt="" />
@@ -104,8 +112,8 @@
         </mat-form-field>
       </form>
     </div>
-    <button class="continue-to-payment-btn" mat-flat-button color="primary">
-      Continue to Payment
+    <button class="reserve-btn" mat-flat-button color="primary">
+      Reserve now
     </button>
   </div>
   <div class="fill"></div>

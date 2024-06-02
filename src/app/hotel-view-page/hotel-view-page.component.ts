@@ -8,7 +8,6 @@ import { SearchData } from '../search-data.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { BookingService } from '../booking.service';
-import { BookingPageComponent } from '../booking-page/booking-page.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,7 +26,24 @@ export class HotelViewPageComponent {
   public searchParameters: SearchData | undefined;
   private differ: any;
 
-  hotel!: Hotel;
+  hotel: Hotel = {
+    id: 1,
+    name: 'Conrad Las Vegas at Resorts World',
+    images: [
+      'https://content.skyscnr.com/available/1395012434/1395012434_WxH.jpg',
+      'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
+      'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
+    ],
+    address:
+      '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
+    distance: 0.8,
+    starRating: 5,
+    guestRating: 3.0,
+    reviewCount: 731,
+    pricePerNight: 120,
+    hasFreeCancellation: true,
+    hasPayOnArrival: false,
+  };
 
   rooms: Room[] = [
     {

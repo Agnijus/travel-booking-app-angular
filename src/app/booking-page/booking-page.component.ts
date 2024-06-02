@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-booking-page',
@@ -14,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatDividerModule,
     MatButtonModule,
+    CommonModule,
   ],
   templateUrl: './booking-page.component.html',
   styleUrl: './booking-page.component.css',

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Hotel } from './hotels-search-page/hotels-search-page.component';
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +9,9 @@ import { Observable } from 'rxjs';
 export class HttpService {
   constructor(private _http: HttpClient) {}
 
-  // fetchHotels(searchParameters: any): Observable<any> {
-  //   const queryParams = constructQueryParams(searchParameters);
-  //   const params = new HttpParams({ fromObject: queryParams });
-  //   return this._http.get<Hotel>('/hotels/search', { params });
-  // }
+  baseUrl: string = 'https://localhost:7119';
+
+  fetchHotels(): Observable<any> {
+    return this._http.get<Hotel>(this.baseUrl + '/api/hotels');
+  }
 }
