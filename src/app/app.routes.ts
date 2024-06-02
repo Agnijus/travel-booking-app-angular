@@ -20,7 +20,7 @@ export const routes: Routes = [
     data: { showSearchBar: true },
   },
   {
-    path: 'hotels/view',
+    path: 'hotels/view/:id',
     component: HotelViewPageComponent,
     data: { showSearchBar: true },
   },

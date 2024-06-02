@@ -16,7 +16,6 @@ import { GuestRatingBottomSheetComponent } from './guest-rating-bottom-sheet/gue
 import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-rating-bottom-sheet.component';
 import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-sheet/booking-options-bottom-sheet.component';
 import { Router } from '@angular/router';
-import { CurrentHotelService } from '../current-hotel.service';
 import { HttpService } from '../http.service';
 
 @Component({
@@ -40,7 +39,6 @@ export class HotelsSearchPageComponent {
     private http: HttpService,
     private router: Router,
     private searchDataService: SearchDataService,
-    private currentHottelService: CurrentHotelService,
     private sortByFilterBottomSheet: MatBottomSheet,
     private priceFilterBottomSheet: MatBottomSheet,
     private guestRatingFilterBottomSheet: MatBottomSheet,
@@ -330,8 +328,7 @@ export class HotelsSearchPageComponent {
   // navigate to hotel view
 
   viewHotelDetails(hotel: Hotel): void {
-    this.currentHottelService.setCurrentHotel(hotel);
-    this.router.navigate(['/hotels/view']);
+    this.router.navigate(['/hotels/view/', hotel.id]);
   }
 }
 

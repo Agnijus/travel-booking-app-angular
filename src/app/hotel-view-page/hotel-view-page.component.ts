@@ -1,6 +1,5 @@
 import { Component, KeyValueDiffers } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { CurrentHotelService } from '../current-hotel.service';
 import { SearchDataService } from '../search-data.service';
 import { Hotel } from '../hotels-search-page/hotels-search-page.component';
 import { CommonModule } from '@angular/common';
@@ -8,7 +7,8 @@ import { SearchData } from '../search-data.service';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { BookingService } from '../booking.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-hotel-view-page',
@@ -25,25 +25,7 @@ import { Router } from '@angular/router';
 export class HotelViewPageComponent {
   public searchParameters: SearchData | undefined;
   private differ: any;
-
-  hotel: Hotel = {
-    id: 1,
-    name: 'Conrad Las Vegas at Resorts World',
-    images: [
-      'https://content.skyscnr.com/available/1395012434/1395012434_WxH.jpg',
-      'https://content.skyscnr.com/available/1303344146/1303344146_WxH.jpg',
-      'https://content.skyscnr.com/available/1215563226/1215563226_320x252.jpg',
-    ],
-    address:
-      '111 Resorts World Avenue, Downtown Las Vegas, Las Vegas, 89109, United States',
-    distance: 0.8,
-    starRating: 5,
-    guestRating: 3.0,
-    reviewCount: 731,
-    pricePerNight: 120,
-    hasFreeCancellation: true,
-    hasPayOnArrival: false,
-  };
+  hotel!: Hotel;
 
   rooms: Room[] = [
     {
@@ -71,11 +53,12 @@ export class HotelViewPageComponent {
   openDatePicker = false;
 
   constructor(
-    private currentHotelService: CurrentHotelService,
+    private http: HttpService,
     private searchDataService: SearchDataService,
     private bookingService: BookingService,
     private differs: KeyValueDiffers,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.differ = this.differs.find({}).create();
   }
@@ -83,14 +66,23 @@ export class HotelViewPageComponent {
   // get search params from service, calculate total days
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const id: any = params.get('id');
+      this.http.fetchHotelById(id).subscribe({
+        next: (data: any) => {
+          this.hotel = data;
+          console.log(this.hotel);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    });
+
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
       this.totalDaysStay = this.calculateTotalDays();
       this.filterRooms();
-    });
-
-    this.currentHotelService.getCurrentHotel().subscribe((data: any) => {
-      this.hotel = data;
     });
   }
 
