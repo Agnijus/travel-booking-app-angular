@@ -76,18 +76,12 @@
       </div>
       <div class="room-options-grid">
         <div *ngFor="let room of filteredRooms" class="room-card">
-          <div class="room-title">{{ room.display }}</div>
+          <div class="room-title">{{ room.title }}</div>
           <mat-divider></mat-divider>
           <div class="room-info">
             <div class="room-amenities">Free wifi</div>
             <div class="room-total-price">
-              ${{
-                (
-                  hotel.pricePerNight *
-                  totalDaysStay *
-                  room.priceMultiplier
-                ).toFixed(2)
-              }}
+              ${{ (room.pricePerNight * totalDaysStay).toFixed(2) }}
             </div>
             <button
               (click)="selectRoom(room)"

@@ -28,24 +28,7 @@ export class HotelViewPageComponent {
   hotel!: Hotel;
   baseUrl: string = 'https://localhost:5000/';
 
-  rooms: Room[] = [
-    {
-      display: 'Double Room (1 - 2 Adults)',
-      maxGuestNumber: 2,
-      priceMultiplier: 1.05,
-    },
-
-    {
-      display: 'Twin Room (1 - 2 Adults)',
-      maxGuestNumber: 2,
-      priceMultiplier: 1.1,
-    },
-    {
-      display: 'Quadruple Room (1 - 4 Adults)',
-      maxGuestNumber: 4,
-      priceMultiplier: 1.3,
-    },
-  ];
+  rooms: Room[] = [];
 
   filteredRooms: Room[] = [];
 
@@ -72,18 +55,20 @@ export class HotelViewPageComponent {
       this.http.fetchHotelById(id).subscribe({
         next: (data: any) => {
           this.hotel = data;
-          console.log(this.hotel);
+          this.rooms = data.rooms.map((room: any) => ({
+            ...room,
+            ...ROOM_TYPE_DETAILS[room.roomType],
+          }));
+          this.searchDataService.getSearchData().subscribe((data: any) => {
+            this.searchParameters = data!;
+            this.totalDaysStay = this.calculateTotalDays();
+            this.filterRooms();
+          });
         },
         error: (error) => {
           console.log(error);
         },
       });
-    });
-
-    this.searchDataService.getSearchData().subscribe((data: any) => {
-      this.searchParameters = data!;
-      this.totalDaysStay = this.calculateTotalDays();
-      this.filterRooms();
     });
   }
 
@@ -125,7 +110,7 @@ export class HotelViewPageComponent {
   filterRooms(): void {
     if (this.searchParameters && this.searchParameters.adultsCount) {
       this.filteredRooms = this.rooms.filter(
-        (room) => room.maxGuestNumber >= this.searchParameters!.adultsCount
+        (room) => room.maxGuestNumber! >= this.searchParameters!.adultsCount
       );
     }
   }
@@ -150,8 +135,7 @@ export class HotelViewPageComponent {
       hotel: this.hotel,
       room: room,
       totalDays: this.totalDaysStay,
-      totalPrice:
-        this.totalDaysStay * room.priceMultiplier * this.hotel.pricePerNight,
+      totalPrice: this.totalDaysStay * room.pricePerNight,
       parameters: this.searchParameters,
     };
     this.bookingService.setBooking(booking);
@@ -159,8 +143,28 @@ export class HotelViewPageComponent {
   }
 }
 
+// export interface Room {
+//   id: number;
+//   roomType: number;
+//   pricePerNight: number;
+// }
+
 export interface Room {
-  display: string;
-  maxGuestNumber: number;
-  priceMultiplier: number;
+  id: number;
+  title?: string;
+  maxGuestNumber?: number;
+  roomType: number;
+  pricePerNight: number;
 }
+
+interface RoomTypes {
+  title: string;
+  maxGuestNumber: number;
+}
+
+export const ROOM_TYPE_DETAILS: any = {
+  0: { title: 'Single Room (1 Adult)', maxGuestNumber: 1 },
+  1: { title: 'Double Room (2 Adults)', maxGuestNumber: 2 },
+  2: { title: 'Twin Room (2 Adults)', maxGuestNumber: 2 },
+  3: { title: 'Quadruple Room (4 Adults)', maxGuestNumber: 4 },
+};

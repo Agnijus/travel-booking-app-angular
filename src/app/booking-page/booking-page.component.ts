@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 })
 export class BookingPageComponent {
   booking!: Booking;
+  baseUrl: string = 'https://localhost:5000/';
 
   constructor(private bookingService: BookingService) {}
 
