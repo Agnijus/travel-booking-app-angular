@@ -45,6 +45,7 @@ export class HotelsSearchPageComponent {
     private bookingOptionsFilterBottomSheet: MatBottomSheet
   ) {}
 
+  baseUrl: string = 'https://localhost:5000/';
   hotels: Hotel[] = [];
   searchParameters: SearchData | undefined;
 

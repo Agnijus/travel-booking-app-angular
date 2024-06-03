@@ -26,6 +26,7 @@ export class HotelViewPageComponent {
   public searchParameters: SearchData | undefined;
   private differ: any;
   hotel!: Hotel;
+  baseUrl: string = 'https://localhost:5000/';
 
   rooms: Room[] = [
     {

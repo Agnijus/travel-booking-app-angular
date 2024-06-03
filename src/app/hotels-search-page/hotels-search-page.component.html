@@ -287,7 +287,7 @@
           *ngFor="let hotel of filteredHotels"
           class="hotel-card"
         >
-          <img src="{{ hotel.images[0] }}" alt="{{ hotel.name }}" />
+          <img src="{{ baseUrl + hotel.images[0] }}" alt="{{ hotel.name }}" />
           <div class="hotel-info">
             <div class="title-rating-flex">
               <div class="title">{{ hotel.name }}</div>

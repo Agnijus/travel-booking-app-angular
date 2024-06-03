@@ -12,7 +12,7 @@ import { Hotel } from './hotels-search-page/hotels-search-page.component';
 export class HttpService {
   constructor(private _http: HttpClient, private route: ActivatedRoute) {}
 
-  baseUrl: string = 'https://localhost:7119';
+  baseUrl: string = 'https://localhost:5000';
 
   fetchHotels(): Observable<any> {
     return this._http.get<Hotel>(this.baseUrl + '/api/hotels');
