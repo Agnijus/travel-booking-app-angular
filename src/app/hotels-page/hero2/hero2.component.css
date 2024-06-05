@@ -1,5 +1,5 @@
 .hero-container {
-  background: url("https://content.skyscnr.com/m/79cc2d7873b8be4e/original/HotelDeals_GraphicPromo_1200x1600_App_35-_EN-UK.jpg?imbypass=true");
+  background: url("https://localhost:5000/Assets/hero2.jpeg");
   background-size: cover;
   height: 600px;
   background-position: 50%;
@@ -41,8 +41,8 @@ mat-card-actions button {
   }
   .hero-container {
     height: 400px;
-    background: url(https://content.skyscnr.com/m/51af5dc2109230c1/original/HotelDeals_GraphicPromo_2096x800_Desktop_35-_EN-UK.jpg?imbypass=true)
-      center/cover no-repeat;
+    background: url("https://localhost:5000/Assets/hero2.jpeg") center/cover
+      no-repeat;
 
     display: flex;
     align-items: center;

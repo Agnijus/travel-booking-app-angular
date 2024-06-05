@@ -11,29 +11,30 @@ import { MatListModule } from '@angular/material/list';
 })
 export class BrandsComponent {
   header: string = 'Compare hotels across your favourite brands';
+  baseUrl: string = 'https://localhost:5000/';
   brands = [
     {
-      url: 'https://www.skyscanner.net/images/websites/h_bc.png',
+      path: 'Assets/brand0.png',
       alt: 'Booking.com',
     },
     {
-      url: 'https://www.skyscanner.net/images/websites/d_ct.png',
+      path: 'Assets/brand1.png',
       alt: 'Trip.com',
     },
     {
-      url: 'https://www.skyscanner.net/images/websites/h_hc.png',
+      path: 'Assets/brand2.png',
       alt: 'Hotels.com',
     },
     {
-      url: 'https://www.skyscanner.net/images/websites/220x80/h_hy.png',
+      path: 'Assets/brand3.png',
       alt: 'Hyatt',
     },
     {
-      url: 'https://www.skyscanner.com/images/websites/h_xp.png',
+      path: 'Assets/brand4.png',
       alt: 'Expedia',
     },
     {
-      url: 'https://www.skyscanner.net/images/websites/h_ic.png',
+      path: 'Assets/brand5.png',
       alt: 'Intercontinental',
     },
   ];

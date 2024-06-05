@@ -7,7 +7,7 @@ import { Hero2Component } from './hero2/hero2.component';
 import { BrandsComponent } from './brands/brands.component';
 import { FeaturedHotelsComponent } from './featured-hotels/featured-hotels.component';
 import { FactsComponent } from './facts/facts.component';
-import { ServicesComponent } from '../services/services.component';
+import { ServicesComponent } from './services/services.component';
 import { FaqComponent } from './faq/faq.component';
 
 @Component({

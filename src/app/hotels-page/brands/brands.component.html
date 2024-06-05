@@ -3,7 +3,7 @@
     <header>{{ header }}</header>
     <mat-list role="list">
       <mat-list-item *ngFor="let brand of brands">
-        <img [src]="brand.url" [alt]="brand.alt" />
+        <img [src]="baseUrl + brand.path" [alt]="brand.alt" />
       </mat-list-item>
     </mat-list>
   </div>

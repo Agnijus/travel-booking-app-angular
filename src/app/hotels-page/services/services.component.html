@@ -2,7 +2,7 @@
   <div class="center">
     <div class="services-grid-container">
       <div *ngFor="let service of services" class="service-component">
-        <img [src]="service.imageUrl" [alt]="service.title" />
+        <img [src]="baseUrl + service.path" [alt]="service.title" />
         <div class="title">{{ service.title }}</div>
         <p>{{ service.description }}</p>
       </div>
