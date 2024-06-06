@@ -17,6 +17,7 @@ import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-
 import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-sheet/booking-options-bottom-sheet.component';
 import { Router } from '@angular/router';
 import { HttpService } from '../http.service';
+import { Room } from '../hotel-view-page/hotel-view-page.component';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -53,10 +54,11 @@ export class HotelsSearchPageComponent {
     this.http.fetchHotels().subscribe({
       next: (data: any) => {
         this.hotels = data;
-        this.updateFilters();
         this.updateScreenSize();
+        this.updateFilters();
 
         console.log(this.hotels);
+        console.log(this.filteredHotels);
       },
       error: (error) => {
         console.log(error);
@@ -138,8 +140,8 @@ export class HotelsSearchPageComponent {
 
     this.filteredHotels = this.hotels.filter((hotel) => {
       const isPriceInRange =
-        hotel.pricePerNight >= this.minPrice &&
-        hotel.pricePerNight <= this.maxPrice;
+        hotel.rooms[0].pricePerNight >= this.minPrice &&
+        hotel.rooms[0].pricePerNight <= this.maxPrice;
       const isRatingMatch =
         this.activeStars.length === 0 ||
         this.activeStars.includes(hotel.starRating);
@@ -339,6 +341,7 @@ export interface Hotel {
   id: number;
   name: string;
   images: string[];
+  rooms: Room[];
   address: string;
   distance: number;
   starRating: number;

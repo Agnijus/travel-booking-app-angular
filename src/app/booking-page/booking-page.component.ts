@@ -6,6 +6,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-page',
@@ -16,21 +24,65 @@ import { CommonModule } from '@angular/common';
     MatDividerModule,
     MatButtonModule,
     CommonModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './booking-page.component.html',
   styleUrl: './booking-page.component.css',
 })
 export class BookingPageComponent {
-  booking!: Booking;
+  bookingSummary!: Booking;
   baseUrl: string = 'https://localhost:5000/';
 
-  constructor(private bookingService: BookingService) {}
+  guestDetailsForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phoneNumber: new FormControl('', Validators.required),
+  });
+
+  constructor(
+    private bookingService: BookingService,
+    private http: HttpService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.bookingService.getBooking().subscribe((data: any) => {
-      this.booking = data!;
+      this.bookingSummary = data!;
 
-      console.log(this.booking);
+      console.log(this.bookingSummary);
     });
   }
+
+  book(): void {
+    if (this.guestDetailsForm.valid) {
+      const guestAccountHotelBooking = {
+        ...this.guestDetailsForm.value,
+        ...this.bookingService,
+      };
+      this.http.postHotelBooking(guestAccountHotelBooking).subscribe({
+        next: (data: Transaction) => {
+          console.log(data);
+
+          this.router.navigate(['booking/result']);
+        },
+        error: (error) => console.log(error),
+      });
+    }
+  }
+}
+
+interface Guest {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+}
+
+interface Transaction {
+  id: number;
+  accountId: number;
+  bookingId: number;
+  totalPrice: number;
+  status: number;
 }

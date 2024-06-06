@@ -314,7 +314,6 @@
             </div>
             <div class="reviews">
               <span class="review-points">{{ hotel.guestRating }}</span>
-
               <span class="review-count">{{ hotel.reviewCount }} reviews</span>
             </div>
           </div>
@@ -322,7 +321,7 @@
           <div class="hotel-price-container">
             <div class="hotel-price-container-center">
               <div class="hotel-price">
-                <span class="price">${{ hotel.pricePerNight }}</span>
+                <span class="price">${{ hotel.rooms[0].pricePerNight }}</span>
                 <span class="night">night</span>
                 <span class="anight">a night</span>
               </div>

@@ -105,7 +105,7 @@ img {
   padding: 1.5rem 0 0.5rem 1rem;
 }
 
-form {
+.form {
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -122,10 +122,10 @@ input {
 /* continue to payment */
 
 .reserve-btn {
-  background-color: #05203c;
   width: 100%;
+  color: white;
 }
 
 .fill {
-  height: 20vh;
+  height: 100vh;
 }

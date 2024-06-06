@@ -21,4 +21,11 @@ export class HttpService {
   fetchHotelById(id: number): Observable<any> {
     return this._http.get(`${this.baseUrl}/api/hotels/${id}`);
   }
+
+  postHotelBooking(guestAccountHotelBooking: any): Observable<any> {
+    return this._http.post(
+      `${this.baseUrl}/api/booking`,
+      guestAccountHotelBooking
+    );
+  }
 }
