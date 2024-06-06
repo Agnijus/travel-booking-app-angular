@@ -7,6 +7,8 @@ section {
   max-width: 1224px;
   margin: 0 auto;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* hotel summary */
@@ -126,6 +128,31 @@ input {
   color: white;
 }
 
+.reserve-btn-large-screen {
+  display: none;
+}
+
 .fill {
   height: 100vh;
+}
+
+@media screen and (min-width: 800px) {
+  .first {
+    width: 50%;
+  }
+  .second {
+    width: 50%;
+  }
+  .center {
+    flex-direction: row-reverse;
+    gap: 2rem;
+  }
+  .reserve-btn {
+    display: none;
+  }
+  .reserve-btn-large-screen {
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+  }
 }

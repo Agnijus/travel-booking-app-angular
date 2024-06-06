@@ -58,12 +58,13 @@ export class BookingPageComponent {
     if (this.guestDetailsForm.valid) {
       const guestAccountHotelBooking = {
         ...this.guestDetailsForm.value,
-        ...this.bookingService,
+        ...this.bookingSummary,
       };
-      this.http.postHotelBooking(guestAccountHotelBooking).subscribe({
-        next: (data: Transaction) => {
-          console.log(data);
+      console.log(guestAccountHotelBooking);
 
+      this.http.postHotelBooking(guestAccountHotelBooking).subscribe({
+        next: (data: HotelBooking) => {
+          console.log(data);
           this.router.navigate(['booking/result']);
         },
         error: (error) => console.log(error),
@@ -79,7 +80,7 @@ interface Guest {
   phoneNumber: string;
 }
 
-interface Transaction {
+interface HotelBooking {
   id: number;
   accountId: number;
   bookingId: number;
