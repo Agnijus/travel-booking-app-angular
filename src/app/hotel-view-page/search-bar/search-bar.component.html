@@ -101,7 +101,14 @@
           (click)="openGuestsRoomsDialog($event)"
         />
       </mat-form-field>
-      <button class="search-btn" color="primary" mat-flat-button>Search</button>
+      <button
+        (click)="search()"
+        class="search-btn"
+        color="primary"
+        mat-flat-button
+      >
+        Search
+      </button>
     </form>
   </div>
 </mat-card>

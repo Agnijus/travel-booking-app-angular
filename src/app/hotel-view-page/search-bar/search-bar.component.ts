@@ -203,4 +203,10 @@ export class SearchBarComponent {
       this.datePicker.open();
     }
   }
+
+  search(): void {
+    this.router.navigate([
+      `/hotels/search/${this.searchParameters.destination}`,
+    ]);
+  }
 }

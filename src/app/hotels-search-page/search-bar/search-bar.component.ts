@@ -173,4 +173,12 @@ export class SearchBarComponent {
   updateCalendarTouchUi(): void {
     this.calendarTouchUi = window.innerWidth <= 800;
   }
+
+  search(): void {
+    console.log('search');
+
+    this.router.navigate([
+      `/hotels/search/${this.searchParameters.destination}`,
+    ]);
+  }
 }

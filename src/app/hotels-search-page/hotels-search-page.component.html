@@ -313,7 +313,9 @@
               {{ hotel.distance }} miles from city centre
             </div>
             <div class="reviews">
-              <span class="review-points">{{ hotel.guestRating }}</span>
+              <span class="review-points">{{
+                hotel.guestRating.toFixed(1)
+              }}</span>
               <span class="review-count">{{ hotel.reviewCount }} reviews</span>
             </div>
           </div>

@@ -11,6 +11,7 @@ export const routes: Routes = [
   { path: 'flights', component: FlightsPageComponent },
   {
     path: 'hotels',
+
     component: HotelsPageComponent,
     data: { showSearchBar: true },
   },
