@@ -18,6 +18,12 @@ export class HttpService {
     return this._http.get(this.baseUrl + '/api/popularDestinations');
   }
 
+  fetchHotelsByDestination(destination: any): Observable<any> {
+    return this._http.get(
+      `${this.baseUrl}/api/hotels/destination/${destination}`
+    );
+  }
+
   fetchHotels(): Observable<any> {
     return this._http.get<Hotel>(this.baseUrl + '/api/hotels');
   }

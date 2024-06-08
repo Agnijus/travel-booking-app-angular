@@ -51,22 +51,27 @@ export class HotelsSearchPageComponent {
   searchParameters: SearchData | undefined;
 
   ngOnInit() {
-    this.http.fetchHotels().subscribe({
-      next: (data: any) => {
-        this.hotels = data;
-        this.updateScreenSize();
-        this.updateFilters();
-
-        console.log(this.hotels);
-        console.log(this.filteredHotels);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
+
+      console.log(this.searchParameters?.destination);
+
+      if (this.searchParameters?.destination) {
+        this.http.fetchHotelsByDestination(data.destination).subscribe({
+          next: (data: any) => {
+            this.hotels = data;
+            this.updateScreenSize();
+            this.updateFilters();
+
+            console.log(this.hotels);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+      }
     });
+
     console.log(this.hotels);
   }
 

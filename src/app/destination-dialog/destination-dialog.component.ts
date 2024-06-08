@@ -81,6 +81,7 @@ export class DestinationDialogComponent {
   selectRecentDestination(): void {
     this.searchDataService.setSearchData(this.previousSearch);
     this.router.navigate(['/hotels/search']);
+    this.closeDialog();
   }
 
   closeDialog(): void {
