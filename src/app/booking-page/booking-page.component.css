@@ -44,6 +44,7 @@ section {
 img {
   border-radius: 0.25rem;
   height: 100px;
+  width: 200px;
   object-fit: cover;
 }
 
@@ -116,9 +117,13 @@ img {
 
 mat-form-field {
   width: 100%;
+  --mat-form-field-container-vertical-padding: 0px;
+  --mat-form-field-container-height: 48px;
 }
 
-input {
+mat-form-field input {
+  margin-top: 1rem;
+  align-items: center;
 }
 
 /* continue to payment */
@@ -154,5 +159,13 @@ input {
     margin-top: 1rem;
     display: block;
     width: 100%;
+  }
+  .main-info {
+    flex-direction: column;
+  }
+  img {
+    height: 100px;
+    width: 100%;
+    display: block;
   }
 }
