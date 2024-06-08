@@ -1,5 +1,5 @@
 .mat-toolbar {
-  background-color: #f1f5f9;
+  background-color: white;
 }
 
 .toolbar-center {
@@ -50,15 +50,15 @@
 .toolbar-internal-links button {
   margin-right: 0.4rem;
   border-radius: 0.25rem 0.25rem 0 0;
-  background-color: #0062e3;
+  background-color: #00a1b0;
 }
 
 .toolbar-internal-links .active {
-  background-color: #05203c;
+  background-color: #002e5d;
 }
 
 .toolbar-internal-links button:hover {
-  background-color: #05203c;
+  background-color: #002e5d;
 }
 
 .toolbar-internal-links svg {

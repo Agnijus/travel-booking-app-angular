@@ -1,5 +1,5 @@
 .hero-container {
-  background: url("https://localhost:5000/Assets/hero2.jpeg");
+  background: url("https://localhost:5000/Assets/hero2_mobile.jpeg");
   background-size: cover;
   height: 600px;
   background-position: 50%;

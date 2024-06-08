@@ -34,29 +34,27 @@ export class DestinationDialogComponent {
   destination: string | undefined;
   previousSearch: any;
 
-  popularDestinations = [
-    { name: 'Las Vegas', location: 'Clark County, Nevada, United States' },
-    { name: 'New York', location: 'United States' },
-    { name: 'London', location: 'England, United Kingdom' },
-    { name: 'Tokyo', location: 'Japan' },
-    { name: 'Miami', location: 'Miami-Dade, Florida, United States' },
-    { name: 'Cancun', location: 'Quintana Roo, Mexico' },
-    { name: 'Los Angeles', location: 'California, United States' },
-    { name: 'Orlando', location: 'Orange County, Florida, United States' },
-    { name: 'Chicago', location: 'Cook County, Illinois, United States' },
-    { name: 'Paris', location: 'Île-de-France, France' },
-  ];
+  popularDestinations!: PopularDestination[];
 
   checkInDayMonthFormat: string | undefined;
   checkOutDayMonthFormat: string | undefined;
 
   constructor(
     public dialogRef: MatDialogRef<DestinationDialogComponent>,
+    private http: HttpService,
     private router: Router,
     private searchDataService: SearchDataService
   ) {}
 
   ngOnInit(): void {
+    this.http.fetchPopularDestinations().subscribe({
+      next: (data: any) => {
+        this.popularDestinations = data;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
     try {
       const storedData = localStorage.getItem('previousSearch');
       if (storedData) {
@@ -88,4 +86,9 @@ export class DestinationDialogComponent {
   closeDialog(): void {
     this.dialogRef.close(this.destination);
   }
+}
+
+interface PopularDestination {
+  name: string;
+  location: string;
 }

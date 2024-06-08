@@ -1,6 +1,6 @@
 .search-container {
   width: 100vw;
-  background-color: #05203c;
+  background-color: #002041;
   color: white;
   max-width: 1224px;
   border-radius: 0.75rem;
@@ -106,7 +106,7 @@ mat-label {
   width: 100%;
   border-radius: 0.5rem;
   vertical-align: middle;
-  background-color: #0062e3;
+  background-color: #00a1b0;
   padding: 1.25rem 1rem;
 }
 .search-btn svg {

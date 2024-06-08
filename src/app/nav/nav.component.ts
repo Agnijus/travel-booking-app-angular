@@ -24,6 +24,7 @@ export class NavComponent {
   constructor(public dialog: MatDialog, private router: Router) {}
 
   regionDialogRef!: MatDialogRef<RegionDialogComponent>;
+  baseUrl: string = 'https://localhost:5000/';
 
   openRegionDialog(event: MouseEvent): void {
     event.stopPropagation();

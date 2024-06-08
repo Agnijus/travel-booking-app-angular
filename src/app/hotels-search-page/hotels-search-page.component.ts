@@ -343,6 +343,7 @@ export interface Hotel {
   images: string[];
   rooms: Room[];
   address: string;
+  city: string;
   distance: number;
   starRating: number;
   guestRating: number;

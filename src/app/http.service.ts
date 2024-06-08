@@ -14,6 +14,10 @@ export class HttpService {
 
   baseUrl: string = 'https://localhost:5000';
 
+  fetchPopularDestinations(): Observable<any> {
+    return this._http.get(this.baseUrl + '/api/popularDestinations');
+  }
+
   fetchHotels(): Observable<any> {
     return this._http.get<Hotel>(this.baseUrl + '/api/hotels');
   }
