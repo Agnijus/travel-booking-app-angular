@@ -80,7 +80,9 @@ export class DestinationDialogComponent {
 
   selectRecentDestination(): void {
     this.searchDataService.setSearchData(this.previousSearch);
-    this.router.navigate(['/hotels/search']);
+    const storedData: any = localStorage.getItem('previousSearch');
+    const destination = JSON.parse(storedData).destination;
+    this.router.navigate([`/hotels/search/${destination}`]);
     this.closeDialog();
   }
 
