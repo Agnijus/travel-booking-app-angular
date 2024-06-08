@@ -172,6 +172,7 @@ export class SearchBarComponent {
     );
 
     this.searchDataService.setSearchData(this.searchParameters);
-    this.router.navigate(['/hotels/search']);
+    const destination = this.searchParameters.destination;
+    this.router.navigate([`/hotels/search/${destination}`]);
   }
 }

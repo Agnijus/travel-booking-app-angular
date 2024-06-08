@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { GuestRatingBottomSheetComponent } from './guest-rating-bottom-sheet/guest-rating-bottom-sheet.component';
 import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-rating-bottom-sheet.component';
 import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-sheet/booking-options-bottom-sheet.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http.service';
 import { Room } from '../hotel-view-page/hotel-view-page.component';
 
@@ -39,6 +39,7 @@ export class HotelsSearchPageComponent {
   constructor(
     private http: HttpService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private searchDataService: SearchDataService,
     private sortByFilterBottomSheet: MatBottomSheet,
     private priceFilterBottomSheet: MatBottomSheet,
@@ -53,11 +54,13 @@ export class HotelsSearchPageComponent {
   ngOnInit() {
     this.searchDataService.getSearchData().subscribe((data: any) => {
       this.searchParameters = data!;
+    });
 
-      console.log(this.searchParameters?.destination);
+    this.activatedRoute.params.subscribe((params) => {
+      const destination = params['destination'];
 
-      if (this.searchParameters?.destination) {
-        this.http.fetchHotelsByDestination(data.destination).subscribe({
+      if (destination) {
+        this.http.fetchHotelsByDestination(destination).subscribe({
           next: (data: any) => {
             this.hotels = data;
             this.updateScreenSize();

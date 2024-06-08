@@ -16,7 +16,7 @@ export const routes: Routes = [
   },
   { path: 'carhire', component: CarhirePageComponent },
   {
-    path: 'hotels/search',
+    path: 'hotels/search/:destination',
     component: HotelsSearchPageComponent,
     data: { showSearchBar: true },
   },
