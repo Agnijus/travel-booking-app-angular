@@ -45,7 +45,10 @@
         class="small-screen-date-btn"
         (click)="picker.open()"
       >
-        <span class="small-screen-dates">
+        <span
+          class="small-screen-dates"
+          *ngIf="searchParameters.checkInDate && searchParameters.checkOutDate"
+        >
           {{ searchParameters.checkInDate.getDate() }}-{{
             searchParameters.checkOutDate.getDate()
           }}

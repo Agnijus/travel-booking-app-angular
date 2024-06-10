@@ -65,9 +65,6 @@ export class SearchBarComponent {
       },
       error: (error) => console.error('Unable to load parameters', error),
     });
-  }
-
-  ngAfterViewInit(): void {
     this.updateCalendarTouchUi();
   }
 

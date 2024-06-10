@@ -131,7 +131,7 @@ export class HotelViewPageComponent {
   }
 
   selectRoom(room: Room): void {
-    const booking = {
+    const booking: any = {
       hotel: this.hotel,
       room: room,
       totalDays: this.totalDaysStay,

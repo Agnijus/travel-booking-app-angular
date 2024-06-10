@@ -52,9 +52,6 @@ export class SearchBarComponent {
     this.searchDataService.getSearchData().subscribe((data) => {
       this.searchParameters = data;
     });
-  }
-
-  ngAfterViewInit(): void {
     this.updateCalendarTouchUi();
   }
 

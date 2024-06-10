@@ -1,17 +1,9 @@
 <section>
   <app-search-bar [isOpen]="openDatePicker"></app-search-bar>
   <div class="image-grid">
-    <img class="first" src="{{ baseUrl + hotel.images[0] }}" alt="Main Image" />
-    <img
-      class="second"
-      src="{{ baseUrl + hotel.images[1] }}"
-      alt="Second Image"
-    />
-    <img
-      class="third"
-      src="{{ baseUrl + hotel.images[2] }}"
-      alt="Third Image"
-    />
+    <img class="first" [src]="baseUrl + hotel.images[0]" alt="First Image" />
+    <img class="second" [src]="baseUrl + hotel.images[1]" alt="Second Image" />
+    <img class="third" [src]="baseUrl + hotel.images[2]" alt="Third Image" />
   </div>
   <div class="center">
     <!-- hotel info -->
