@@ -99,10 +99,30 @@
       <div class="details-form">
         <div class="header">Main guest details</div>
         <div class="form" [formGroup]="guestDetailsForm">
+          <!-- first name -->
+          <div
+            class="invalid-input-error-container"
+            *ngIf="
+              guestDetailsForm.get('firstName')?.errors?.['required'] &&
+              guestDetailsForm.get('firstName')?.touched
+  "
+          >
+            First name is required.
+          </div>
           <mat-form-field appearance="outline">
             <mat-label>First name</mat-label>
             <input matInput formControlName="firstName" />
           </mat-form-field>
+          <!-- last name -->
+          <div
+            class="invalid-input-error-container"
+            *ngIf="
+              guestDetailsForm.get('lastName')?.errors?.['required'] &&
+              guestDetailsForm.get('lastName')?.touched
+  "
+          >
+            Last name is required.
+          </div>
 
           <mat-form-field required appearance="outline">
             <mat-label>Last name</mat-label>
@@ -114,10 +134,48 @@
       <div class="details-form">
         <div class="header">Contact details</div>
         <div class="form" [formGroup]="guestDetailsForm">
+          <!-- email -->
+          <div
+            class="invalid-input-error-container"
+            *ngIf="
+              guestDetailsForm.hasError('email', 'email') &&
+              guestDetailsForm.get('email')?.touched
+            "
+          >
+            Please enter a valid email address
+          </div>
+          <div
+            class="invalid-input-error-container"
+            *ngIf="
+              guestDetailsForm.get('email')?.errors?.['required'] &&
+              guestDetailsForm.get('email')?.touched
+  "
+          >
+            Email is required.
+          </div>
           <mat-form-field required appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" />
           </mat-form-field>
+          <!-- phone number -->
+          <div
+            class="invalid-input-error-container"
+            *ngIf="
+              guestDetailsForm.get('phoneNumber')?.errors?.['pattern'] &&
+              guestDetailsForm.get('phoneNumber')?.touched
+            "
+          >
+            Please enter a valid phone number
+          </div>
+          <div
+            class="invalid-input-error-container"
+            *ngIf="
+              guestDetailsForm.get('phoneNumber')?.errors?.['required'] &&
+              guestDetailsForm.get('phoneNumber')?.touched
+  "
+          >
+            Phone number is required.
+          </div>
 
           <mat-form-field required appearance="outline">
             <mat-label>Phone number</mat-label>
@@ -126,11 +184,10 @@
         </div>
       </div>
       <button
+        class="reserve-btn"
         mat-flat-button
         (click)="book()"
         [disabled]="!guestDetailsForm.valid"
-        class="reserve-btn"
-        color="primary"
       >
         Book now
       </button>

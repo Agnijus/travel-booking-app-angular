@@ -28,7 +28,7 @@ section {
 
 .check-in-check-out,
 .total-nights {
-  background-color: #00a1b0;
+  background-color: #002e5d;
   color: white;
   padding: 0.35rem 0.75rem;
   border-radius: 0.25rem;
@@ -126,11 +126,20 @@ mat-form-field input {
   align-items: center;
 }
 
+.invalid-input-error-container {
+  text-align: start;
+  color: red;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
 /* continue to payment */
 
-.reserve-btn {
+button {
   width: 100%;
-  color: white;
+  color: white !important;
+  --mdc-filled-button-container-color: #002e5d !important;
 }
 
 .reserve-btn-large-screen {

@@ -7,6 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -33,17 +34,24 @@ export class BookingPageComponent {
   bookingSummary!: Booking;
   baseUrl: string = 'https://localhost:5000/';
 
-  guestDetailsForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    phoneNumber: new FormControl('', Validators.required),
+  guestDetailsForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    phoneNumber: [
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern('^\\+?[0-9]{1,12}$'),
+      ]),
+    ],
   });
 
   constructor(
     private bookingService: BookingService,
     private http: HttpService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
