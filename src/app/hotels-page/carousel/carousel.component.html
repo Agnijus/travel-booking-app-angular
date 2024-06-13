@@ -3,24 +3,52 @@
   #slickModal="slick-carousel"
   [config]="slideConfig"
 >
-  <div ngxSlickItem *ngFor="let card of cards" class="card">
-    <img mat-card-image [src]="card.image" alt="Hotel Image" />
-    <div class="middle">
-      <div class="card-info">
-        <div class="title">{{ card.name }}</div>
-        <p class="distance">{{ card.distance }}</p>
-        <div class="reviews">
-          <span class="reviews-star-count">4</span>
-          <span>OOOO</span>
-          <span class="reviews-count">29413 reviews</span>
+  <div
+    ngxSlickItem
+    (click)="viewHotelDetails(hotel)"
+    *ngFor="let hotel of cards"
+    class="card"
+  >
+    <img src="{{ baseUrl + hotel.images[0] }}" alt="{{ hotel.name }}" />
+    <div class="hotel-info">
+      <div class="title-rating-flex">
+        <div class="title">{{ hotel.name }}</div>
+        <div class="rating">
+          <svg
+            *ngFor="let _ of [].constructor(hotel.starRating); let i = index"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            class=""
+            style="width: 1rem; height: 1rem"
+          >
+            <path
+              d="M7.925 8.03a1.05 1.05 0 00.793-.591l2.576-5.478a.771.771 0 011.412 0l2.576 5.478a1.048 1.048 0 00.793.59l5.75.87a.835.835 0 01.437 1.407l-4.188 4.274a1.05 1.05 0 00-.287.905l.99 6.05a.795.795 0 01-1.141.869l-5.13-2.83a1.05 1.05 0 00-1.013 0l-5.13 2.83a.795.795 0 01-1.141-.87l.995-6.05a1.05 1.05 0 00-.286-.904l-4.192-4.273A.834.834 0 012.175 8.9z"
+            ></path>
+          </svg>
         </div>
       </div>
-      <div class="rating">{{ card.rating }}</div>
+      <div class="distance">{{ hotel.distance }} miles from city centre</div>
+      <div class="reviews">
+        <span class="review-points">{{ hotel.guestRating.toFixed(1) }}</span>
+        <span class="review-count">{{ hotel.reviewCount }} reviews</span>
+      </div>
     </div>
-    <mat-divider></mat-divider>
-    <div class="bottom">
-      <div class="price">$499</div>
-      <p>Per night</p>
+    <mat-divider [vertical]="true" class="price-divider"></mat-divider>
+    <div class="hotel-price-container">
+      <div class="hotel-price-container-center">
+        <div class="hotel-price">
+          <span class="price">${{ hotel.rooms[0].pricePerNight }}</span>
+          <span class="night">night</span>
+          <span class="anight">a night</span>
+        </div>
+        <div class="free-cancellation" *ngIf="hotel.hasFreeCancellation">
+          Free cancellation
+        </div>
+        <div class="free-cancellation" *ngIf="hotel.hasPayOnArrival">
+          Free on arrival
+        </div>
+      </div>
     </div>
   </div>
 </ngx-slick-carousel>

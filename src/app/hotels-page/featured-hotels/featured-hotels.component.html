@@ -6,15 +6,15 @@
     <!-- filters -->
     <mat-card-actions align="start">
       <button
-        *ngFor="let city of cities"
+        *ngFor="let destination of destinations"
         mat-stroked-button
-        [class.active]="city === activeCity"
-        (click)="setActiveCity(city)"
+        [class.active]="destination === activeDestination"
+        (click)="setActiveCity(destination)"
       >
-        {{ city }}
+        {{ destination }}
       </button>
     </mat-card-actions>
     <!-- carousel -->
-    <app-carousel [cards]="filteredCards"></app-carousel>
+    <app-carousel [cards]="hotels"></app-carousel>
   </div>
 </section>

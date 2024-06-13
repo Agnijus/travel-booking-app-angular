@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { Hotel } from '../../hotels-search-page/hotels-search-page.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -15,6 +17,9 @@ export class CarouselComponent {
   @Input() cards: any[] = [];
   @ViewChild('slickModal', { static: true })
   slickModal!: SlickCarouselComponent;
+  baseUrl: string = 'https://localhost:5000/';
+
+  constructor(private router: Router) {}
 
   slideConfig = {
     slidesToShow: 1,
@@ -38,14 +43,14 @@ export class CarouselComponent {
         },
       },
       {
-        breakpoint: 900,
+        breakpoint: 1100,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 650,
+        breakpoint: 700,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -60,5 +65,9 @@ export class CarouselComponent {
 
   prev() {
     this.slickModal.slickPrev();
+  }
+
+  viewHotelDetails(hotel: Hotel): void {
+    this.router.navigate(['/hotels/view/', hotel.id]);
   }
 }
