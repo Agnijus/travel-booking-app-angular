@@ -157,29 +157,29 @@
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" />
           </mat-form-field>
-          <!-- phone number -->
+          <!-- contact number -->
           <div
             class="invalid-input-error-container"
             *ngIf="
-              guestDetailsForm.get('phoneNumber')?.errors?.['pattern'] &&
-              guestDetailsForm.get('phoneNumber')?.touched
+              guestDetailsForm.get('contactNumber')?.errors?.['pattern'] &&
+              guestDetailsForm.get('contactNumber')?.touched
             "
           >
-            Please enter a valid phone number
+            Please enter a valid contact number
           </div>
           <div
             class="invalid-input-error-container"
             *ngIf="
-              guestDetailsForm.get('phoneNumber')?.errors?.['required'] &&
-              guestDetailsForm.get('phoneNumber')?.touched
+              guestDetailsForm.get('contactNumber')?.errors?.['required'] &&
+              guestDetailsForm.get('contactNumber')?.touched
   "
           >
-            Phone number is required.
+            Contact number is required.
           </div>
 
           <mat-form-field required appearance="outline">
-            <mat-label>Phone number</mat-label>
-            <input matInput formControlName="phoneNumber" />
+            <mat-label>Contact number</mat-label>
+            <input matInput formControlName="contactNumber" />
           </mat-form-field>
         </div>
       </div>

@@ -15,8 +15,8 @@ export class FeaturedHotelsComponent {
   header: string = 'Hotels in your home country';
   paragraph: string =
     'Your next adventure may be closer than you think. Discover hotels just beyond your doorstep.';
-  cities = ['Edinburgh', 'Manchester', 'London', 'Belfast', 'Glasgow'];
-  activeCity: string = 'Edinburgh';
+  cities = ['Las Vegas', 'New York', 'Orlando', 'Miami', 'Los Angeles'];
+  activeCity: string = 'Las Vegas';
   filteredCards: featuredHotel[] = [];
 
   constructor() {
@@ -30,7 +30,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '2 miles',
       rating: '★★★★☆',
-      location: 'Edinburgh',
+      location: 'Las Vegas',
     },
     {
       name: 'Hotel Two',
@@ -38,7 +38,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '5 miles',
       rating: '★★★☆☆',
-      location: 'Edinburgh',
+      location: 'Las Vegas',
     },
     {
       name: 'Hotel Three',
@@ -46,7 +46,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '3 miles',
       rating: '★★★★★',
-      location: 'Edinburgh',
+      location: 'Las Vegas',
     },
     {
       name: 'Hotel Four',
@@ -54,7 +54,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '1 mile',
       rating: '★★☆☆☆',
-      location: 'Edinburgh',
+      location: 'Las Vegas',
     },
     {
       name: 'Hotel Five',
@@ -62,7 +62,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '4 miles',
       rating: '★★★☆☆',
-      location: 'Edinburgh',
+      location: 'Las Vegas',
     },
     {
       name: 'Hotel Six',
@@ -70,7 +70,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '6 miles',
       rating: '★★★★☆',
-      location: 'Manchester',
+      location: 'New York',
     },
 
     {
@@ -79,7 +79,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '2 miles',
       rating: '★★★★☆',
-      location: 'Manchester',
+      location: 'New York',
     },
     {
       name: 'Hotel Two',
@@ -87,7 +87,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '5 miles',
       rating: '★★★☆☆',
-      location: 'Manchester',
+      location: 'New York',
     },
     {
       name: 'Hotel Three',
@@ -95,7 +95,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '3 miles',
       rating: '★★★★★',
-      location: 'Manchester',
+      location: 'New York',
     },
     {
       name: 'Hotel Four',
@@ -103,7 +103,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '1 mile',
       rating: '★★☆☆☆',
-      location: 'Manchester',
+      location: 'New York',
     },
     {
       name: 'Hotel Five',
@@ -111,7 +111,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '4 miles',
       rating: '★★★☆☆',
-      location: 'Manchester',
+      location: 'New York',
     },
     {
       name: 'Hotel Six',
@@ -119,7 +119,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '6 miles',
       rating: '★★★★☆',
-      location: 'Manchester',
+      location: 'New York',
     },
 
     {
@@ -128,7 +128,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '2 miles',
       rating: '★★★★☆',
-      location: 'London',
+      location: 'Orlando',
     },
     {
       name: 'Hotel Two',
@@ -136,7 +136,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '5 miles',
       rating: '★★★☆☆',
-      location: 'London',
+      location: 'Orlando',
     },
     {
       name: 'Hotel Three',
@@ -144,7 +144,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '3 miles',
       rating: '★★★★★',
-      location: 'London',
+      location: 'Orlando',
     },
     {
       name: 'Hotel Four',
@@ -152,7 +152,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '1 mile',
       rating: '★★☆☆☆',
-      location: 'London',
+      location: 'Orlando',
     },
     {
       name: 'Hotel Five',
@@ -160,7 +160,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '4 miles',
       rating: '★★★☆☆',
-      location: 'London',
+      location: 'Orlando',
     },
     {
       name: 'Hotel Six',
@@ -168,7 +168,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '6 miles',
       rating: '★★★★☆',
-      location: 'London',
+      location: 'Orlando',
     },
 
     {
@@ -177,7 +177,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '2 miles',
       rating: '★★★★☆',
-      location: 'Belfast',
+      location: 'Miami',
     },
     {
       name: 'Hotel Two',
@@ -185,7 +185,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '5 miles',
       rating: '★★★☆☆',
-      location: 'Belfast',
+      location: 'Miami',
     },
     {
       name: 'Hotel Three',
@@ -193,7 +193,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '3 miles',
       rating: '★★★★★',
-      location: 'Belfast',
+      location: 'Miami',
     },
     {
       name: 'Hotel Four',
@@ -201,7 +201,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '1 mile',
       rating: '★★☆☆☆',
-      location: 'Belfast',
+      location: 'Miami',
     },
     {
       name: 'Hotel Five',
@@ -209,7 +209,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '4 miles',
       rating: '★★★☆☆',
-      location: 'Belfast',
+      location: 'Miami',
     },
     {
       name: 'Hotel Six',
@@ -217,7 +217,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '6 miles',
       rating: '★★★★☆',
-      location: 'Belfast',
+      location: 'Miami',
     },
 
     {
@@ -226,7 +226,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '2 miles',
       rating: '★★★★☆',
-      location: 'Glasgow',
+      location: 'Los Angeles',
     },
     {
       name: 'Hotel Two',
@@ -234,7 +234,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '5 miles',
       rating: '★★★☆☆',
-      location: 'Glasgow',
+      location: 'Los Angeles',
     },
     {
       name: 'Hotel Three',
@@ -242,7 +242,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '3 miles',
       rating: '★★★★★',
-      location: 'Glasgow',
+      location: 'Los Angeles',
     },
     {
       name: 'Hotel Four',
@@ -250,7 +250,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '1 mile',
       rating: '★★☆☆☆',
-      location: 'Glasgow',
+      location: 'Los Angeles',
     },
     {
       name: 'Hotel Five',
@@ -258,7 +258,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1269193484/1269193484_392x116.jpg',
       distance: '4 miles',
       rating: '★★★☆☆',
-      location: 'Glasgow',
+      location: 'Los Angeles',
     },
     {
       name: 'Hotel Six',
@@ -266,7 +266,7 @@ export class FeaturedHotelsComponent {
         'https://content.skyscnr.com/available/1364824169/1364824169_392x116.jpg',
       distance: '6 miles',
       rating: '★★★★☆',
-      location: 'Glasgow',
+      location: 'Los Angeles',
     },
   ];
 

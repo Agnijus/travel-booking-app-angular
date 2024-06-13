@@ -6,13 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 
@@ -38,7 +32,7 @@ export class BookingPageComponent {
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', Validators.compose([Validators.required, Validators.email])],
-    phoneNumber: [
+    contactNumber: [
       '',
       Validators.compose([
         Validators.required,
@@ -57,8 +51,6 @@ export class BookingPageComponent {
   ngOnInit(): void {
     this.bookingService.getBooking().subscribe((data: any) => {
       this.bookingSummary = data!;
-
-      console.log(this.bookingSummary);
     });
   }
 
@@ -67,8 +59,9 @@ export class BookingPageComponent {
       const guestAccountHotelBooking = {
         ...this.guestDetailsForm.value,
         ...this.bookingSummary,
+        checkInDate: this.bookingSummary.parameters?.checkInDate,
+        checkOutDate: this.bookingSummary.parameters?.checkOutDate,
       };
-      console.log(guestAccountHotelBooking);
 
       this.http.postHotelBooking(guestAccountHotelBooking).subscribe({
         next: (data: HotelBooking) => {
@@ -85,7 +78,7 @@ interface Guest {
   firstName: string;
   lastName: string;
   email: string;
-  phoneNumber: string;
+  contactNumber: string;
 }
 
 interface HotelBooking {
