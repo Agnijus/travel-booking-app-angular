@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SlickCarouselComponent } from 'ngx-slick-carousel';
-import { Hotel } from '../../hotels-search-page/hotels-search-page.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -67,7 +66,7 @@ export class CarouselComponent {
     this.slickModal.slickPrev();
   }
 
-  viewHotelDetails(hotel: Hotel): void {
-    this.router.navigate(['/hotels/view/', hotel.id]);
+  viewHotelDetails(hotel: any): void {
+    this.router.navigate(['/hotels/view/', hotel.hotelId]);
   }
 }

@@ -57,14 +57,19 @@ export class BookingPageComponent {
   book(): void {
     if (this.guestDetailsForm.valid) {
       const guestAccountHotelBooking = {
-        ...this.guestDetailsForm.value,
-        ...this.bookingSummary,
+        firstName: this.guestDetailsForm.value.firstName,
+        lastName: this.guestDetailsForm.value.lastName,
+        email: this.guestDetailsForm.value.email,
+        contactNumber: this.guestDetailsForm.value.contactNumber,
+        hotelId: this.bookingSummary.hotel.hotelId,
+        roomTypeId: this.bookingSummary.room.roomTypeId,
         checkInDate: this.bookingSummary.parameters?.checkInDate,
         checkOutDate: this.bookingSummary.parameters?.checkOutDate,
+        totalPrice: this.bookingSummary.totalPrice,
       };
 
       this.http.postHotelBooking(guestAccountHotelBooking).subscribe({
-        next: (data: HotelBooking) => {
+        next: (data: any) => {
           console.log(data);
           this.router.navigate(['booking/result']);
         },
@@ -74,17 +79,10 @@ export class BookingPageComponent {
   }
 }
 
-interface Guest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  contactNumber: string;
-}
-
-interface HotelBooking {
+export interface Room {
   id: number;
-  accountId: number;
-  bookingId: number;
-  totalPrice: number;
-  status: number;
+  title?: string;
+  maxGuestNumber?: number;
+  roomType: number;
+  pricePerNight: number;
 }

@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { HttpService } from '../../http.service';
-import { Hotel } from '../../hotels-search-page/hotels-search-page.component';
 
 @Component({
   selector: 'app-featured-hotels',
@@ -20,15 +19,17 @@ export class FeaturedHotelsComponent {
   destinations = ['Las Vegas', 'New York', 'Orlando', 'Miami', 'Los Angeles'];
   activeDestination: string = 'Las Vegas';
 
-  hotels!: Hotel[];
+  hotels!: any[];
 
   constructor(private http: HttpService) {}
 
   ngOnInit(): void {
     this.http.fetchHotelsByDestination(this.activeDestination).subscribe({
-      next: (data: any) => {
-        this.hotels = data;
-        console.log(this.hotels);
+      next: (apiResponse: any) => {
+        if (apiResponse.statusCode === 200) {
+          this.hotels = apiResponse.data;
+          console.log(this.hotels);
+        }
       },
       error: (error) => {
         console.log(error);

@@ -287,10 +287,10 @@
           *ngFor="let hotel of filteredHotels"
           class="hotel-card"
         >
-          <img src="{{ baseUrl + hotel.images[0] }}" alt="{{ hotel.name }}" />
+          <img src="{{ baseUrl + hotel.image }}" alt="{{ hotel.title }}" />
           <div class="hotel-info">
             <div class="title-rating-flex">
-              <div class="title">{{ hotel.name }}</div>
+              <div class="title">{{ hotel.title }}</div>
               <div class="rating">
                 <svg
                   *ngFor="
@@ -323,7 +323,7 @@
           <div class="hotel-price-container">
             <div class="hotel-price-container-center">
               <div class="hotel-price">
-                <span class="price">${{ hotel.rooms[0].pricePerNight }}</span>
+                <span class="price">${{ hotel.startingPrice }}</span>
                 <span class="night">night</span>
                 <span class="anight">a night</span>
               </div>

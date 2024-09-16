@@ -4,11 +4,20 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { HttpInterceptorService } from './http.interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NavComponent, FooterComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,29 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Hotel } from './hotels-search-page/hotels-search-page.component';
-import { Room } from './hotel-view-page/hotel-view-page.component';
 import { SearchData } from './search-data.service';
+import {
+  HotelViewResult,
+  RoomViewResults,
+} from './hotel-view-page/hotel-view-page.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
-  private booking!: Booking;
+  private booking!: any;
 
   constructor() {}
 
-  setBooking(booking: Booking): void {
+  setBooking(booking: any): void {
     this.booking = booking;
   }
 
-  getBooking(): Observable<Booking> {
+  getBooking(): Observable<any> {
     return of(this.booking);
   }
 }
 
+export interface Room {
+  id: number;
+  title?: string;
+  maxGuestNumber?: number;
+  roomType: number;
+  pricePerNight: number;
+}
+
 export interface Booking {
-  hotel: Hotel;
-  room: Room;
+  hotel: HotelViewResult;
+  room: RoomViewResults;
   totalDays: number;
   totalPrice: number;
   parameters: SearchData | undefined;

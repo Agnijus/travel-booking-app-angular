@@ -1,7 +1,6 @@
 import { Component, KeyValueDiffers } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchDataService } from '../search-data.service';
-import { Hotel } from '../hotels-search-page/hotels-search-page.component';
 import { CommonModule } from '@angular/common';
 import { SearchData } from '../search-data.service';
 import { MatDividerModule } from '@angular/material/divider';
@@ -25,12 +24,11 @@ import { HttpService } from '../http.service';
 export class HotelViewPageComponent {
   public searchParameters: SearchData | undefined;
   private differ: any;
-  hotel!: Hotel;
+  hotel!: any;
   baseUrl: string = 'https://localhost:5000/';
 
-  rooms: Room[] = [];
-
-  filteredRooms: Room[] = [];
+  filteredRooms: RoomViewResults[] = [];
+  rooms: any[] = [];
 
   totalDaysStay: number = 0;
   displayedColumns: string[] = ['display', 'guestNumber', 'totalPrice'];
@@ -53,12 +51,15 @@ export class HotelViewPageComponent {
     this.route.paramMap.subscribe((params) => {
       const id: any = params.get('id');
       this.http.fetchHotelById(id).subscribe({
-        next: (data: any) => {
-          this.hotel = data;
-          this.rooms = data.rooms.map((room: any) => ({
-            ...room,
-            ...ROOM_TYPE_DETAILS[room.roomType],
-          }));
+        next: (apiResponse: any) => {
+          if (apiResponse.statusCode === 200) {
+            this.hotel = apiResponse.data;
+            this.rooms = this.hotel.rooms.map((room: RoomViewResults) => {
+              const roomDetails = ROOM_TYPE_DETAILS[room.description];
+              return roomDetails ? { ...room, ...roomDetails } : room;
+            });
+            console.log(this.rooms);
+          }
           this.searchDataService.getSearchData().subscribe((data: any) => {
             this.searchParameters = data!;
             this.totalDaysStay = this.calculateTotalDays();
@@ -108,9 +109,10 @@ export class HotelViewPageComponent {
   }
 
   filterRooms(): void {
+    console.log(this.searchParameters, this.rooms);
     if (this.searchParameters && this.searchParameters.adultsCount) {
       this.filteredRooms = this.rooms.filter(
-        (room) => room.maxGuestNumber! >= this.searchParameters!.adultsCount
+        (room) => room.maxGuestNumber === this.searchParameters!.adultsCount
       );
     }
   }
@@ -130,7 +132,7 @@ export class HotelViewPageComponent {
     }
   }
 
-  selectRoom(room: Room): void {
+  selectRoom(room: any): void {
     const booking: any = {
       hotel: this.hotel,
       room: room,
@@ -139,32 +141,58 @@ export class HotelViewPageComponent {
       parameters: this.searchParameters,
     };
     this.bookingService.setBooking(booking);
+    console.log(booking);
     this.router.navigate(['/booking']);
   }
 }
 
-// export interface Room {
-//   id: number;
-//   roomType: number;
-//   pricePerNight: number;
-// }
-
-export interface Room {
-  id: number;
-  title?: string;
-  maxGuestNumber?: number;
-  roomType: number;
-  pricePerNight: number;
+export interface HotelViewResult {
+  hotelId: number;
+  title: string;
+  address: string;
+  city: string;
+  distance: number;
+  starRating: number;
+  guestRating: number;
+  reviewCount: number;
+  hasFreeCancellation: boolean;
+  hasPayOnArrival: boolean;
+  imagePaths: string[];
+  rooms: RoomViewResults[];
 }
 
-interface RoomTypes {
+export interface RoomViewResults {
+  roomTypeId: number;
+  description: number;
+  pricePerNight: number;
+  title: string;
+}
+
+interface RoomTypeDetails {
   title: string;
   maxGuestNumber: number;
+  description: string;
 }
 
-export const ROOM_TYPE_DETAILS: any = {
-  0: { title: 'Single Room (1 Adult)', maxGuestNumber: 1 },
-  1: { title: 'Double Room (2 Adults)', maxGuestNumber: 2 },
-  2: { title: 'Twin Room (2 Adults)', maxGuestNumber: 2 },
-  3: { title: 'Quadruple Room (4 Adults)', maxGuestNumber: 4 },
+const ROOM_TYPE_DETAILS: { [description: string]: RoomTypeDetails } = {
+  SingleRoom: {
+    title: 'Single Room (1 Adult)',
+    maxGuestNumber: 1,
+    description: 'SingleRoom',
+  },
+  DoubleRoom: {
+    title: 'Double Room (2 Adults)',
+    maxGuestNumber: 2,
+    description: 'DoubleRoom',
+  },
+  TwinRoom: {
+    title: 'Twin Room (2 Adults)',
+    maxGuestNumber: 2,
+    description: 'TwinRoom',
+  },
+  QuadrupleRoom: {
+    title: 'Quadruple Room (4 Adults)',
+    maxGuestNumber: 4,
+    description: 'QuadrupleRoom',
+  },
 };

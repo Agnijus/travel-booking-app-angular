@@ -37,7 +37,7 @@
       <div
         *ngFor="let destination of popularDestinations"
         class="destination-card"
-        (click)="selectDestination(destination.name)"
+        (click)="selectDestination(destination.city)"
       >
         <div class="destination-icon">
           <svg
@@ -53,7 +53,7 @@
           </svg>
         </div>
         <div class="destination-details">
-          <div class="destination-name">{{ destination.name }}</div>
+          <div class="destination-name">{{ destination.city }}</div>
           <div class="destination-location">{{ destination.location }}</div>
         </div>
       </div>

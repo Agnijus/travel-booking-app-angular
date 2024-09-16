@@ -48,8 +48,11 @@ export class DestinationDialogComponent {
 
   ngOnInit(): void {
     this.http.fetchPopularDestinations().subscribe({
-      next: (data: any) => {
-        this.popularDestinations = data;
+      next: (apiResponse: any) => {
+        if (apiResponse.statusCode === 200) {
+          console.log(apiResponse);
+          this.popularDestinations = apiResponse.data;
+        }
       },
       error: (error) => {
         console.log(error);
@@ -92,6 +95,7 @@ export class DestinationDialogComponent {
 }
 
 interface PopularDestination {
-  name: string;
+  id: number;
+  city: string;
   location: string;
 }

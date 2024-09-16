@@ -17,7 +17,6 @@ import { StarRatingBottomSheetComponent } from './star-rating-bottom-sheet/star-
 import { BookingOptionsBottomSheetComponent } from './booking-options-bottom-sheet/booking-options-bottom-sheet.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../http.service';
-import { Room } from '../hotel-view-page/hotel-view-page.component';
 
 @Component({
   selector: 'app-hotels-search-page',
@@ -48,7 +47,7 @@ export class HotelsSearchPageComponent {
   ) {}
 
   baseUrl: string = 'https://localhost:5000/';
-  hotels: Hotel[] = [];
+  hotels: HotelSearchListResults[] = [];
   searchParameters: SearchData | undefined;
 
   ngOnInit() {
@@ -61,12 +60,12 @@ export class HotelsSearchPageComponent {
 
       if (destination) {
         this.http.fetchHotelsByDestination(destination).subscribe({
-          next: (data: any) => {
-            this.hotels = data;
-            this.updateScreenSize();
-            this.updateFilters();
-
-            console.log(this.hotels);
+          next: (apiResponse: any) => {
+            if (apiResponse.statusCode === 200) {
+              this.hotels = apiResponse.data;
+              this.updateScreenSize();
+              this.updateFilters();
+            }
           },
           error: (error) => {
             console.log(error);
@@ -132,7 +131,7 @@ export class HotelsSearchPageComponent {
 
   // filtered hotel data
 
-  filteredHotels: Hotel[] = [];
+  filteredHotels: any[] = [];
 
   // filtering methods
 
@@ -148,8 +147,8 @@ export class HotelsSearchPageComponent {
 
     this.filteredHotels = this.hotels.filter((hotel) => {
       const isPriceInRange =
-        hotel.rooms[0].pricePerNight >= this.minPrice &&
-        hotel.rooms[0].pricePerNight <= this.maxPrice;
+        hotel.startingPrice >= this.minPrice &&
+        hotel.startingPrice <= this.maxPrice;
       const isRatingMatch =
         this.activeStars.length === 0 ||
         this.activeStars.includes(hotel.starRating);
@@ -338,25 +337,24 @@ export class HotelsSearchPageComponent {
 
   // navigate to hotel view
 
-  viewHotelDetails(hotel: Hotel): void {
-    this.router.navigate(['/hotels/view/', hotel.id]);
+  viewHotelDetails(hotel: any): void {
+    this.router.navigate(['/hotels/view/', hotel.hotelId]);
   }
 }
 
 // interfaces
 
-export interface Hotel {
-  id: number;
-  name: string;
-  images: string[];
-  rooms: Room[];
+export interface HotelSearchListResults {
+  hotelId: number;
+  title: string;
   address: string;
   city: string;
   distance: number;
   starRating: number;
   guestRating: number;
   reviewCount: number;
-  pricePerNight: number;
   hasFreeCancellation: boolean;
   hasPayOnArrival: boolean;
+  image: string;
+  startingPrice: number;
 }
